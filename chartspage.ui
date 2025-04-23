@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ChartsPage</class>
+ <widget class="QWidget" name="ChartsPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>534</width>
+    <height>744</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QChartView" name="artistsChartView">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>250</height> <!-- Adjust height as needed -->
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QChartView" name="tracksChartView">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>250</height> <!-- Adjust height as needed -->
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QChartView" name="hourlyChartView">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>250</height> <!-- Adjust height as needed -->
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QChartView" name="weeklyChartView">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>250</height> <!-- Adjust height as needed -->
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>1</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QChartView</class>
+   <extends>QWidget</extends> <!-- Extends QWidget -->
+   <header>QtCharts/QChartView</header> <!-- Header file -->
+   <container>1</container> <!-- Mark as container if needed -->
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
