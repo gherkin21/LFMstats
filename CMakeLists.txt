@@ -42,6 +42,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         trackspage.ui
         chartspage.ui
         aboutpage.ui
+        README.md
 
 
     )
