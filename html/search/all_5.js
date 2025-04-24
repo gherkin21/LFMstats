@@ -1,12 +1,10 @@
 var searchData=
 [
-  ['getartistplaycounts_0',['getArtistPlayCounts',['../class_analytics_engine.html#a307276ff5a20914bf89e86d1300c2f05',1,'AnalyticsEngine']]],
-  ['getfirstscrobbledate_1',['getFirstScrobbleDate',['../class_analytics_engine.html#aec0edeb8f4dd330f2147f77f24264a30',1,'AnalyticsEngine']]],
-  ['getlastscrobbledate_2',['getLastScrobbleDate',['../class_analytics_engine.html#a079ec42c0be963727d57a22767661eb1',1,'AnalyticsEngine']]],
-  ['getlastsynctimestamp_3',['getLastSyncTimestamp',['../class_database_manager.html#a90487d0fc1090bd46f9a3670f3f656ee',1,'DatabaseManager']]],
-  ['getmeanscrobblesperday_4',['getMeanScrobblesPerDay',['../class_analytics_engine.html#aa4a5bdf04df84d065cdf48d430d59d53',1,'AnalyticsEngine']]],
-  ['getscrobblesperdayofweek_5',['getScrobblesPerDayOfWeek',['../class_analytics_engine.html#a60904bba34ef1d196dbcc0170bbe1848',1,'AnalyticsEngine']]],
-  ['getscrobblesperhourofday_6',['getScrobblesPerHourOfDay',['../class_analytics_engine.html#abc9d8cda8733db2f92bb1319f7195aae',1,'AnalyticsEngine']]],
-  ['gettopartists_7',['getTopArtists',['../class_analytics_engine.html#a319dd1bfec62f711af388ed54c0a69d1',1,'AnalyticsEngine']]],
-  ['gettoptracks_8',['getTopTracks',['../class_analytics_engine.html#ae20d62bcb2527c9c895249401e4a2a61',1,'AnalyticsEngine']]]
+  ['features_0',['Features',['../md__r_e_a_d_m_e.html#autotoc_md2',1,'']]],
+  ['fetcherror_1',['fetchError',['../class_last_fm_manager.html#a8ec6936c6000695699649a49cf295c6c',1,'LastFmManager']]],
+  ['fetchfinished_2',['fetchFinished',['../class_last_fm_manager.html#a23cd23b930ac819802a9bcffb8e71bdb',1,'LastFmManager']]],
+  ['fetchscrobblessince_3',['fetchScrobblesSince',['../class_last_fm_manager.html#a67be41423397347f80b0bb85deabd95b',1,'LastFmManager']]],
+  ['findlastplayed_4',['findLastPlayed',['../class_analytics_engine.html#a368d537fab8fb71f973ba62c25fbb11d',1,'AnalyticsEngine']]],
+  ['finished_5',['finished',['../class_last_fm_worker.html#ad13fdad60bfd71662cf5e58245480d53',1,'LastFmWorker']]],
+  ['fm_20scrobble_20analyzer_6',['Last.fm Scrobble Analyzer',['../md__r_e_a_d_m_e.html',1,'']]]
 ];

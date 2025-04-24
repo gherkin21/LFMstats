@@ -32,67 +32,66 @@
 \DoxyCodeLine{00062\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_manager_a9b3d156eab74325d1fe4648bbef65f2f}{saveScrobblesAsync}}(\textcolor{keywordtype}{int}\ pageNumber,\ \textcolor{keyword}{const}\ QString\ \&username,}
 \DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QList<ScrobbleData>\ \&scrobbles);}
 \DoxyCodeLine{00064\ }
-\DoxyCodeLine{00074\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_manager_af1f2185f8198761207f7d9f1c02adb9f}{loadScrobblesAsync}}(\textcolor{keyword}{const}\ QString\ \&username,\ \textcolor{keyword}{const}\ QDateTime\ \&from,}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QDateTime\ \&to);}
-\DoxyCodeLine{00076\ }
-\DoxyCodeLine{00083\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_manager_a936567e6c9c8a591e6181c81ddc36881}{loadAllScrobblesAsync}}(\textcolor{keyword}{const}\ QString\ \&username);}
-\DoxyCodeLine{00084\ }
-\DoxyCodeLine{00092\ \ \ qint64\ \mbox{\hyperlink{class_database_manager_a90487d0fc1090bd46f9a3670f3f656ee}{getLastSyncTimestamp}}(\textcolor{keyword}{const}\ QString\ \&username);}
-\DoxyCodeLine{00093\ }
-\DoxyCodeLine{00100\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_database_manager_a686fe30df188bf6ef0776b9a5435d68b}{isSaveInProgress}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00101\ }
-\DoxyCodeLine{00102\ signals:}
-\DoxyCodeLine{00108\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_manager_a3f956362243286458b59b6f2a1b5eafb}{pageSaveCompleted}}(\textcolor{keywordtype}{int}\ pageNumber);}
-\DoxyCodeLine{00114\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_manager_aa28494d3af20b1ff6be2e558ebc7426e}{pageSaveFailed}}(\textcolor{keywordtype}{int}\ pageNumber,\ \textcolor{keyword}{const}\ QString\ \&error);}
-\DoxyCodeLine{00115\ }
-\DoxyCodeLine{00121\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_manager_aa02f698b3562c02503372d946dcb6b4f}{loadComplete}}(\textcolor{keyword}{const}\ QList<ScrobbleData>\ \&scrobbles);}
-\DoxyCodeLine{00122\ }
-\DoxyCodeLine{00127\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_manager_aee43a7a7f1e02a66b79c0f50f7949808}{loadError}}(\textcolor{keyword}{const}\ QString\ \&error);}
-\DoxyCodeLine{00128\ }
-\DoxyCodeLine{00134\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_manager_adcf2d12c21922b5938b9105a827d1958}{statusMessage}}(\textcolor{keyword}{const}\ QString\ \&message);}
-\DoxyCodeLine{00135\ }
-\DoxyCodeLine{00136\ \textcolor{keyword}{private}\ slots:}
-\DoxyCodeLine{00141\ \ \ \textcolor{keywordtype}{void}\ handleLoadFinished();}
-\DoxyCodeLine{00142\ }
-\DoxyCodeLine{00143\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00148\ \ \ \textcolor{keywordtype}{void}\ startSaveTaskIfNotRunning();}
-\DoxyCodeLine{00149\ }
-\DoxyCodeLine{00155\ \ \ \textcolor{keywordtype}{void}\ saveTaskLoop();}
-\DoxyCodeLine{00156\ }
-\DoxyCodeLine{00168\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ saveChunkSync(\textcolor{keyword}{const}\ QString\ \&basePath,\ \textcolor{keyword}{const}\ QString\ \&username,}
-\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QList<ScrobbleData>\ \&scrobbles,}
-\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QString\ \&errorMsg);}
-\DoxyCodeLine{00171\ }
-\DoxyCodeLine{00178\ \ \ \textcolor{keyword}{static}\ QDateTime\ getWeekStart(\textcolor{keyword}{const}\ QDateTime\ timestamp);}
-\DoxyCodeLine{00188\ \ \ \textcolor{keyword}{static}\ QString\ getWeekFilePath(\textcolor{keyword}{const}\ QString\ \&userPath,}
-\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QDateTime\ timestamp);}
-\DoxyCodeLine{00190\ }
-\DoxyCodeLine{00202\ \ \ \textcolor{keyword}{static}\ QList<ScrobbleData>\ loadScrobblesSync(\textcolor{keyword}{const}\ QString\ \&basePath,}
-\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QString\ \&username,}
-\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QDateTime\ \&from,}
-\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QDateTime\ \&to,}
-\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QString\ \&errorMsg);}
-\DoxyCodeLine{00207\ }
-\DoxyCodeLine{00216\ \ \ \textcolor{keyword}{static}\ QList<ScrobbleData>\ loadAllScrobblesSync(\textcolor{keyword}{const}\ QString\ \&basePath,}
-\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QString\ \&username,}
-\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QString\ \&errorMsg);}
-\DoxyCodeLine{00219\ }
-\DoxyCodeLine{00230\ \ \ \textcolor{keyword}{static}\ qint64\ findLastTimestampSync(\textcolor{keyword}{const}\ QString\ \&basePath,}
-\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QString\ \&username);}
-\DoxyCodeLine{00232\ }
-\DoxyCodeLine{00233\ \ \ QString\ m\_basePath;\ }
-\DoxyCodeLine{00235\ }
-\DoxyCodeLine{00236\ \ \ QFutureWatcher<QList<ScrobbleData>>}
-\DoxyCodeLine{00237\ \ \ \ \ \ \ m\_loadWatcher;\ }
-\DoxyCodeLine{00238\ \ \ QString\ m\_lastLoadError;\ }
-\DoxyCodeLine{00240\ }
-\DoxyCodeLine{00241\ \ \ \textcolor{keyword}{mutable}\ QMutex}
-\DoxyCodeLine{00242\ \ \ \ \ \ \ m\_saveQueueMutex;\ }
-\DoxyCodeLine{00243\ \ \ QQueue<SaveWorkItem>}
-\DoxyCodeLine{00244\ \ \ \ \ \ \ m\_saveQueue;\ }
-\DoxyCodeLine{00245\ \ \ QAtomicInteger<bool>\ m\_saveTaskRunning;\ }
-\DoxyCodeLine{00247\ \};}
-\DoxyCodeLine{00248\ }
-\DoxyCodeLine{00249\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ DATABASEMANAGER\_H}}
+\DoxyCodeLine{00075\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_manager_af1f2185f8198761207f7d9f1c02adb9f}{loadScrobblesAsync}}(\textcolor{keyword}{const}\ QString\ \&username,\ \textcolor{keyword}{const}\ QDateTime\ \&from,}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QDateTime\ \&to);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00086\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_manager_a936567e6c9c8a591e6181c81ddc36881}{loadAllScrobblesAsync}}(\textcolor{keyword}{const}\ QString\ \&username);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00095\ \ \ qint64\ \mbox{\hyperlink{class_database_manager_a90487d0fc1090bd46f9a3670f3f656ee}{getLastSyncTimestamp}}(\textcolor{keyword}{const}\ QString\ \&username);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00103\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_database_manager_a686fe30df188bf6ef0776b9a5435d68b}{isSaveInProgress}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00109\ \ \ QString\ \mbox{\hyperlink{class_database_manager_ae7d986e27dfa9b398745a85196fe02d1}{getBasePathInternal}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_basePath;\ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ signals:}
+\DoxyCodeLine{00117\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_manager_a3f956362243286458b59b6f2a1b5eafb}{pageSaveCompleted}}(\textcolor{keywordtype}{int}\ pageNumber);}
+\DoxyCodeLine{00123\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_manager_aa28494d3af20b1ff6be2e558ebc7426e}{pageSaveFailed}}(\textcolor{keywordtype}{int}\ pageNumber,\ \textcolor{keyword}{const}\ QString\ \&error);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00130\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_manager_aa02f698b3562c02503372d946dcb6b4f}{loadComplete}}(\textcolor{keyword}{const}\ QList<ScrobbleData>\ \&scrobbles);}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00136\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_manager_aee43a7a7f1e02a66b79c0f50f7949808}{loadError}}(\textcolor{keyword}{const}\ QString\ \&error);}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00143\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_manager_adcf2d12c21922b5938b9105a827d1958}{statusMessage}}(\textcolor{keyword}{const}\ QString\ \&message);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{keyword}{private}\ slots:}
+\DoxyCodeLine{00150\ \ \ \textcolor{keywordtype}{void}\ handleLoadFinished();}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00157\ \ \ \textcolor{keywordtype}{void}\ startSaveTaskIfNotRunning();}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00164\ \ \ \textcolor{keywordtype}{void}\ saveTaskLoop();}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00177\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ saveChunkSync(\textcolor{keyword}{const}\ QString\ \&basePath,\ \textcolor{keyword}{const}\ QString\ \&username,}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QList<ScrobbleData>\ \&scrobbles,}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QString\ \&errorMsg);}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00187\ \ \ \textcolor{keyword}{static}\ QDateTime\ getWeekStart(\textcolor{keyword}{const}\ QDateTime\ timestamp);}
+\DoxyCodeLine{00197\ \ \ \textcolor{keyword}{static}\ QString\ getWeekFilePath(\textcolor{keyword}{const}\ QString\ \&userPath,}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QDateTime\ timestamp);}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00211\ \ \ \textcolor{keyword}{static}\ QList<ScrobbleData>\ loadScrobblesSync(\textcolor{keyword}{const}\ QString\ \&basePath,}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QString\ \&username,}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QDateTime\ \&from,}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QDateTime\ \&to,}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QString\ \&errorMsg);}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00225\ \ \ \textcolor{keyword}{static}\ QList<ScrobbleData>\ loadAllScrobblesSync(\textcolor{keyword}{const}\ QString\ \&basePath,}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QString\ \&username,}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QString\ \&errorMsg);}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00239\ \ \ \textcolor{keyword}{static}\ qint64\ findLastTimestampSync(\textcolor{keyword}{const}\ QString\ \&basePath,}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QString\ \&username);}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ QString\ m\_basePath;}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \ QFutureWatcher<QList<ScrobbleData>>\ m\_loadWatcher;}
+\DoxyCodeLine{00245\ \ \ QString\ m\_lastLoadError;}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \ \ \textcolor{keyword}{mutable}\ QMutex\ m\_saveQueueMutex;}
+\DoxyCodeLine{00248\ \ \ QQueue<SaveWorkItem>\ m\_saveQueue;}
+\DoxyCodeLine{00249\ \ \ QAtomicInteger<bool>\ m\_saveTaskRunning;}
+\DoxyCodeLine{00250\ \};}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ DATABASEMANAGER\_H}}
 
 \end{DoxyCode}

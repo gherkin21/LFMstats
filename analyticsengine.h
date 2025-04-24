@@ -8,24 +8,26 @@
 #include <QMap>
 #include <QObject>
 #include <QPair>
+#include <QVariantMap>
 #include <QVector>
 
 using CountPair = QPair<QString, int>;
 using SortedCounts = QList<CountPair>;
+
 /**
  * @struct ListeningStreak
  * @brief Holds the results of listening streak calculations.
  */
 struct ListeningStreak {
   int longestStreakDays = 0;  /**< @brief The length of the longest consecutive
-                                 day listening streak. */
+                               day listening streak. */
   QDate longestStreakEndDate; /**< @brief The date (local time) the longest
-                                 streak ended. */
+                               streak ended. */
   int currentStreakDays =
       0; /**< @brief The length of the current consecutive day listening streak
-            (ending today or yesterday). */
+          (ending today or yesterday). */
   QDate currentStreakStartDate; /**< @brief The date (local time) the current
-                                   streak started. */
+                                 streak started. */
 };
 /**
  * @class AnalyticsEngine
@@ -139,6 +141,26 @@ public:
    */
   ListeningStreak
   calculateListeningStreaks(const QList<ScrobbleData> &scrobbles);
+  /**
+   * @brief Calculates a comprehensive set of statistics.
+   * @details This method calls other analysis methods of this class to compute
+   * various statistics and aggregates them into a single map. It's suitable for
+   * running in a background thread to avoid blocking the UI. Requires necessary
+   * custom types (like ListeningStreak, SortedCounts) to be registered with
+   * QMetaType if used across threads or stored in QVariant.
+   * @param scrobbles The list of scrobble data to analyze.
+   * @param topN The number of top artists/tracks to compute and include in the
+   * results.
+   * @return A QVariantMap containing various calculated statistics.
+   *         Keys include: "firstDate" (QDateTime), "lastDate" (QDateTime),
+   *         "streak" (QVariant containing ListeningStreak),
+   *         "topArtists" (QVariant containing SortedCounts),
+   *         "topTracks" (QVariant containing SortedCounts),
+   *         "hourlyData" (QVector<int>), "weeklyData" (QVector<int>),
+   *         "mean7" (double, avg scrobbles/day for last 7 days), etc.
+   *         Returns an empty map if the input scrobbles list is empty.
+   */
+  QVariantMap analyzeAll(const QList<ScrobbleData> &scrobbles, int topN = 100);
 
   /**
    * @brief Helper template function to sort a QMap by its values (descending).

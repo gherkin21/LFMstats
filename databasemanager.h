@@ -64,9 +64,10 @@ public:
 
   /**
    * @brief Asynchronously loads scrobbles for a specific user within a given
-   * UTC date range.
-   * @details Only one load operation can be active at a time. Results are
-   * emitted via loadComplete or loadError signals.
+   * UTC date range using QtConcurrent.
+   * @details Connect to loadComplete or loadError signals for results. Only one
+   * load operation (range or all) should be active at a time via this
+   * mechanism.
    * @param username The Last.fm username to load data for. Cannot be empty.
    * @param from The start of the UTC date range (inclusive).
    * @param to The end of the UTC date range (exclusive).
@@ -75,9 +76,11 @@ public:
                           const QDateTime &to);
 
   /**
-   * @brief Asynchronously loads all stored scrobbles for a specific user.
-   * @details Only one load operation can be active at a time. Results are
-   * emitted via loadComplete or loadError signals.
+   * @brief Asynchronously loads all stored scrobbles for a specific user using
+   * QtConcurrent.
+   * @details Connect to loadComplete or loadError signals for results. Only one
+   * load operation (range or all) should be active at a time via this
+   * mechanism.
    * @param username The Last.fm username to load data for. Cannot be empty.
    */
   void loadAllScrobblesAsync(const QString &username);
@@ -98,6 +101,12 @@ public:
    * empty, false otherwise.
    */
   bool isSaveInProgress() const;
+
+  /**
+   * @brief Provides access to the base path used by the manager.
+   * @return The absolute path string of the database root directory.
+   */
+  QString getBasePathInternal() const { return m_basePath; }
 
 signals:
   /**
@@ -136,7 +145,7 @@ signals:
 private slots:
   /**
    * @brief Slot connected to the load watcher's finished signal to handle
-   * results or errors.
+   * results or errors from async load operations.
    */
   void handleLoadFinished();
 
@@ -230,20 +239,14 @@ private:
   static qint64 findLastTimestampSync(const QString &basePath,
                                       const QString &username);
 
-  QString m_basePath; /**< @brief The absolute root directory path for the
-                         database. */
+  QString m_basePath;
 
-  QFutureWatcher<QList<ScrobbleData>>
-      m_loadWatcher; /**< @brief Future watcher for async load operations. */
-  QString m_lastLoadError; /**< @brief Stores error message from the last load
-                              operation. */
+  QFutureWatcher<QList<ScrobbleData>> m_loadWatcher;
+  QString m_lastLoadError;
 
-  mutable QMutex
-      m_saveQueueMutex; /**< @brief Mutex protecting the save queue. */
-  QQueue<SaveWorkItem>
-      m_saveQueue; /**< @brief Queue of work items waiting to be saved. */
-  QAtomicInteger<bool> m_saveTaskRunning; /**< @brief Atomic flag indicating if
-                                             the save task loop is running. */
+  mutable QMutex m_saveQueueMutex;
+  QQueue<SaveWorkItem> m_saveQueue;
+  QAtomicInteger<bool> m_saveTaskRunning;
 };
 
 #endif // DATABASEMANAGER_H

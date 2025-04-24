@@ -109,167 +109,162 @@ $(function(){initNavTree('mainwindow_8h_source.html',''); initResizable(true); }
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define MAINWINDOW_H</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;QComboBox&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;QLabel&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;QLineEdit&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;QListWidget&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;QListWidgetItem&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;QMainWindow&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;QPushButton&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;QStackedWidget&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;QTableWidget&gt;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>QT_BEGIN_NAMESPACE</div>
-<div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="namespace_ui.html">   15</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_ui.html">Ui</a> {</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">class </span><a class="code hl_class" href="class_main_window.html">MainWindow</a>;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>}</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;QFutureWatcher&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;QLabel&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;QLineEdit&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;QListWidget&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;QListWidgetItem&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;QMainWindow&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;QPushButton&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;QStackedWidget&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;QTableWidget&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;QVariantMap&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>QT_BEGIN_NAMESPACE</div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="}">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="namespace_ui.html">   17</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_ui.html">Ui</a> {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">class </span><a class="code hl_class" href="class_main_window.html">MainWindow</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>}</div>
 </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>QT_END_NAMESPACE</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &quot;<a class="code" href="analyticsengine_8h.html">analyticsengine.h</a>&quot;</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &quot;<a class="code" href="databasemanager_8h.html">databasemanager.h</a>&quot;</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;<a class="code" href="lastfmmanager_8h.html">lastfmmanager.h</a>&quot;</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;<a class="code" href="scrobbledata_8h.html">scrobbledata.h</a>&quot;</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;<a class="code" href="settingsmanager_8h.html">settingsmanager.h</a>&quot;</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;QtCharts/QChartGlobal&gt;</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;QtCharts/QChartView&gt;</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>QT_USE_NAMESPACE</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>QT_END_NAMESPACE</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;<a class="code" href="analyticsengine_8h.html">analyticsengine.h</a>&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;<a class="code" href="databasemanager_8h.html">databasemanager.h</a>&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;<a class="code" href="lastfmmanager_8h.html">lastfmmanager.h</a>&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;<a class="code" href="scrobbledata_8h.html">scrobbledata.h</a>&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;<a class="code" href="settingsmanager_8h.html">settingsmanager.h</a>&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;QtCharts/QChartGlobal&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;QtCharts/QChartView&gt;</span></div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">class </span>QChart;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">class </span>QBarSeries;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">class </span>QLineSeries;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span></div>
-<div class="foldopen" id="foldopen00045" data-start="{" data-end="};">
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="class_main_window.html">   45</a></span><span class="keyword">class </span><a class="code hl_function" href="class_main_window.html#a996c5a2b6f77944776856f08ec30858d">MainWindow</a> : <span class="keyword">public</span> QMainWindow {</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  Q_OBJECT</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keyword">explicit</span> <a class="code hl_function" href="class_main_window.html#a996c5a2b6f77944776856f08ec30858d">MainWindow</a>(QWidget *parent = <span class="keyword">nullptr</span>);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <a class="code hl_function" href="class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7">~MainWindow</a>();</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">private</span> slots:</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keywordtype">void</span> onMenuItemChanged(QListWidgetItem *current, QListWidgetItem *previous);</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="keywordtype">void</span> setupUser();</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  <span class="keywordtype">void</span> fetchNewScrobbles();</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="keywordtype">void</span> updateMeanScrobbleCalculation();</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  <span class="keywordtype">void</span> findLastPlayedTrack();</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span></div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <span class="keywordtype">void</span> handleSavePageOfScrobbles(<span class="keyword">const</span> QList&lt;ScrobbleData&gt; &amp;pageScrobbles,</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                                 <span class="keywordtype">int</span> pageNumber);</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  <span class="keywordtype">void</span> handleTotalPagesDetermined(<span class="keywordtype">int</span> totalPages);</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  <span class="keywordtype">void</span> handleFetchFinished();</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>  <span class="keywordtype">void</span> handleApiError(<span class="keyword">const</span> QString &amp;errorString);</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  <span class="keywordtype">void</span> handlePageSaveComplete(<span class="keywordtype">int</span> pageNumber);</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>  <span class="keywordtype">void</span> handlePageSaveFailed(<span class="keywordtype">int</span> pageNumber, <span class="keyword">const</span> QString &amp;error);</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>  <span class="keywordtype">void</span> handleDbLoadComplete(<span class="keyword">const</span> QList&lt;ScrobbleData&gt; &amp;scrobbles);</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>  <span class="keywordtype">void</span> handleDbLoadError(<span class="keyword">const</span> QString &amp;error);</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>  <span class="keywordtype">void</span> handleDbStatusUpdate(<span class="keyword">const</span> QString &amp;message);</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span></div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>  <span class="keywordtype">void</span> updateDisplay();</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>  <span class="keywordtype">void</span> updateArtistsView();</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>  <span class="keywordtype">void</span> updateTracksView();</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>  <span class="keywordtype">void</span> updateDatabaseTableView();</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>  <span class="keywordtype">void</span> updateChartsView();</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>  <span class="keywordtype">void</span> updateAboutView();</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>  <span class="keywordtype">void</span> updateGeneralStatsView();</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>  <span class="keywordtype">void</span> setupPages();</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>  <span class="keywordtype">void</span> loadDataForCurrentView();</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>  <span class="keywordtype">void</span> setupMenu();</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>  <span class="keywordtype">void</span> promptForSettings();</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>  <span class="keywordtype">void</span> checkOverallCompletion();</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span></div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>  <span class="keywordtype">void</span> updateArtistChart();</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>  <span class="keywordtype">void</span> updateTrackChart();</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>  <span class="keywordtype">void</span> updateHourlyChart();</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>  <span class="keywordtype">void</span> updateWeeklyChart();</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>  Ui::MainWindow *ui; </div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>  <a class="code hl_class" href="class_settings_manager.html">SettingsManager</a></div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>      m_settingsManager;         </div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>  <a class="code hl_class" href="class_last_fm_manager.html">LastFmManager</a> m_lastFmManager; </div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>  <a class="code hl_class" href="class_database_manager.html">DatabaseManager</a> m_databaseManager; </div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>  <a class="code hl_class" href="class_analytics_engine.html">AnalyticsEngine</a> m_analyticsEngine; </div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>  QLabel *m_statsLabel =</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>      <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>  QLabel *m_firstScrobbleLabelValue =</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>      <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>  QLabel *m_lastScrobbleLabelValue =</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>      <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>  QComboBox *m_meanRangeComboBox =</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>      <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>  QLabel *m_meanScrobblesResultLabel =</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>      <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>  QLabel *m_longestStreakLabelValue =</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>      <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>  QLabel *m_currentStreakLabelValue =</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>      <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>  QLineEdit *m_artistInput =</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>      <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>  QLineEdit *m_trackInput =</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>      <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>  QPushButton *m_findLastPlayedButton =</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>      <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>  QLabel *m_lastPlayedResultLabel =</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>      <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>  QTableWidget *m_dbTableWidget =</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>      <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>  QListWidget *m_artistListWidget =</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>      <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>  QListWidget *m_trackListWidget =</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>      <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>  QChartView *m_artistsChartView =</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>      <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>  QChartView *m_tracksChartView =</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>      <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>  QChartView *m_hourlyChartView =</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>      <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>  QChartView *m_weeklyChartView =</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>      <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>  QLabel *m_currentUserLabel = <span class="keyword">nullptr</span>; </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>QT_USE_NAMESPACE</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">class </span>QChart;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">class </span>QBarSeries;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">class </span>QLineSeries;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="mainwindow_8h.html#a484afa274eff60df5cd253af58e36a5b">   37</a></span><span class="keyword">using </span><a class="code hl_typedef" href="mainwindow_8h.html#a484afa274eff60df5cd253af58e36a5b">AnalysisResults</a> = QVariantMap;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span></div>
+<div class="foldopen" id="foldopen00050" data-start="{" data-end="};">
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="class_main_window.html">   50</a></span><span class="keyword">class </span><a class="code hl_function" href="class_main_window.html#a996c5a2b6f77944776856f08ec30858d">MainWindow</a> : <span class="keyword">public</span> QMainWindow {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  Q_OBJECT</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="keyword">explicit</span> <a class="code hl_function" href="class_main_window.html#a996c5a2b6f77944776856f08ec30858d">MainWindow</a>(QWidget *parent = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <a class="code hl_function" href="class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7">~MainWindow</a>();</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keyword">private</span> slots:</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="keywordtype">void</span> onMenuItemChanged(QListWidgetItem *current, QListWidgetItem *previous);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <span class="keywordtype">void</span> setupUser();</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="keywordtype">void</span> fetchNewScrobbles();</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  <span class="keywordtype">void</span> updateMeanScrobbleCalculation();</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  <span class="keywordtype">void</span> findLastPlayedTrack();</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  <span class="keywordtype">void</span> handleSavePageOfScrobbles(<span class="keyword">const</span> QList&lt;ScrobbleData&gt; &amp;pageScrobbles,</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                                 <span class="keywordtype">int</span> pageNumber);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  <span class="keywordtype">void</span> handleTotalPagesDetermined(<span class="keywordtype">int</span> totalPages);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>  <span class="keywordtype">void</span> handleFetchFinished();</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>  <span class="keywordtype">void</span> handleApiError(<span class="keyword">const</span> QString &amp;errorString);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>  <span class="keywordtype">void</span> handlePageSaveComplete(<span class="keywordtype">int</span> pageNumber);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>  <span class="keywordtype">void</span> handlePageSaveFailed(<span class="keywordtype">int</span> pageNumber, <span class="keyword">const</span> QString &amp;error);</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>  <span class="keywordtype">void</span> handleDbLoadComplete(<span class="keyword">const</span> QList&lt;ScrobbleData&gt; &amp;scrobbles);</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>  <span class="keywordtype">void</span> handleDbLoadError(<span class="keyword">const</span> QString &amp;error);</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>  <span class="keywordtype">void</span> handleDbStatusUpdate(<span class="keyword">const</span> QString &amp;message);</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>  <span class="keywordtype">void</span> handleAnalysisComplete();</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>  <span class="keywordtype">void</span> handleInitialDbLoadComplete();</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>  <span class="keyword">enum class</span> AppState {</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    Idle, </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    LoadingDb,   </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    Analyzing,   </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    FetchingApi, </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    SavingDb     </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>  };</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>  <span class="keywordtype">void</span> updateUiWithAnalysisResults(<span class="keyword">const</span> <a class="code hl_typedef" href="mainwindow_8h.html#a484afa274eff60df5cd253af58e36a5b">AnalysisResults</a> &amp;results);</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>  <span class="keywordtype">void</span> updateArtistsView(<span class="keyword">const</span> <a class="code hl_typedef" href="mainwindow_8h.html#a484afa274eff60df5cd253af58e36a5b">AnalysisResults</a> &amp;results);</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>  <span class="keywordtype">void</span> updateTracksView(<span class="keyword">const</span> <a class="code hl_typedef" href="mainwindow_8h.html#a484afa274eff60df5cd253af58e36a5b">AnalysisResults</a> &amp;results);</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>  <span class="keywordtype">void</span> updateDatabaseTableView(<span class="keyword">const</span> <a class="code hl_typedef" href="mainwindow_8h.html#a484afa274eff60df5cd253af58e36a5b">AnalysisResults</a> &amp;results);</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>  <span class="keywordtype">void</span> updateChartsView(<span class="keyword">const</span> <a class="code hl_typedef" href="mainwindow_8h.html#a484afa274eff60df5cd253af58e36a5b">AnalysisResults</a> &amp;results);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>  <span class="keywordtype">void</span> updateAboutView();</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>  <span class="keywordtype">void</span> updateGeneralStatsView(<span class="keyword">const</span> <a class="code hl_typedef" href="mainwindow_8h.html#a484afa274eff60df5cd253af58e36a5b">AnalysisResults</a> &amp;results);</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>  <span class="keywordtype">void</span> updateArtistChart(<span class="keyword">const</span> <a class="code hl_typedef" href="mainwindow_8h.html#a484afa274eff60df5cd253af58e36a5b">AnalysisResults</a> &amp;results);</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>  <span class="keywordtype">void</span> updateTrackChart(<span class="keyword">const</span> <a class="code hl_typedef" href="mainwindow_8h.html#a484afa274eff60df5cd253af58e36a5b">AnalysisResults</a> &amp;results);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>  <span class="keywordtype">void</span> updateHourlyChart(<span class="keyword">const</span> <a class="code hl_typedef" href="mainwindow_8h.html#a484afa274eff60df5cd253af58e36a5b">AnalysisResults</a> &amp;results);</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>  <span class="keywordtype">void</span> updateWeeklyChart(<span class="keyword">const</span> <a class="code hl_typedef" href="mainwindow_8h.html#a484afa274eff60df5cd253af58e36a5b">AnalysisResults</a> &amp;results);</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>  <span class="keywordtype">void</span> setupPages();</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>  <span class="keywordtype">void</span> startAnalysisTask();</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>  <span class="keywordtype">void</span> setupMenu();</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>  <span class="keywordtype">void</span> promptForSettings();</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>  <span class="keywordtype">void</span> checkOverallCompletion();</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>  <span class="keywordtype">void</span> updateStatusBarState();</div>
 <div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>  QWidget *generalStatsPage =</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>      <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>  QWidget *databaseTablePage =</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>      <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>  QWidget *artistsPage =</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>      <span class="keyword">nullptr</span>;                   </div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>  QWidget *tracksPage = <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>  QWidget *chartsPage = <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>  QWidget *aboutPage =</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>      <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>  QList&lt;ScrobbleData&gt;</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>      m_loadedScrobbles;    </div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>  <span class="keywordtype">bool</span> m_isLoading = <span class="keyword">false</span>; </div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>  <span class="keywordtype">bool</span> m_fetchingComplete =</div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>      <span class="keyword">false</span>; </div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>  <span class="keywordtype">int</span> m_expectedTotalPages = 0; </div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>  <span class="keywordtype">int</span> m_lastSuccessfullySavedPage =</div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>      0; </div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>};</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>  Ui::MainWindow *ui;</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>  <a class="code hl_class" href="class_settings_manager.html">SettingsManager</a> m_settingsManager;</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>  <a class="code hl_class" href="class_last_fm_manager.html">LastFmManager</a> m_lastFmManager;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>  <a class="code hl_class" href="class_database_manager.html">DatabaseManager</a> m_databaseManager;</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>  <a class="code hl_class" href="class_analytics_engine.html">AnalyticsEngine</a> m_analyticsEngine;</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>  AppState m_currentState = AppState::Idle; </div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>  <a class="code hl_typedef" href="mainwindow_8h.html#a484afa274eff60df5cd253af58e36a5b">AnalysisResults</a> m_cachedAnalysisResults;  </div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>  QFutureWatcher&lt;AnalysisResults&gt;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>      m_analysisWatcher; </div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>  QFutureWatcher&lt;QList&lt;ScrobbleData&gt;&gt;</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>      m_initialDbLoadWatcher; </div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>  QLabel *m_statsLabel = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>  QLabel *m_firstScrobbleLabelValue = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>  QLabel *m_lastScrobbleLabelValue = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>  QComboBox *m_meanRangeComboBox = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>  QLabel *m_meanScrobblesResultLabel = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>  QLabel *m_longestStreakLabelValue = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>  QLabel *m_currentStreakLabelValue = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>  QLineEdit *m_artistInput = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>  QLineEdit *m_trackInput = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>  QPushButton *m_findLastPlayedButton = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>  QLabel *m_lastPlayedResultLabel = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> </div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>  QTableWidget *m_dbTableWidget = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> </div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>  QListWidget *m_artistListWidget = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> </div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>  QListWidget *m_trackListWidget = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span> </div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>  QChartView *m_artistsChartView = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>  QChartView *m_tracksChartView = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>  QChartView *m_hourlyChartView = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>  QChartView *m_weeklyChartView = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>  QLabel *m_currentUserLabel = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>  QWidget *generalStatsPage = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>  QWidget *databaseTablePage = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>  QWidget *artistsPage = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>  QWidget *tracksPage = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>  QWidget *chartsPage = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>  QWidget *aboutPage = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> </div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>  QList&lt;ScrobbleData&gt; m_loadedScrobbles;</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>  <span class="keywordtype">bool</span> m_fetchingComplete = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>  <span class="keywordtype">int</span> m_expectedTotalPages = 0;</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>  <span class="keywordtype">int</span> m_lastSuccessfullySavedPage = 0;</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>};</div>
 </div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span><span class="preprocessor">#endif </span><span class="comment">// MAINWINDOW_H</span></div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span><span class="preprocessor">#endif </span><span class="comment">// MAINWINDOW_H</span></div>
 <div class="ttc" id="aanalyticsengine_8h_html"><div class="ttname"><a href="analyticsengine_8h.html">analyticsengine.h</a></div></div>
-<div class="ttc" id="aclass_analytics_engine_html"><div class="ttname"><a href="class_analytics_engine.html">AnalyticsEngine</a></div><div class="ttdoc">Performs various calculations and statistical analysis on a list of scrobble data.</div><div class="ttdef"><b>Definition</b> analyticsengine.h:41</div></div>
+<div class="ttc" id="aclass_analytics_engine_html"><div class="ttname"><a href="class_analytics_engine.html">AnalyticsEngine</a></div><div class="ttdoc">Performs various calculations and statistical analysis on a list of scrobble data.</div><div class="ttdef"><b>Definition</b> analyticsengine.h:43</div></div>
 <div class="ttc" id="aclass_database_manager_html"><div class="ttname"><a href="class_database_manager.html">DatabaseManager</a></div><div class="ttdoc">Manages the persistence of scrobble data to the local disk.</div><div class="ttdef"><b>Definition</b> databasemanager.h:33</div></div>
 <div class="ttc" id="aclass_last_fm_manager_html"><div class="ttname"><a href="class_last_fm_manager.html">LastFmManager</a></div><div class="ttdoc">Manages interaction with the Last.fm API for fetching scrobble data.</div><div class="ttdef"><b>Definition</b> lastfmmanager.h:27</div></div>
-<div class="ttc" id="aclass_main_window_html"><div class="ttname"><a href="class_main_window.html">MainWindow</a></div><div class="ttdoc">The main application window for the Last.fm Scrobble Analyzer.</div><div class="ttdef"><b>Definition</b> mainwindow.h:45</div></div>
-<div class="ttc" id="aclass_main_window_html_a996c5a2b6f77944776856f08ec30858d"><div class="ttname"><a href="class_main_window.html#a996c5a2b6f77944776856f08ec30858d">MainWindow::MainWindow</a></div><div class="ttdeci">MainWindow(QWidget *parent=nullptr)</div><div class="ttdoc">Constructs the MainWindow.</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:36</div></div>
-<div class="ttc" id="aclass_main_window_html_ae98d00a93bc118200eeef9f9bba1dba7"><div class="ttname"><a href="class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7">MainWindow::~MainWindow</a></div><div class="ttdeci">~MainWindow()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:109</div></div>
+<div class="ttc" id="aclass_main_window_html"><div class="ttname"><a href="class_main_window.html">MainWindow</a></div><div class="ttdoc">The main application window for the Last.fm Scrobble Analyzer.</div><div class="ttdef"><b>Definition</b> mainwindow.h:50</div></div>
+<div class="ttc" id="aclass_main_window_html_a996c5a2b6f77944776856f08ec30858d"><div class="ttname"><a href="class_main_window.html#a996c5a2b6f77944776856f08ec30858d">MainWindow::MainWindow</a></div><div class="ttdeci">MainWindow(QWidget *parent=nullptr)</div><div class="ttdoc">Constructs the MainWindow.</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:34</div></div>
+<div class="ttc" id="aclass_main_window_html_ae98d00a93bc118200eeef9f9bba1dba7"><div class="ttname"><a href="class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7">MainWindow::~MainWindow</a></div><div class="ttdeci">~MainWindow()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:116</div></div>
 <div class="ttc" id="aclass_settings_manager_html"><div class="ttname"><a href="class_settings_manager.html">SettingsManager</a></div><div class="ttdoc">Manages application settings persistence using QSettings.</div><div class="ttdef"><b>Definition</b> settingsmanager.h:16</div></div>
 <div class="ttc" id="adatabasemanager_8h_html"><div class="ttname"><a href="databasemanager_8h.html">databasemanager.h</a></div></div>
 <div class="ttc" id="alastfmmanager_8h_html"><div class="ttname"><a href="lastfmmanager_8h.html">lastfmmanager.h</a></div></div>
-<div class="ttc" id="anamespace_ui_html"><div class="ttname"><a href="namespace_ui.html">Ui</a></div><div class="ttdef"><b>Definition</b> mainwindow.h:15</div></div>
+<div class="ttc" id="amainwindow_8h_html_a484afa274eff60df5cd253af58e36a5b"><div class="ttname"><a href="mainwindow_8h.html#a484afa274eff60df5cd253af58e36a5b">AnalysisResults</a></div><div class="ttdeci">QVariantMap AnalysisResults</div><div class="ttdef"><b>Definition</b> mainwindow.h:37</div></div>
+<div class="ttc" id="anamespace_ui_html"><div class="ttname"><a href="namespace_ui.html">Ui</a></div><div class="ttdef"><b>Definition</b> mainwindow.h:17</div></div>
 <div class="ttc" id="ascrobbledata_8h_html"><div class="ttname"><a href="scrobbledata_8h.html">scrobbledata.h</a></div></div>
 <div class="ttc" id="asettingsmanager_8h_html"><div class="ttname"><a href="settingsmanager_8h.html">settingsmanager.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

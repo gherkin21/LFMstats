@@ -151,10 +151,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a9b3d156eab74325d1fe4648bbef65f2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Asynchronously queues a list of scrobbles for saving to the database.  <br /></td></tr>
 <tr class="separator:a9b3d156eab74325d1fe4648bbef65f2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1f2185f8198761207f7d9f1c02adb9f" id="r_af1f2185f8198761207f7d9f1c02adb9f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1f2185f8198761207f7d9f1c02adb9f">loadScrobblesAsync</a> (const QString &amp;username, const QDateTime &amp;from, const QDateTime &amp;to)</td></tr>
-<tr class="memdesc:af1f2185f8198761207f7d9f1c02adb9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Asynchronously loads scrobbles for a specific user within a given UTC date range.  <br /></td></tr>
+<tr class="memdesc:af1f2185f8198761207f7d9f1c02adb9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Asynchronously loads scrobbles for a specific user within a given UTC date range using QtConcurrent.  <br /></td></tr>
 <tr class="separator:af1f2185f8198761207f7d9f1c02adb9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a936567e6c9c8a591e6181c81ddc36881" id="r_a936567e6c9c8a591e6181c81ddc36881"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a936567e6c9c8a591e6181c81ddc36881">loadAllScrobblesAsync</a> (const QString &amp;username)</td></tr>
-<tr class="memdesc:a936567e6c9c8a591e6181c81ddc36881"><td class="mdescLeft">&#160;</td><td class="mdescRight">Asynchronously loads all stored scrobbles for a specific user.  <br /></td></tr>
+<tr class="memdesc:a936567e6c9c8a591e6181c81ddc36881"><td class="mdescLeft">&#160;</td><td class="mdescRight">Asynchronously loads all stored scrobbles for a specific user using QtConcurrent.  <br /></td></tr>
 <tr class="separator:a936567e6c9c8a591e6181c81ddc36881"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a90487d0fc1090bd46f9a3670f3f656ee" id="r_a90487d0fc1090bd46f9a3670f3f656ee"><td class="memItemLeft" align="right" valign="top">qint64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90487d0fc1090bd46f9a3670f3f656ee">getLastSyncTimestamp</a> (const QString &amp;username)</td></tr>
 <tr class="memdesc:a90487d0fc1090bd46f9a3670f3f656ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Synchronously retrieves the timestamp of the latest scrobble stored in the database for a given user.  <br /></td></tr>
@@ -162,6 +162,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a686fe30df188bf6ef0776b9a5435d68b" id="r_a686fe30df188bf6ef0776b9a5435d68b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a686fe30df188bf6ef0776b9a5435d68b">isSaveInProgress</a> () const</td></tr>
 <tr class="memdesc:a686fe30df188bf6ef0776b9a5435d68b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if there are pending save operations either running or queued.  <br /></td></tr>
 <tr class="separator:a686fe30df188bf6ef0776b9a5435d68b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7d986e27dfa9b398745a85196fe02d1" id="r_ae7d986e27dfa9b398745a85196fe02d1"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7d986e27dfa9b398745a85196fe02d1">getBasePathInternal</a> () const</td></tr>
+<tr class="memdesc:ae7d986e27dfa9b398745a85196fe02d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides access to the base path used by the manager.  <br /></td></tr>
+<tr class="separator:ae7d986e27dfa9b398745a85196fe02d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Manages the persistence of scrobble data to the local disk. </p>
@@ -233,6 +236,34 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae7d986e27dfa9b398745a85196fe02d1" name="ae7d986e27dfa9b398745a85196fe02d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7d986e27dfa9b398745a85196fe02d1">&#9670;&#160;</a></span>getBasePathInternal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString DatabaseManager::getBasePathInternal </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Provides access to the base path used by the manager. </p>
+<dl class="section return"><dt>Returns</dt><dd>The absolute path string of the database root directory. </dd></dl>
+
+</div>
+</div>
 <a id="a90487d0fc1090bd46f9a3670f3f656ee" name="a90487d0fc1090bd46f9a3670f3f656ee"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a90487d0fc1090bd46f9a3670f3f656ee">&#9670;&#160;</a></span>getLastSyncTimestamp()</h2>
 
@@ -294,8 +325,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Asynchronously loads all stored scrobbles for a specific user. </p>
-<p>Only one load operation can be active at a time. Results are emitted via loadComplete or loadError signals. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Asynchronously loads all stored scrobbles for a specific user using QtConcurrent. </p>
+<p>Connect to loadComplete or loadError signals for results. Only one load operation (range or all) should be active at a time via this mechanism. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">username</td><td>The Last.fm username to load data for. Cannot be empty. </td></tr>
   </table>
@@ -394,8 +425,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Asynchronously loads scrobbles for a specific user within a given UTC date range. </p>
-<p>Only one load operation can be active at a time. Results are emitted via loadComplete or loadError signals. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Asynchronously loads scrobbles for a specific user within a given UTC date range using QtConcurrent. </p>
+<p>Connect to loadComplete or loadError signals for results. Only one load operation (range or all) should be active at a time via this mechanism. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">username</td><td>The Last.fm username to load data for. Cannot be empty. </td></tr>
     <tr><td class="paramname">from</td><td>The start of the UTC date range (inclusive). </td></tr>

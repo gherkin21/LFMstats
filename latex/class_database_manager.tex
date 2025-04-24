@@ -38,13 +38,15 @@ void \mbox{\hyperlink{class_database_manager_adcf2d12c21922b5938b9105a827d1958}{
 void \mbox{\hyperlink{class_database_manager_a9b3d156eab74325d1fe4648bbef65f2f}{save\+Scrobbles\+Async}} (int page\+Number, const QString \&username, const QList$<$ \mbox{\hyperlink{struct_scrobble_data}{Scrobble\+Data}} $>$ \&scrobbles)
 \begin{DoxyCompactList}\small\item\em Asynchronously queues a list of scrobbles for saving to the database. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_database_manager_af1f2185f8198761207f7d9f1c02adb9f}{load\+Scrobbles\+Async}} (const QString \&username, const QDate\+Time \&from, const QDate\+Time \&to)
-\begin{DoxyCompactList}\small\item\em Asynchronously loads scrobbles for a specific user within a given UTC date range. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Asynchronously loads scrobbles for a specific user within a given UTC date range using Qt\+Concurrent. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_database_manager_a936567e6c9c8a591e6181c81ddc36881}{load\+All\+Scrobbles\+Async}} (const QString \&username)
-\begin{DoxyCompactList}\small\item\em Asynchronously loads all stored scrobbles for a specific user. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Asynchronously loads all stored scrobbles for a specific user using Qt\+Concurrent. \end{DoxyCompactList}\item 
 qint64 \mbox{\hyperlink{class_database_manager_a90487d0fc1090bd46f9a3670f3f656ee}{get\+Last\+Sync\+Timestamp}} (const QString \&username)
 \begin{DoxyCompactList}\small\item\em Synchronously retrieves the timestamp of the latest scrobble stored in the database for a given user. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_database_manager_a686fe30df188bf6ef0776b9a5435d68b}{is\+Save\+In\+Progress}} () const
-\begin{DoxyCompactList}\small\item\em Checks if there are pending save operations either running or queued. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Checks if there are pending save operations either running or queued. \end{DoxyCompactList}\item 
+QString \mbox{\hyperlink{class_database_manager_ae7d986e27dfa9b398745a85196fe02d1}{get\+Base\+Path\+Internal}} () const
+\begin{DoxyCompactList}\small\item\em Provides access to the base path used by the manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -83,6 +85,19 @@ Default destructor.
 
 
 \doxysubsection{Member Function Documentation}
+\Hypertarget{class_database_manager_ae7d986e27dfa9b398745a85196fe02d1}\index{DatabaseManager@{DatabaseManager}!getBasePathInternal@{getBasePathInternal}}
+\index{getBasePathInternal@{getBasePathInternal}!DatabaseManager@{DatabaseManager}}
+\doxysubsubsection{\texorpdfstring{getBasePathInternal()}{getBasePathInternal()}}
+{\footnotesize\ttfamily \label{class_database_manager_ae7d986e27dfa9b398745a85196fe02d1} 
+QString Database\+Manager\+::get\+Base\+Path\+Internal (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Provides access to the base path used by the manager. 
+
+\begin{DoxyReturn}{Returns}
+The absolute path string of the database root directory. 
+\end{DoxyReturn}
 \Hypertarget{class_database_manager_a90487d0fc1090bd46f9a3670f3f656ee}\index{DatabaseManager@{DatabaseManager}!getLastSyncTimestamp@{getLastSyncTimestamp}}
 \index{getLastSyncTimestamp@{getLastSyncTimestamp}!DatabaseManager@{DatabaseManager}}
 \doxysubsubsection{\texorpdfstring{getLastSyncTimestamp()}{getLastSyncTimestamp()}}
@@ -122,9 +137,9 @@ void Database\+Manager\+::load\+All\+Scrobbles\+Async (\begin{DoxyParamCaption}\
 
 
 
-Asynchronously loads all stored scrobbles for a specific user. 
+Asynchronously loads all stored scrobbles for a specific user using Qt\+Concurrent. 
 
-Only one load operation can be active at a time. Results are emitted via load\+Complete or load\+Error signals. 
+Connect to load\+Complete or load\+Error signals for results. Only one load operation (range or all) should be active at a time via this mechanism. 
 \begin{DoxyParams}{Parameters}
 {\em username} & The Last.\+fm username to load data for. Cannot be empty. \\
 \hline
@@ -167,9 +182,9 @@ void Database\+Manager\+::load\+Scrobbles\+Async (\begin{DoxyParamCaption}\item[
 
 
 
-Asynchronously loads scrobbles for a specific user within a given UTC date range. 
+Asynchronously loads scrobbles for a specific user within a given UTC date range using Qt\+Concurrent. 
 
-Only one load operation can be active at a time. Results are emitted via load\+Complete or load\+Error signals. 
+Connect to load\+Complete or load\+Error signals for results. Only one load operation (range or all) should be active at a time via this mechanism. 
 \begin{DoxyParams}{Parameters}
 {\em username} & The Last.\+fm username to load data for. Cannot be empty. \\
 \hline

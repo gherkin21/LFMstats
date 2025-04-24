@@ -156,6 +156,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a589c898e8e33c3a9f8d3f3648720d715" id="r_a589c898e8e33c3a9f8d3f3648720d715"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_listening_streak.html">ListeningStreak</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a589c898e8e33c3a9f8d3f3648720d715">calculateListeningStreaks</a> (const QList&lt; <a class="el" href="struct_scrobble_data.html">ScrobbleData</a> &gt; &amp;scrobbles)</td></tr>
 <tr class="memdesc:a589c898e8e33c3a9f8d3f3648720d715"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the longest and current consecutive day listening streaks.  <br /></td></tr>
 <tr class="separator:a589c898e8e33c3a9f8d3f3648720d715"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b3c6ba31b906eb138d4c56da97092e7" id="r_a5b3c6ba31b906eb138d4c56da97092e7"><td class="memItemLeft" align="right" valign="top">QVariantMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b3c6ba31b906eb138d4c56da97092e7">analyzeAll</a> (const QList&lt; <a class="el" href="struct_scrobble_data.html">ScrobbleData</a> &gt; &amp;scrobbles, int topN=100)</td></tr>
+<tr class="memdesc:a5b3c6ba31b906eb138d4c56da97092e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates a comprehensive set of statistics.  <br /></td></tr>
+<tr class="separator:a5b3c6ba31b906eb138d4c56da97092e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -202,6 +205,37 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a5b3c6ba31b906eb138d4c56da97092e7" name="a5b3c6ba31b906eb138d4c56da97092e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b3c6ba31b906eb138d4c56da97092e7">&#9670;&#160;</a></span>analyzeAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVariantMap AnalyticsEngine::analyzeAll </td>
+          <td>(</td>
+          <td class="paramtype">const QList&lt; <a class="el" href="struct_scrobble_data.html">ScrobbleData</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>scrobbles</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>topN</em></span><span class="paramdefsep"> = </span><span class="paramdefval">100</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates a comprehensive set of statistics. </p>
+<p>This method calls other analysis methods of this class to compute various statistics and aggregates them into a single map. It's suitable for running in a background thread to avoid blocking the UI. Requires necessary custom types (like <a class="el" href="struct_listening_streak.html" title="Holds the results of listening streak calculations.">ListeningStreak</a>, <a class="el" href="analyticsengine_8h.html#a24440435af6d135e5ba61c2a05f55deb">SortedCounts</a>) to be registered with QMetaType if used across threads or stored in QVariant. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scrobbles</td><td>The list of scrobble data to analyze. </td></tr>
+    <tr><td class="paramname">topN</td><td>The number of top artists/tracks to compute and include in the results. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A QVariantMap containing various calculated statistics. Keys include: "firstDate" (QDateTime), "lastDate" (QDateTime), "streak" (QVariant containing <a class="el" href="struct_listening_streak.html" title="Holds the results of listening streak calculations.">ListeningStreak</a>), "topArtists" (QVariant containing <a class="el" href="analyticsengine_8h.html#a24440435af6d135e5ba61c2a05f55deb">SortedCounts</a>), "topTracks" (QVariant containing <a class="el" href="analyticsengine_8h.html#a24440435af6d135e5ba61c2a05f55deb">SortedCounts</a>), "hourlyData" (QVector&lt;int&gt;), "weeklyData" (QVector&lt;int&gt;), "mean7" (double, avg scrobbles/day for last 7 days), etc. Returns an empty map if the input scrobbles list is empty. </dd></dl>
+
+</div>
+</div>
 <a id="a589c898e8e33c3a9f8d3f3648720d715" name="a589c898e8e33c3a9f8d3f3648720d715"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a589c898e8e33c3a9f8d3f3648720d715">&#9670;&#160;</a></span>calculateListeningStreaks()</h2>
 

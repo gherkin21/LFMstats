@@ -1,22 +1,14 @@
 \doxysection{main.\+cpp File Reference}
 \hypertarget{main_8cpp}{}\label{main_8cpp}\index{main.cpp@{main.cpp}}
-
-
-Main entry point for the Last.\+fm Scrobble Analyzer application.  
-
-
 {\ttfamily \#include "{}mainwindow.\+h"{}}\newline
+{\ttfamily \#include "{}analyticsengine.\+h"{}}\newline
 {\ttfamily \#include $<$QApplication$>$}\newline
+{\ttfamily \#include $<$QMeta\+Type$>$}\newline
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
 \begin{DoxyCompactList}\small\item\em Application entry point. \end{DoxyCompactList}\end{DoxyCompactItemize}
-
-
-\doxysubsection{Detailed Description}
-Main entry point for the Last.\+fm Scrobble Analyzer application. 
-
 
 
 \doxysubsection{Function Documentation}
@@ -30,7 +22,7 @@ int main (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstr
 
 Application entry point. 
 
-Initializes the QApplication, creates the main \doxylink{class_main_window}{Main\+Window} instance, shows the window, and starts the application event loop. 
+Initializes the QApplication, registers necessary metatypes for cross-\/thread signals/slots and QVariant storage, creates the main \doxylink{class_main_window}{Main\+Window} instance, shows the window, and starts the application event loop. 
 \begin{DoxyParams}{Parameters}
 {\em argc} & Argument count. \\
 \hline

@@ -1,10 +1,6 @@
-/**
- * @file analyticsengine.cpp
- * @brief Implementation of the AnalyticsEngine class.
- */
-
 #include "analyticsengine.h"
 #include <QDebug>
+#include <QMetaType>
 #include <QSet>
 #include <algorithm>
 #include <limits>
@@ -22,7 +18,7 @@ AnalyticsEngine::sortMapByValue(const QMap<QString, T> &map) {
 
   std::sort(list.begin(), list.end(),
             [](const QPair<QString, T> &a, const QPair<QString, T> &b) {
-              return a.second > b.second; // '>' for descending sort
+              return a.second > b.second;
             });
 
   return list;
@@ -102,6 +98,7 @@ AnalyticsEngine::getMeanScrobblesPerDay(const QList<ScrobbleData> &scrobbles,
   double daysInRange =
       static_cast<double>(secondsInRange) / (60.0 * 60.0 * 24.0);
   if (daysInRange == 0.0)
+
     return static_cast<double>(countInRange);
   return static_cast<double>(countInRange) / daysInRange;
 }
@@ -114,8 +111,12 @@ AnalyticsEngine::getFirstScrobbleDate(const QList<ScrobbleData> &scrobbles) {
   if (scrobbles.first().timestamp.isValid()) {
     return scrobbles.first().timestamp;
   } else {
-    QDateTime minDate;
-    return minDate;
+
+    for (const auto &s : scrobbles) {
+      if (s.timestamp.isValid())
+        return s.timestamp;
+    }
+    return QDateTime();
   }
 }
 
@@ -127,8 +128,12 @@ AnalyticsEngine::getLastScrobbleDate(const QList<ScrobbleData> &scrobbles) {
   if (scrobbles.last().timestamp.isValid()) {
     return scrobbles.last().timestamp;
   } else {
-    QDateTime maxDate;
-    return maxDate;
+
+    for (int i = scrobbles.size() - 1; i >= 0; --i) {
+      if (scrobbles[i].timestamp.isValid())
+        return scrobbles[i].timestamp;
+    }
+    return QDateTime();
   }
 }
 
@@ -157,6 +162,7 @@ QVector<int> AnalyticsEngine::getScrobblesPerDayOfWeek(
       QDateTime localTime = s.timestamp.toLocalTime();
       int dayOfWeek = localTime.date().dayOfWeek();
       if (dayOfWeek >= 1 && dayOfWeek <= 7) {
+
         counts[dayOfWeek - 1]++;
       } else {
         qWarning() << "AnalyticsEngine: Invalid local dayOfWeek found:"
@@ -195,8 +201,10 @@ ListeningStreak AnalyticsEngine::calculateListeningStreaks(
         previousDateLocal.addDays(1) == currentDateLocal) {
       currentStreakLength++;
     } else {
+
       currentStreakLength = 1;
     }
+
     if (currentStreakLength > result.longestStreakDays) {
       result.longestStreakDays = currentStreakLength;
       result.longestStreakEndDate = currentDateLocal;
@@ -218,10 +226,13 @@ ListeningStreak AnalyticsEngine::calculateListeningStreaks(
         result.currentStreakStartDate = sortedDates[i];
         expectedPrevDate = expectedPrevDate.addDays(-1);
       } else if (sortedDates[i] < expectedPrevDate) {
+
         break;
       }
     }
-    if (lastListenedDateLocal != todayLocal) {
+    if (lastListenedDateLocal != todayLocal &&
+        lastListenedDateLocal != yesterdayLocal) {
+
       result.currentStreakDays = 0;
       result.currentStreakStartDate = QDate();
     }
@@ -236,4 +247,47 @@ ListeningStreak AnalyticsEngine::calculateListeningStreaks(
            << result.currentStreakStartDate;
 
   return result;
+}
+
+QVariantMap AnalyticsEngine::analyzeAll(const QList<ScrobbleData> &scrobbles,
+                                        int topN) {
+  QVariantMap results;
+  if (scrobbles.isEmpty()) {
+    return results;
+  }
+
+  results["firstDate"] = QVariant::fromValue(getFirstScrobbleDate(scrobbles));
+  results["lastDate"] = QVariant::fromValue(getLastScrobbleDate(scrobbles));
+  results["streak"] = QVariant::fromValue(calculateListeningStreaks(scrobbles));
+  results["topArtists"] = QVariant::fromValue(getTopArtists(scrobbles, topN));
+  results["topTracks"] = QVariant::fromValue(getTopTracks(scrobbles, topN));
+  results["hourlyData"] =
+      QVariant::fromValue(getScrobblesPerHourOfDay(scrobbles));
+  results["weeklyData"] =
+      QVariant::fromValue(getScrobblesPerDayOfWeek(scrobbles));
+
+  QDateTime lastDate = results["lastDate"].toDateTime();
+  QDateTime firstDate = results["firstDate"].toDateTime();
+  if (lastDate.isValid()) {
+    QDateTime toDateUTC = lastDate.addSecs(1);
+    QDateTime from7 = toDateUTC.addDays(-7);
+    QDateTime from30 = toDateUTC.addDays(-30);
+    QDateTime from90 = toDateUTC.addDays(-90);
+
+    results["mean7"] = getMeanScrobblesPerDay(scrobbles, from7, toDateUTC);
+    results["mean30"] = getMeanScrobblesPerDay(scrobbles, from30, toDateUTC);
+    results["mean90"] = getMeanScrobblesPerDay(scrobbles, from90, toDateUTC);
+  } else {
+    results["mean7"] = 0.0;
+    results["mean30"] = 0.0;
+    results["mean90"] = 0.0;
+  }
+  if (firstDate.isValid() && lastDate.isValid()) {
+    results["meanAllTime"] =
+        getMeanScrobblesPerDay(scrobbles, firstDate, lastDate.addSecs(1));
+  } else {
+    results["meanAllTime"] = 0.0;
+  }
+
+  return results;
 }

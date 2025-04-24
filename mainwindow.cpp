@@ -1,8 +1,3 @@
-/**
- * @file mainwindow.cpp
- * @brief Implementation of the MainWindow class.
- */
-
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -21,8 +16,11 @@
 #include <QInputDialog>
 #include <QLineEdit>
 #include <QMessageBox>
+#include <QMetaType>
 #include <QPushButton>
+#include <QThread>
 #include <QTimer>
+#include <QtConcurrent>
 
 #include <QtCharts/QBarCategoryAxis>
 #include <QtCharts/QBarSeries>
@@ -34,12 +32,15 @@
 #include <QtCharts/QValueAxis>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow), m_isLoading(false),
-      m_fetchingComplete(false), m_expectedTotalPages(0),
-      m_lastSuccessfullySavedPage(0) {
+    : QMainWindow(parent), ui(new Ui::MainWindow), m_fetchingComplete(false),
+      m_expectedTotalPages(0), m_lastSuccessfullySavedPage(0),
+      m_currentState(AppState::Idle) {
+  qRegisterMetaType<ListeningStreak>("ListeningStreak");
+  qRegisterMetaType<SortedCounts>("SortedCounts");
+
   ui->setupUi(this);
   setWindowTitle("Last.fm Scrobble Analyzer");
-  ui->statusbar->showMessage("Ready.");
+  updateStatusBarState();
   setupPages();
 
   connect(ui->menuListWidget, &QListWidget::currentItemChanged, this,
@@ -90,7 +91,7 @@ MainWindow::MainWindow(QWidget *parent)
   connect(&m_lastFmManager, &LastFmManager::fetchFinished, this,
           &MainWindow::handleFetchFinished);
   connect(&m_lastFmManager, &LastFmManager::fetchError, this,
-          &MainWindow::handleApiError); // Connect simplified signal
+          &MainWindow::handleApiError);
   connect(&m_databaseManager, &DatabaseManager::pageSaveCompleted, this,
           &MainWindow::handlePageSaveComplete);
   connect(&m_databaseManager, &DatabaseManager::pageSaveFailed, this,
@@ -102,11 +103,55 @@ MainWindow::MainWindow(QWidget *parent)
   connect(&m_databaseManager, &DatabaseManager::statusMessage, this,
           &MainWindow::handleDbStatusUpdate);
 
+  connect(&m_analysisWatcher, &QFutureWatcher<AnalysisResults>::finished, this,
+          &MainWindow::handleAnalysisComplete);
+  connect(&m_initialDbLoadWatcher,
+          &QFutureWatcher<QList<ScrobbleData>>::finished, this,
+          &MainWindow::handleInitialDbLoadComplete);
+
   setupMenu();
   promptForSettings();
 }
 
 MainWindow::~MainWindow() { delete ui; }
+
+void MainWindow::updateStatusBarState() {
+  QString message = "Ready.";
+  bool busy = false;
+  switch (m_currentState) {
+  case AppState::Idle:
+    message = "Ready.";
+    break;
+  case AppState::LoadingDb:
+    message = "Loading data from disk...";
+    busy = true;
+    break;
+  case AppState::Analyzing:
+    message = "Analyzing data...";
+    busy = true;
+    break;
+  case AppState::FetchingApi:
+    message = "Fetching from Last.fm...";
+    busy = true;
+    break;
+  case AppState::SavingDb:
+    message = "Saving data to disk...";
+    busy = true;
+    break;
+  }
+  ui->statusbar->showMessage(message);
+
+  ui->menuListWidget->setEnabled(!busy);
+
+  QPushButton *fetchBtn =
+      aboutPage ? aboutPage->findChild<QPushButton *>("fetchButton") : nullptr;
+  if (fetchBtn)
+    fetchBtn->setEnabled(m_currentState == AppState::Idle);
+
+  if (m_findLastPlayedButton)
+    m_findLastPlayedButton->setEnabled(m_currentState == AppState::Idle &&
+                                       !m_loadedScrobbles.isEmpty());
+}
 
 void MainWindow::setupPages() {
   while (ui->stackedWidget->count() > 0) {
@@ -261,13 +306,15 @@ void MainWindow::promptForSettings() {
     qInfo() << "[Main Window] Calling LastFmManager::setup with API Key:"
             << (apiKey.isEmpty() ? "EMPTY" : "SET") << "Username:" << username;
     m_lastFmManager.setup(apiKey, username);
-    loadDataForCurrentView();
+
+    onMenuItemChanged(ui->menuListWidget->currentItem(), nullptr);
   } else {
     ui->profileNameLabel->setText("<Required>");
     if (m_currentUserLabel)
       m_currentUserLabel->setText("<Not Set>");
     m_loadedScrobbles.clear();
-    updateDisplay();
+    m_cachedAnalysisResults.clear();
+    updateUiWithAnalysisResults(AnalysisResults());
   }
 }
 
@@ -317,6 +364,7 @@ void MainWindow::setupUser() {
         this, "Settings Updated",
         "Settings updated. Fetch if needed.\nData cleared.");
     m_loadedScrobbles.clear();
+    m_cachedAnalysisResults.clear();
     if (userChanged) {
       m_settingsManager.setInitialFetchComplete(false);
       m_settingsManager.clearResumeState();
@@ -324,13 +372,16 @@ void MainWindow::setupUser() {
       m_expectedTotalPages = 0;
       qInfo() << "User changed, reset state.";
     }
-    updateDisplay();
+
+    m_currentState = AppState::Idle;
+    updateStatusBarState();
+    updateUiWithAnalysisResults(AnalysisResults());
   }
 }
 
 void MainWindow::fetchNewScrobbles() {
-  if (m_isLoading) {
-    QMessageBox::warning(this, "Busy", "Operation in progress.");
+  if (m_currentState != AppState::Idle) {
+    QMessageBox::warning(this, "Busy", "Operation already in progress.");
     return;
   }
   QString username = m_settingsManager.username();
@@ -341,13 +392,13 @@ void MainWindow::fetchNewScrobbles() {
     return;
   }
 
-  m_isLoading = true;
   m_fetchingComplete = false;
   bool isUpdate = m_settingsManager.isInitialFetchComplete();
   qInfo() << "================ FETCH TRIGGERED ================";
   if (isUpdate) {
     qint64 startTimestamp = m_databaseManager.getLastSyncTimestamp(username);
-    ui->statusbar->showMessage("Fetching updates...");
+    m_currentState = AppState::FetchingApi;
+    updateStatusBarState();
     qInfo() << "Mode: Incremental Update since" << startTimestamp;
     m_expectedTotalPages = 0;
     m_lastSuccessfullySavedPage = 0;
@@ -357,8 +408,8 @@ void MainWindow::fetchNewScrobbles() {
         m_settingsManager.loadLastSuccessfullySavedPage();
     m_expectedTotalPages = m_settingsManager.loadExpectedTotalPages();
     int startPage = m_lastSuccessfullySavedPage + 1;
-    ui->statusbar->showMessage(
-        QString("Fetching history from page %1...").arg(startPage));
+    m_currentState = AppState::FetchingApi;
+    updateStatusBarState();
     qInfo() << "Mode: Full Fetch/Resume from page" << startPage
             << "(Known Total:" << m_expectedTotalPages << ")";
     m_lastFmManager.startInitialOrResumeFetch(startPage, m_expectedTotalPages);
@@ -371,30 +422,48 @@ void MainWindow::onMenuItemChanged(QListWidgetItem *current,
   Q_UNUSED(previous);
   if (!current)
     return;
-  ui->selectedTabLabel->setText("Selected: " + current->text());
+
   int index = ui->menuListWidget->row(current);
   if (index >= 0 && index < ui->stackedWidget->count()) {
+    ui->selectedTabLabel->setText("Selected: " + current->text());
     ui->stackedWidget->setCurrentIndex(index);
-    loadDataForCurrentView();
-  } else {
-    qWarning() << "Invalid index selected:" << index;
-  }
-}
 
-void MainWindow::loadDataForCurrentView() {
-  if (!m_loadedScrobbles.isEmpty() && !m_isLoading) {
-    updateDisplay();
-    return;
-  }
-  QString username = m_settingsManager.username();
-  if (!username.isEmpty() && !m_isLoading && m_loadedScrobbles.isEmpty()) {
-    m_isLoading = true;
-    ui->statusbar->showMessage("Loading data from database...");
-    m_databaseManager.loadAllScrobblesAsync(username);
-  } else if (m_isLoading) {
-    qDebug() << "Load requested while already loading.";
+    if (!m_loadedScrobbles.isEmpty()) {
+
+      if (m_cachedAnalysisResults.isEmpty() ||
+          m_currentState == AppState::Analyzing) {
+
+        if (m_currentState == AppState::Idle) {
+          startAnalysisTask();
+        } else {
+          qDebug() << "Analysis already running or data loading, will update "
+                      "view when done.";
+        }
+      } else {
+
+        updateUiWithAnalysisResults(m_cachedAnalysisResults);
+        updateStatusBarState();
+      }
+    } else {
+
+      if (m_currentState == AppState::Idle) {
+        QString username = m_settingsManager.username();
+        if (!username.isEmpty()) {
+          m_currentState = AppState::LoadingDb;
+          updateStatusBarState();
+
+          m_databaseManager.loadAllScrobblesAsync(username);
+
+        } else {
+          qDebug() << "Cannot load data: No username set.";
+        }
+
+      } else {
+        qDebug() << "Already busy:" << static_cast<int>(m_currentState);
+      }
+    }
   } else {
-    updateDisplay();
+    qWarning() << "Invalid menu index selected:" << index;
   }
 }
 
@@ -431,6 +500,7 @@ void MainWindow::handleFetchFinished() {
   qInfo() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz")
           << "- [Main] API Fetch part finished.";
   m_fetchingComplete = true;
+
   checkOverallCompletion();
 }
 
@@ -438,7 +508,9 @@ void MainWindow::handleApiError(const QString &errorString) {
   qWarning() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz")
              << "- [Main] API Error:" << errorString;
   m_fetchingComplete = true;
-  m_isLoading = false;
+  m_currentState = AppState::Idle;
+  updateStatusBarState();
+
   m_settingsManager.setInitialFetchComplete(false);
   qWarning() << "API Error: Marked initial fetch as incomplete.";
   ui->statusbar->showMessage("API Error.", 5000);
@@ -453,6 +525,7 @@ void MainWindow::handlePageSaveComplete(int pageNumber) {
     m_settingsManager.saveLastSuccessfullySavedPage(
         m_lastSuccessfullySavedPage);
   }
+
   checkOverallCompletion();
 }
 
@@ -461,7 +534,9 @@ void MainWindow::handlePageSaveFailed(int pageNumber, const QString &error) {
              << "- [Main] DB Save FAILED: Page" << pageNumber
              << "Err:" << error;
   m_fetchingComplete = true;
-  m_isLoading = false;
+  m_currentState = AppState::Idle;
+  updateStatusBarState();
+
   m_settingsManager.setInitialFetchComplete(false);
   qWarning() << "DB Save Error: Marked initial fetch as incomplete.";
   ui->statusbar->showMessage("Database save error!", 5000);
@@ -469,10 +544,22 @@ void MainWindow::handlePageSaveFailed(int pageNumber, const QString &error) {
 }
 
 void MainWindow::checkOverallCompletion() {
-  if (m_fetchingComplete && !m_databaseManager.isSaveInProgress() &&
-      m_isLoading) {
+
+  if (m_currentState != AppState::FetchingApi &&
+      m_currentState != AppState::SavingDb) {
+
+    return;
+  }
+
+  bool savingDone = !m_databaseManager.isSaveInProgress();
+
+  if (m_fetchingComplete && savingDone) {
     qInfo() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz")
             << "- [Main] Fetch/Save operations fully complete.";
+
+    m_currentState = AppState::LoadingDb;
+    updateStatusBarState();
+
     bool hadError =
         ui->statusbar->currentMessage().contains("Error", Qt::CaseInsensitive);
     bool wasInitial = !m_settingsManager.isInitialFetchComplete();
@@ -483,74 +570,164 @@ void MainWindow::checkOverallCompletion() {
           qInfo() << "Initial fetch fully completed.";
           m_settingsManager.setInitialFetchComplete(true);
           m_settingsManager.clearResumeState();
-          ui->statusbar->showMessage("Full history download complete.", 5000);
+
         } else {
           qWarning() << "Fetch finished but incomplete! Saved:"
                      << m_lastSuccessfullySavedPage
                      << "Expected:" << m_expectedTotalPages;
           m_settingsManager.setInitialFetchComplete(false);
-          ui->statusbar->showMessage("History download incomplete.", 5000);
         }
       } else {
-        ui->statusbar->showMessage("Update complete.", 5000);
       }
     } else {
-      ui->statusbar->showMessage("Update finished with errors.", 5000);
     }
-    m_isLoading = false;
-    qInfo() << "Reloading data after completion.";
+
+    qInfo() << "Reloading data after fetch/save completion.";
     m_loadedScrobbles.clear();
-    loadDataForCurrentView();
-  } else if (m_fetchingComplete && m_databaseManager.isSaveInProgress() &&
-             m_isLoading) {
+    m_cachedAnalysisResults.clear();
+    m_databaseManager.loadAllScrobblesAsync(m_settingsManager.username());
+
+  } else if (m_fetchingComplete && !savingDone) {
     qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz")
              << "- Completion check: Fetch done, waiting for DB saves...";
-    ui->statusbar->showMessage("Finishing saving...");
-  } else if (!m_fetchingComplete && m_isLoading) {
+    m_currentState = AppState::SavingDb;
+    updateStatusBarState();
+  } else if (!m_fetchingComplete) {
     qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz")
              << "- Completion check: Still fetching...";
-  } else {
+    m_currentState = AppState::FetchingApi;
+    updateStatusBarState();
   }
 }
 
 void MainWindow::handleDbLoadComplete(const QList<ScrobbleData> &scrobbles) {
-  if (m_isLoading) {
-    m_isLoading = false;
-  }
-  ui->statusbar->showMessage(
-      QString("Loaded %1 scrobbles.").arg(scrobbles.count()), 5000);
+  qInfo() << "Database load complete, Scrobble count:" << scrobbles.count();
   m_loadedScrobbles = scrobbles;
-  updateDisplay();
+  m_cachedAnalysisResults.clear();
+
+  if (m_currentState == AppState::LoadingDb ||
+      m_currentState == AppState::SavingDb ||
+      m_currentState == AppState::FetchingApi) {
+    startAnalysisTask();
+  } else if (m_currentState == AppState::Idle) {
+
+    startAnalysisTask();
+  }
+
   if (!m_settingsManager.isInitialFetchComplete() && !scrobbles.isEmpty()) {
     qWarning() << "Loaded data, but initial full fetch may be incomplete.";
     QTimer::singleShot(5100, this, [this]() {
       if (this->isVisible() && !m_settingsManager.isInitialFetchComplete()) {
         QString msg = ui->statusbar->currentMessage();
-        if (msg.startsWith("Loaded"))
-          ui->statusbar->showMessage(msg + " (History incomplete)", 0);
       }
     });
   } else if (!m_settingsManager.isInitialFetchComplete() &&
              scrobbles.isEmpty()) {
     qInfo() << "No data loaded. Initial fetch needed.";
-    ui->statusbar->showMessage("No data. Please Fetch.", 5000);
   }
 }
 
 void MainWindow::handleDbLoadError(const QString &error) {
-  if (m_isLoading) {
-    m_isLoading = false;
-  }
-  ui->statusbar->showMessage("Database load error!", 5000);
-  QMessageBox::critical(this, "DB Load Error", error);
+  qWarning() << "Database load error:" << error;
   m_loadedScrobbles.clear();
-  updateDisplay();
+  m_cachedAnalysisResults.clear();
+  m_currentState = AppState::Idle;
+  updateStatusBarState();
+  updateUiWithAnalysisResults(AnalysisResults());
+  QMessageBox::critical(this, "DB Load Error", error);
+}
+
+void MainWindow::startAnalysisTask() {
+  if (m_currentState == AppState::Analyzing) {
+    qDebug() << "Analysis task requested but already running.";
+    return;
+  }
+  if (m_loadedScrobbles.isEmpty()) {
+    qWarning() << "Analysis task requested but no data loaded.";
+    m_currentState = AppState::Idle;
+    updateStatusBarState();
+    updateUiWithAnalysisResults(AnalysisResults());
+    return;
+  }
+
+  m_currentState = AppState::Analyzing;
+  updateStatusBarState();
+
+  QList<ScrobbleData> dataToAnalyze = m_loadedScrobbles;
+  AnalyticsEngine *engine = &m_analyticsEngine;
+
+  QFuture<AnalysisResults> future =
+      QtConcurrent::run([engine, dataToAnalyze]() {
+        qDebug() << "[Analysis Task] Starting analysis in thread"
+                 << QThread::currentThreadId();
+
+        AnalysisResults results = engine->analyzeAll(dataToAnalyze, 100);
+        qDebug() << "[Analysis Task] Analysis finished in thread"
+                 << QThread::currentThreadId();
+        return results;
+      });
+  m_analysisWatcher.setFuture(future);
+}
+
+void MainWindow::handleAnalysisComplete() {
+  if (m_currentState != AppState::Analyzing) {
+    qWarning() << "Analysis finished but state was not Analyzing!";
+  }
+
+  AnalysisResults results = m_analysisWatcher.result();
+  qDebug() << "Analysis complete. Updating UI.";
+  m_cachedAnalysisResults = results;
+  m_currentState = AppState::Idle;
+  updateStatusBarState();
+
+  updateUiWithAnalysisResults(results);
+}
+
+void MainWindow::handleInitialDbLoadComplete() {
+  qWarning()
+      << "handleInitialDbLoadComplete called, but this watcher is deprecated.";
+}
+
+void MainWindow::updateUiWithAnalysisResults(const AnalysisResults &results) {
+  int index = ui->stackedWidget->currentIndex();
+  qDebug() << "Updating view for index:" << index << "with results.";
+
+  if (results.isEmpty()) {
+    qDebug() << "Results are empty, clearing views.";
+  }
+
+  switch (index) {
+  case 0:
+    updateGeneralStatsView(results);
+    break;
+  case 1:
+    updateDatabaseTableView(results);
+    break;
+  case 2:
+    updateArtistsView(results);
+    break;
+  case 3:
+    updateTracksView(results);
+    break;
+  case 4:
+    updateChartsView(results);
+    break;
+  case 5:
+    updateAboutView();
+    break;
+  default:
+    qWarning() << "UpdateDisplay invalid index:" << index;
+    break;
+  }
+
+  updateStatusBarState();
 }
 
 void MainWindow::handleDbStatusUpdate(const QString &message) {
   if (message.contains("Error", Qt::CaseInsensitive)) {
     ui->statusbar->showMessage(message);
-  } else if (m_isLoading || message.contains("Idle", Qt::CaseInsensitive) ||
+  } else if (m_currentState != AppState::Idle ||
+             message.contains("Idle", Qt::CaseInsensitive) ||
              message.contains("complete", Qt::CaseInsensitive)) {
     ui->statusbar->showMessage(message);
   } else {
@@ -573,6 +750,7 @@ void MainWindow::updateMeanScrobbleCalculation() {
   QDateTime lastScrobbleUTC =
       m_analyticsEngine.getLastScrobbleDate(m_loadedScrobbles);
   if (lastScrobbleUTC.isNull()) {
+
     lastScrobbleUTC = QDateTime::currentDateTimeUtc();
   }
 
@@ -635,56 +813,23 @@ void MainWindow::findLastPlayedTrack() {
   }
 }
 
-void MainWindow::updateDisplay() {
-  if (m_isLoading && m_loadedScrobbles.isEmpty()) {
-    qDebug() << "UpdateDisplay skipped";
-    return;
-  }
-  int index = ui->stackedWidget->currentIndex();
-  switch (index) {
-  case 0:
-    updateGeneralStatsView();
-    break;
-  case 1:
-    updateDatabaseTableView();
-    break;
-  case 2:
-    updateArtistsView();
-    break;
-  case 3:
-    updateTracksView();
-    break;
-  case 4:
-    updateChartsView();
-    break;
-  case 5:
-    updateAboutView();
-    break;
-  default:
-    qWarning() << "UpdateDisplay invalid index:" << index;
-    break;
-  }
-}
+void MainWindow::updateGeneralStatsView(const AnalysisResults &results) {
 
-void MainWindow::updateGeneralStatsView() {
-  bool pointersOk = m_firstScrobbleLabelValue && m_lastScrobbleLabelValue &&
-                    m_longestStreakLabelValue && m_currentStreakLabelValue &&
-                    m_meanScrobblesResultLabel && m_lastPlayedResultLabel;
-
-  if (!pointersOk) {
+  if (!m_firstScrobbleLabelValue || !m_lastScrobbleLabelValue ||
+      !m_longestStreakLabelValue || !m_currentStreakLabelValue ||
+      !m_meanScrobblesResultLabel || !m_lastPlayedResultLabel) {
+    qWarning("GeneralStatsView: UI pointers invalid!");
     return;
   }
 
   QString firstDateStr = "N/A", lastDateStr = "N/A", longestStreakStr = "N/A",
-          currentStreakStr = "N/A";
+          currentStreakStr = "N/A", meanStr = "N/A";
 
-  if (!m_loadedScrobbles.isEmpty()) {
-    QDateTime firstDateUTC =
-        m_analyticsEngine.getFirstScrobbleDate(m_loadedScrobbles);
-    QDateTime lastDateUTC =
-        m_analyticsEngine.getLastScrobbleDate(m_loadedScrobbles);
-    ListeningStreak streak =
-        m_analyticsEngine.calculateListeningStreaks(m_loadedScrobbles);
+  if (!results.isEmpty()) {
+    QDateTime firstDateUTC = results.value("firstDate").toDateTime();
+    QDateTime lastDateUTC = results.value("lastDate").toDateTime();
+
+    ListeningStreak streak = results.value("streak").value<ListeningStreak>();
 
     if (firstDateUTC.isValid())
       firstDateStr = firstDateUTC.toLocalTime().toString("dd MMM yyyy");
@@ -705,29 +850,43 @@ void MainWindow::updateGeneralStatsView() {
               .arg(streak.currentStreakStartDate.toString("dd MMM yy"));
     }
 
+    updateMeanScrobbleCalculation();
+
+  } else {
+
     m_firstScrobbleLabelValue->setText(firstDateStr);
     m_lastScrobbleLabelValue->setText(lastDateStr);
     m_longestStreakLabelValue->setText(longestStreakStr);
     m_currentStreakLabelValue->setText(currentStreakStr);
-
-    updateMeanScrobbleCalculation();
-    m_lastPlayedResultLabel->setText("");
-  } else {
+    if (m_meanScrobblesResultLabel)
+      m_meanScrobblesResultLabel->setText(meanStr);
+    if (m_lastPlayedResultLabel)
+      m_lastPlayedResultLabel->setText("");
   }
+
+  m_firstScrobbleLabelValue->setText(firstDateStr);
+  m_lastScrobbleLabelValue->setText(lastDateStr);
+  m_longestStreakLabelValue->setText(longestStreakStr);
+  m_currentStreakLabelValue->setText(currentStreakStr);
+
+  if (m_lastPlayedResultLabel)
+    m_lastPlayedResultLabel->setText(
+        results.isEmpty() ? "" : m_lastPlayedResultLabel->text());
 }
 
-void MainWindow::updateDatabaseTableView() {
+void MainWindow::updateDatabaseTableView(const AnalysisResults &results) {
   if (!m_dbTableWidget)
     return;
   m_dbTableWidget->setSortingEnabled(false);
   m_dbTableWidget->clearContents();
   m_dbTableWidget->setRowCount(0);
-  if (m_loadedScrobbles.isEmpty()) {
+  if (results.isEmpty()) {
     m_dbTableWidget->setSortingEnabled(true);
     return;
   }
+
   SortedCounts sortedArtists =
-      m_analyticsEngine.getTopArtists(m_loadedScrobbles, -1);
+      results.value("topArtists").value<SortedCounts>();
   m_dbTableWidget->setRowCount(sortedArtists.count());
   for (int row = 0; row < sortedArtists.count(); ++row) {
     const auto &pair = sortedArtists[row];
@@ -745,17 +904,19 @@ void MainWindow::updateDatabaseTableView() {
   m_dbTableWidget->setSortingEnabled(true);
 }
 
-void MainWindow::updateArtistsView() {
+void MainWindow::updateArtistsView(const AnalysisResults &results) {
   if (!m_artistListWidget)
     return;
   m_artistListWidget->clear();
-  if (m_loadedScrobbles.isEmpty()) {
-    m_artistListWidget->addItem("(No data)");
+  if (results.isEmpty()) {
+    m_artistListWidget->addItem("(No data loaded)");
     return;
   }
-  SortedCounts top = m_analyticsEngine.getTopArtists(m_loadedScrobbles, 100);
+
+  SortedCounts top = results.value("topArtists").value<SortedCounts>();
+
   if (top.isEmpty()) {
-    m_artistListWidget->addItem("(No data)");
+    m_artistListWidget->addItem("(No artist data available)");
   } else {
     for (const auto &p : top)
       m_artistListWidget->addItem(
@@ -763,32 +924,34 @@ void MainWindow::updateArtistsView() {
   }
 }
 
-void MainWindow::updateTracksView() {
+void MainWindow::updateTracksView(const AnalysisResults &results) {
   if (!m_trackListWidget)
     return;
   m_trackListWidget->clear();
-  if (m_loadedScrobbles.isEmpty()) {
-    m_trackListWidget->addItem("(No data)");
+  if (results.isEmpty()) {
+    m_trackListWidget->addItem("(No data loaded)");
     return;
   }
-  SortedCounts top = m_analyticsEngine.getTopTracks(m_loadedScrobbles, 100);
+
+  SortedCounts top = results.value("topTracks").value<SortedCounts>();
+
   if (top.isEmpty()) {
-    m_trackListWidget->addItem("(No data)");
+    m_trackListWidget->addItem("(No track data available)");
   } else {
     for (const auto &p : top)
       m_trackListWidget->addItem(QString("%1 (%2)").arg(p.first).arg(p.second));
   }
 }
 
-void MainWindow::updateChartsView() {
-  qDebug() << "Updating all charts...";
-  updateArtistChart();
-  updateTrackChart();
-  updateHourlyChart();
-  updateWeeklyChart();
+void MainWindow::updateChartsView(const AnalysisResults &results) {
+  qDebug() << "Updating all charts with results...";
+  updateArtistChart(results);
+  updateTrackChart(results);
+  updateHourlyChart(results);
+  updateWeeklyChart(results);
 }
 
-void MainWindow::updateArtistChart() {
+void MainWindow::updateArtistChart(const AnalysisResults &results) {
   if (!m_artistsChartView || !m_artistsChartView->chart()) {
     return;
   }
@@ -802,15 +965,21 @@ void MainWindow::updateArtistChart() {
   qDeleteAll(axes);
   axes.clear();
   chart->setTitle("Top 10 Artists");
-  if (m_loadedScrobbles.isEmpty()) {
+
+  if (results.isEmpty()) {
     chart->setTitle("Top 10 Artists (No Data)");
+
     return;
   }
-  SortedCounts topData = m_analyticsEngine.getTopArtists(m_loadedScrobbles, 10);
+
+  SortedCounts topDataFull = results.value("topArtists").value<SortedCounts>();
+  SortedCounts topData = topDataFull.mid(0, 10);
+
   if (topData.isEmpty()) {
     chart->setTitle("Top 10 Artists (No Data)");
     return;
   }
+
   QBarSeries *series = new QBarSeries(chart);
   QBarSet *set = new QBarSet("Plays");
   QStringList cats;
@@ -839,7 +1008,7 @@ void MainWindow::updateArtistChart() {
   m_artistsChartView->setRenderHint(QPainter::Antialiasing);
 }
 
-void MainWindow::updateTrackChart() {
+void MainWindow::updateTrackChart(const AnalysisResults &results) {
   if (!m_tracksChartView || !m_tracksChartView->chart()) {
     return;
   }
@@ -853,15 +1022,20 @@ void MainWindow::updateTrackChart() {
   qDeleteAll(axes);
   axes.clear();
   chart->setTitle("Top 10 Tracks");
-  if (m_loadedScrobbles.isEmpty()) {
+
+  if (results.isEmpty()) {
     chart->setTitle("Top 10 Tracks (No Data)");
     return;
   }
-  SortedCounts topData = m_analyticsEngine.getTopTracks(m_loadedScrobbles, 10);
+
+  SortedCounts topDataFull = results.value("topTracks").value<SortedCounts>();
+  SortedCounts topData = topDataFull.mid(0, 10);
+
   if (topData.isEmpty()) {
     chart->setTitle("Top 10 Tracks (No Data)");
     return;
   }
+
   QBarSeries *series = new QBarSeries(chart);
   QBarSet *set = new QBarSet("Plays");
   QStringList cats;
@@ -893,7 +1067,7 @@ void MainWindow::updateTrackChart() {
   m_tracksChartView->setRenderHint(QPainter::Antialiasing);
 }
 
-void MainWindow::updateHourlyChart() {
+void MainWindow::updateHourlyChart(const AnalysisResults &results) {
   if (!m_hourlyChartView || !m_hourlyChartView->chart()) {
     return;
   }
@@ -908,13 +1082,13 @@ void MainWindow::updateHourlyChart() {
   axes.clear();
   chart->setTitle("Scrobbles per Hour of Day (Local Time)");
 
-  if (m_loadedScrobbles.isEmpty()) {
+  if (results.isEmpty()) {
     chart->setTitle("Scrobbles per Hour (No Data)");
     return;
   }
 
-  QVector<int> hourlyData =
-      m_analyticsEngine.getScrobblesPerHourOfDay(m_loadedScrobbles);
+  QVector<int> hourlyData = results.value("hourlyData").value<QVector<int>>();
+
   if (hourlyData.size() != 24) {
     chart->setTitle("Scrobbles per Hour (Error)");
     return;
@@ -948,7 +1122,7 @@ void MainWindow::updateHourlyChart() {
   m_hourlyChartView->setRenderHint(QPainter::Antialiasing);
 }
 
-void MainWindow::updateWeeklyChart() {
+void MainWindow::updateWeeklyChart(const AnalysisResults &results) {
   if (!m_weeklyChartView || !m_weeklyChartView->chart()) {
     return;
   }
@@ -964,13 +1138,13 @@ void MainWindow::updateWeeklyChart() {
 
   chart->setTitle("Scrobbles per Day of Week (Local Time)");
 
-  if (m_loadedScrobbles.isEmpty()) {
+  if (results.isEmpty()) {
     chart->setTitle("Scrobbles per Day (No Data)");
     return;
   }
 
-  QVector<int> weeklyData =
-      m_analyticsEngine.getScrobblesPerDayOfWeek(m_loadedScrobbles);
+  QVector<int> weeklyData = results.value("weeklyData").value<QVector<int>>();
+
   if (weeklyData.size() != 7) {
     chart->setTitle("Scrobbles per Day (Error)");
     return;

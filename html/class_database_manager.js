@@ -2,6 +2,7 @@ var class_database_manager =
 [
     [ "DatabaseManager", "class_database_manager.html#a40a0673ad81256715e17e20cb9d9964d", null ],
     [ "~DatabaseManager", "class_database_manager.html#a4bfe6115d77c91afd99a669befb1ee70", null ],
+    [ "getBasePathInternal", "class_database_manager.html#ae7d986e27dfa9b398745a85196fe02d1", null ],
     [ "getLastSyncTimestamp", "class_database_manager.html#a90487d0fc1090bd46f9a3670f3f656ee", null ],
     [ "isSaveInProgress", "class_database_manager.html#a686fe30df188bf6ef0776b9a5435d68b", null ],
     [ "loadAllScrobblesAsync", "class_database_manager.html#a936567e6c9c8a591e6181c81ddc36881", null ],

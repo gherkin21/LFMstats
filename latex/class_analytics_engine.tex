@@ -39,7 +39,9 @@ QVector$<$ int $>$ \mbox{\hyperlink{class_analytics_engine_abc9d8cda8733db2f92bb
 QVector$<$ int $>$ \mbox{\hyperlink{class_analytics_engine_a60904bba34ef1d196dbcc0170bbe1848}{get\+Scrobbles\+Per\+Day\+Of\+Week}} (const QList$<$ \mbox{\hyperlink{struct_scrobble_data}{Scrobble\+Data}} $>$ \&scrobbles)
 \begin{DoxyCompactList}\small\item\em Calculates the total number of scrobbles for each day of the week (local time). \end{DoxyCompactList}\item 
 \mbox{\hyperlink{struct_listening_streak}{Listening\+Streak}} \mbox{\hyperlink{class_analytics_engine_a589c898e8e33c3a9f8d3f3648720d715}{calculate\+Listening\+Streaks}} (const QList$<$ \mbox{\hyperlink{struct_scrobble_data}{Scrobble\+Data}} $>$ \&scrobbles)
-\begin{DoxyCompactList}\small\item\em Calculates the longest and current consecutive day listening streaks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Calculates the longest and current consecutive day listening streaks. \end{DoxyCompactList}\item 
+QVariant\+Map \mbox{\hyperlink{class_analytics_engine_a5b3c6ba31b906eb138d4c56da97092e7}{analyze\+All}} (const QList$<$ \mbox{\hyperlink{struct_scrobble_data}{Scrobble\+Data}} $>$ \&scrobbles, int topN=100)
+\begin{DoxyCompactList}\small\item\em Calculates a comprehensive set of statistics. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -71,6 +73,26 @@ Constructs an \doxylink{class_analytics_engine}{Analytics\+Engine} instance.
 
 
 \doxysubsection{Member Function Documentation}
+\Hypertarget{class_analytics_engine_a5b3c6ba31b906eb138d4c56da97092e7}\index{AnalyticsEngine@{AnalyticsEngine}!analyzeAll@{analyzeAll}}
+\index{analyzeAll@{analyzeAll}!AnalyticsEngine@{AnalyticsEngine}}
+\doxysubsubsection{\texorpdfstring{analyzeAll()}{analyzeAll()}}
+{\footnotesize\ttfamily \label{class_analytics_engine_a5b3c6ba31b906eb138d4c56da97092e7} 
+QVariant\+Map Analytics\+Engine\+::analyze\+All (\begin{DoxyParamCaption}\item[{const QList$<$ \mbox{\hyperlink{struct_scrobble_data}{Scrobble\+Data}} $>$ \&}]{scrobbles}{, }\item[{int}]{topN}{ = {\ttfamily 100}}\end{DoxyParamCaption})}
+
+
+
+Calculates a comprehensive set of statistics. 
+
+This method calls other analysis methods of this class to compute various statistics and aggregates them into a single map. It\textquotesingle{}s suitable for running in a background thread to avoid blocking the UI. Requires necessary custom types (like \doxylink{struct_listening_streak}{Listening\+Streak}, \doxylink{analyticsengine_8h_a24440435af6d135e5ba61c2a05f55deb}{Sorted\+Counts}) to be registered with QMeta\+Type if used across threads or stored in QVariant. 
+\begin{DoxyParams}{Parameters}
+{\em scrobbles} & The list of scrobble data to analyze. \\
+\hline
+{\em topN} & The number of top artists/tracks to compute and include in the results. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A QVariant\+Map containing various calculated statistics. Keys include\+: "{}first\+Date"{} (QDate\+Time), "{}last\+Date"{} (QDate\+Time), "{}streak"{} (QVariant containing \doxylink{struct_listening_streak}{Listening\+Streak}), "{}top\+Artists"{} (QVariant containing \doxylink{analyticsengine_8h_a24440435af6d135e5ba61c2a05f55deb}{Sorted\+Counts}), "{}top\+Tracks"{} (QVariant containing \doxylink{analyticsengine_8h_a24440435af6d135e5ba61c2a05f55deb}{Sorted\+Counts}), "{}hourly\+Data"{} (QVector$<$int$>$), "{}weekly\+Data"{} (QVector$<$int$>$), "{}mean7"{} (double, avg scrobbles/day for last 7 days), etc. Returns an empty map if the input scrobbles list is empty. 
+\end{DoxyReturn}
 \Hypertarget{class_analytics_engine_a589c898e8e33c3a9f8d3f3648720d715}\index{AnalyticsEngine@{AnalyticsEngine}!calculateListeningStreaks@{calculateListeningStreaks}}
 \index{calculateListeningStreaks@{calculateListeningStreaks}!AnalyticsEngine@{AnalyticsEngine}}
 \doxysubsubsection{\texorpdfstring{calculateListeningStreaks()}{calculateListeningStreaks()}}

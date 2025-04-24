@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sortedcounts_0',['SortedCounts',['../analyticsengine_8h.html#a24440435af6d135e5ba61c2a05f55deb',1,'analyticsengine.h']]]
+  ['countpair_0',['CountPair',['../analyticsengine_8h.html#aec8378510f5754b2344d41254b210825',1,'analyticsengine.h']]]
 ];

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['_7edatabasemanager_0',['~DatabaseManager',['../class_database_manager.html#a4bfe6115d77c91afd99a669befb1ee70',1,'DatabaseManager']]],
-  ['_7elastfmmanager_1',['~LastFmManager',['../class_last_fm_manager.html#ab166dd6cae477e976a8ddca16a84d243',1,'LastFmManager']]],
-  ['_7emainwindow_2',['~MainWindow',['../class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7',1,'MainWindow']]]
+  ['ui_0',['Ui',['../namespace_ui.html',1,'']]],
+  ['username_1',['username',['../struct_save_work_item.html#adbd59d33d1e015eeced57aa95f5d0341',1,'SaveWorkItem::username'],['../class_settings_manager.html#a6c44ac4b4d8d5ee32931f08e612ba4f9',1,'SettingsManager::username()']]]
 ];

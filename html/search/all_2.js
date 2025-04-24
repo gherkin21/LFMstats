@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['data_0',['data',['../struct_save_work_item.html#acba4a44ee9a7f1c272e1284066d704d2',1,'SaveWorkItem']]],
-  ['databasemanager_1',['DatabaseManager',['../class_database_manager.html',1,'DatabaseManager'],['../class_database_manager.html#a40a0673ad81256715e17e20cb9d9964d',1,'DatabaseManager::DatabaseManager()']]],
-  ['databasemanager_2ecpp_2',['databasemanager.cpp',['../databasemanager_8cpp.html',1,'']]],
-  ['databasemanager_2eh_3',['databasemanager.h',['../databasemanager_8h.html',1,'']]],
-  ['dofetch_4',['doFetch',['../class_last_fm_worker.html#ad0b80ceeecb92f39d045170c1c04fcc8',1,'LastFmWorker']]]
+  ['calculatelisteningstreaks_0',['calculateListeningStreaks',['../class_analytics_engine.html#a589c898e8e33c3a9f8d3f3648720d715',1,'AnalyticsEngine']]],
+  ['clearresumestate_1',['clearResumeState',['../class_settings_manager.html#a4389b188c18b867334c576a83de32867',1,'SettingsManager']]],
+  ['countpair_2',['CountPair',['../analyticsengine_8h.html#aec8378510f5754b2344d41254b210825',1,'analyticsengine.h']]],
+  ['currentstreakdays_3',['currentStreakDays',['../struct_listening_streak.html#a9cce6ce4cc060822d6c1bf4040608002',1,'ListeningStreak']]],
+  ['currentstreakstartdate_4',['currentStreakStartDate',['../struct_listening_streak.html#a8175666b090cc86d00b0687fe5ea24c7',1,'ListeningStreak']]]
 ];

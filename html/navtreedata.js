@@ -25,6 +25,12 @@
 var NAVTREE =
 [
   [ "LFMstats", "index.html", [
+    [ "Last.fm Scrobble Analyzer", "md__r_e_a_d_m_e.html", [
+      [ "Description", "md__r_e_a_d_m_e.html#autotoc_md1", null ],
+      [ "Features", "md__r_e_a_d_m_e.html#autotoc_md2", null ],
+      [ "Prerequisites", "md__r_e_a_d_m_e.html#autotoc_md3", null ],
+      [ "Building", "md__r_e_a_d_m_e.html#autotoc_md4", null ]
+    ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ]
     ] ],

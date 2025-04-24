@@ -5,151 +5,145 @@
 \DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MAINWINDOW\_H}}
 \DoxyCodeLine{00003\ }
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QComboBox>}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <QLabel>}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <QLineEdit>}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <QListWidget>}}
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <QListWidgetItem>}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <QMainWindow>}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <QPushButton>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QStackedWidget>}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QTableWidget>}}
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ QT\_BEGIN\_NAMESPACE}
-\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_ui}{Ui}}\ \{}
-\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_main_window}{MainWindow}};}
-\DoxyCodeLine{00017\ \}}
-\DoxyCodeLine{00018\ QT\_END\_NAMESPACE}
-\DoxyCodeLine{00019\ }
-\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{analyticsengine_8h}{analyticsengine.h}}"{}}}
-\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{databasemanager_8h}{databasemanager.h}}"{}}}
-\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{lastfmmanager_8h}{lastfmmanager.h}}"{}}}
-\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{scrobbledata_8h}{scrobbledata.h}}"{}}}
-\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{settingsmanager_8h}{settingsmanager.h}}"{}}}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <QtCharts/QChartGlobal>}}
-\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <QtCharts/QChartView>}}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ QT\_USE\_NAMESPACE}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <QFutureWatcher>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <QLabel>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <QLineEdit>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <QListWidget>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <QListWidgetItem>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <QMainWindow>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QPushButton>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QStackedWidget>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QTableWidget>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <QVariantMap>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ QT\_BEGIN\_NAMESPACE}
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_ui}{Ui}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_main_window}{MainWindow}};}
+\DoxyCodeLine{00019\ \}}
+\DoxyCodeLine{00020\ QT\_END\_NAMESPACE}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{analyticsengine_8h}{analyticsengine.h}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{databasemanager_8h}{databasemanager.h}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{lastfmmanager_8h}{lastfmmanager.h}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{scrobbledata_8h}{scrobbledata.h}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{settingsmanager_8h}{settingsmanager.h}}"{}}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <QtCharts/QChartGlobal>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <QtCharts/QChartView>}}
 \DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }QChart;}
-\DoxyCodeLine{00032\ \textcolor{keyword}{class\ }QBarSeries;}
-\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }QLineSeries;}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00045\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_main_window_a996c5a2b6f77944776856f08ec30858d}{MainWindow}}\ :\ \textcolor{keyword}{public}\ QMainWindow\ \{}
-\DoxyCodeLine{00046\ \ \ Q\_OBJECT}
-\DoxyCodeLine{00047\ }
-\DoxyCodeLine{00048\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00053\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_main_window_a996c5a2b6f77944776856f08ec30858d}{MainWindow}}(QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{00057\ \ \ \mbox{\hyperlink{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7}{\string~MainWindow}}();}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00059\ \textcolor{keyword}{private}\ slots:}
-\DoxyCodeLine{00067\ \ \ \textcolor{keywordtype}{void}\ onMenuItemChanged(QListWidgetItem\ *current,\ QListWidgetItem\ *previous);}
-\DoxyCodeLine{00072\ \ \ \textcolor{keywordtype}{void}\ setupUser();}
-\DoxyCodeLine{00079\ \ \ \textcolor{keywordtype}{void}\ fetchNewScrobbles();}
-\DoxyCodeLine{00085\ \ \ \textcolor{keywordtype}{void}\ updateMeanScrobbleCalculation();}
-\DoxyCodeLine{00092\ \ \ \textcolor{keywordtype}{void}\ findLastPlayedTrack();}
-\DoxyCodeLine{00093\ }
-\DoxyCodeLine{00100\ \ \ \textcolor{keywordtype}{void}\ handleSavePageOfScrobbles(\textcolor{keyword}{const}\ QList<ScrobbleData>\ \&pageScrobbles,}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ pageNumber);}
-\DoxyCodeLine{00109\ \ \ \textcolor{keywordtype}{void}\ handleTotalPagesDetermined(\textcolor{keywordtype}{int}\ totalPages);}
-\DoxyCodeLine{00116\ \ \ \textcolor{keywordtype}{void}\ handleFetchFinished();}
-\DoxyCodeLine{00122\ \ \ \textcolor{keywordtype}{void}\ handleApiError(\textcolor{keyword}{const}\ QString\ \&errorString);}
-\DoxyCodeLine{00130\ \ \ \textcolor{keywordtype}{void}\ handlePageSaveComplete(\textcolor{keywordtype}{int}\ pageNumber);}
-\DoxyCodeLine{00139\ \ \ \textcolor{keywordtype}{void}\ handlePageSaveFailed(\textcolor{keywordtype}{int}\ pageNumber,\ \textcolor{keyword}{const}\ QString\ \&error);}
-\DoxyCodeLine{00146\ \ \ \textcolor{keywordtype}{void}\ handleDbLoadComplete(\textcolor{keyword}{const}\ QList<ScrobbleData>\ \&scrobbles);}
-\DoxyCodeLine{00153\ \ \ \textcolor{keywordtype}{void}\ handleDbLoadError(\textcolor{keyword}{const}\ QString\ \&error);}
-\DoxyCodeLine{00159\ \ \ \textcolor{keywordtype}{void}\ handleDbStatusUpdate(\textcolor{keyword}{const}\ QString\ \&message);}
-\DoxyCodeLine{00160\ }
-\DoxyCodeLine{00166\ \ \ \textcolor{keywordtype}{void}\ updateDisplay();}
-\DoxyCodeLine{00168\ \ \ \textcolor{keywordtype}{void}\ updateArtistsView();}
-\DoxyCodeLine{00170\ \ \ \textcolor{keywordtype}{void}\ updateTracksView();}
-\DoxyCodeLine{00172\ \ \ \textcolor{keywordtype}{void}\ updateDatabaseTableView();}
-\DoxyCodeLine{00174\ \ \ \textcolor{keywordtype}{void}\ updateChartsView();}
-\DoxyCodeLine{00177\ \ \ \textcolor{keywordtype}{void}\ updateAboutView();}
-\DoxyCodeLine{00180\ \ \ \textcolor{keywordtype}{void}\ updateGeneralStatsView();}
-\DoxyCodeLine{00181\ }
-\DoxyCodeLine{00182\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00185\ \ \ \textcolor{keywordtype}{void}\ setupPages();}
-\DoxyCodeLine{00188\ \ \ \textcolor{keywordtype}{void}\ loadDataForCurrentView();}
-\DoxyCodeLine{00190\ \ \ \textcolor{keywordtype}{void}\ setupMenu();}
-\DoxyCodeLine{00193\ \ \ \textcolor{keywordtype}{void}\ promptForSettings();}
-\DoxyCodeLine{00196\ \ \ \textcolor{keywordtype}{void}\ checkOverallCompletion();}
-\DoxyCodeLine{00197\ }
-\DoxyCodeLine{00199\ \ \ \textcolor{keywordtype}{void}\ updateArtistChart();}
-\DoxyCodeLine{00201\ \ \ \textcolor{keywordtype}{void}\ updateTrackChart();}
-\DoxyCodeLine{00203\ \ \ \textcolor{keywordtype}{void}\ updateHourlyChart();}
-\DoxyCodeLine{00205\ \ \ \textcolor{keywordtype}{void}\ updateWeeklyChart();}
-\DoxyCodeLine{00206\ }
-\DoxyCodeLine{00207\ \ \ Ui::MainWindow\ *ui;\ }
-\DoxyCodeLine{00208\ \ \ \mbox{\hyperlink{class_settings_manager}{SettingsManager}}}
-\DoxyCodeLine{00209\ \ \ \ \ \ \ m\_settingsManager;\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00210\ \ \ \mbox{\hyperlink{class_last_fm_manager}{LastFmManager}}\ m\_lastFmManager;\ }
-\DoxyCodeLine{00211\ \ \ \mbox{\hyperlink{class_database_manager}{DatabaseManager}}\ m\_databaseManager;\ }
-\DoxyCodeLine{00212\ \ \ \mbox{\hyperlink{class_analytics_engine}{AnalyticsEngine}}\ m\_analyticsEngine;\ }
-\DoxyCodeLine{00213\ }
-\DoxyCodeLine{00214\ \ \ QLabel\ *m\_statsLabel\ =}
-\DoxyCodeLine{00215\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00216\ \ \ QLabel\ *m\_firstScrobbleLabelValue\ =}
-\DoxyCodeLine{00217\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00218\ \ \ QLabel\ *m\_lastScrobbleLabelValue\ =}
-\DoxyCodeLine{00219\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00220\ \ \ QComboBox\ *m\_meanRangeComboBox\ =}
-\DoxyCodeLine{00221\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00223\ \ \ QLabel\ *m\_meanScrobblesResultLabel\ =}
-\DoxyCodeLine{00224\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00226\ \ \ QLabel\ *m\_longestStreakLabelValue\ =}
-\DoxyCodeLine{00227\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00228\ \ \ QLabel\ *m\_currentStreakLabelValue\ =}
-\DoxyCodeLine{00229\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00230\ \ \ QLineEdit\ *m\_artistInput\ =}
-\DoxyCodeLine{00231\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00232\ \ \ QLineEdit\ *m\_trackInput\ =}
-\DoxyCodeLine{00233\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00234\ \ \ QPushButton\ *m\_findLastPlayedButton\ =}
-\DoxyCodeLine{00235\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00236\ \ \ QLabel\ *m\_lastPlayedResultLabel\ =}
-\DoxyCodeLine{00237\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00239\ }
-\DoxyCodeLine{00240\ \ \ QTableWidget\ *m\_dbTableWidget\ =}
-\DoxyCodeLine{00241\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00243\ }
-\DoxyCodeLine{00244\ \ \ QListWidget\ *m\_artistListWidget\ =}
-\DoxyCodeLine{00245\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00246\ }
-\DoxyCodeLine{00247\ \ \ QListWidget\ *m\_trackListWidget\ =}
-\DoxyCodeLine{00248\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00249\ }
-\DoxyCodeLine{00250\ \ \ QChartView\ *m\_artistsChartView\ =}
-\DoxyCodeLine{00251\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00252\ \ \ QChartView\ *m\_tracksChartView\ =}
-\DoxyCodeLine{00253\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00254\ \ \ QChartView\ *m\_hourlyChartView\ =}
-\DoxyCodeLine{00255\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00257\ \ \ QChartView\ *m\_weeklyChartView\ =}
-\DoxyCodeLine{00258\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00260\ }
-\DoxyCodeLine{00261\ \ \ QLabel\ *m\_currentUserLabel\ =\ \textcolor{keyword}{nullptr};\ }
+\DoxyCodeLine{00031\ QT\_USE\_NAMESPACE}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }QChart;}
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }QBarSeries;}
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }QLineSeries;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{using\ }\mbox{\hyperlink{mainwindow_8h_a484afa274eff60df5cd253af58e36a5b}{AnalysisResults}}\ =\ QVariantMap;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_main_window_a996c5a2b6f77944776856f08ec30858d}{MainWindow}}\ :\ \textcolor{keyword}{public}\ QMainWindow\ \{}
+\DoxyCodeLine{00051\ \ \ Q\_OBJECT}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00058\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_main_window_a996c5a2b6f77944776856f08ec30858d}{MainWindow}}(QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00062\ \ \ \mbox{\hyperlink{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7}{\string~MainWindow}}();}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{private}\ slots:}
+\DoxyCodeLine{00072\ \ \ \textcolor{keywordtype}{void}\ onMenuItemChanged(QListWidgetItem\ *current,\ QListWidgetItem\ *previous);}
+\DoxyCodeLine{00077\ \ \ \textcolor{keywordtype}{void}\ setupUser();}
+\DoxyCodeLine{00084\ \ \ \textcolor{keywordtype}{void}\ fetchNewScrobbles();}
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordtype}{void}\ updateMeanScrobbleCalculation();}
+\DoxyCodeLine{00098\ \ \ \textcolor{keywordtype}{void}\ findLastPlayedTrack();}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00106\ \ \ \textcolor{keywordtype}{void}\ handleSavePageOfScrobbles(\textcolor{keyword}{const}\ QList<ScrobbleData>\ \&pageScrobbles,}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ pageNumber);}
+\DoxyCodeLine{00115\ \ \ \textcolor{keywordtype}{void}\ handleTotalPagesDetermined(\textcolor{keywordtype}{int}\ totalPages);}
+\DoxyCodeLine{00122\ \ \ \textcolor{keywordtype}{void}\ handleFetchFinished();}
+\DoxyCodeLine{00129\ \ \ \textcolor{keywordtype}{void}\ handleApiError(\textcolor{keyword}{const}\ QString\ \&errorString);}
+\DoxyCodeLine{00137\ \ \ \textcolor{keywordtype}{void}\ handlePageSaveComplete(\textcolor{keywordtype}{int}\ pageNumber);}
+\DoxyCodeLine{00146\ \ \ \textcolor{keywordtype}{void}\ handlePageSaveFailed(\textcolor{keywordtype}{int}\ pageNumber,\ \textcolor{keyword}{const}\ QString\ \&error);}
+\DoxyCodeLine{00154\ \ \ \textcolor{keywordtype}{void}\ handleDbLoadComplete(\textcolor{keyword}{const}\ QList<ScrobbleData>\ \&scrobbles);}
+\DoxyCodeLine{00162\ \ \ \textcolor{keywordtype}{void}\ handleDbLoadError(\textcolor{keyword}{const}\ QString\ \&error);}
+\DoxyCodeLine{00168\ \ \ \textcolor{keywordtype}{void}\ handleDbStatusUpdate(\textcolor{keyword}{const}\ QString\ \&message);}
+\DoxyCodeLine{00174\ \ \ \textcolor{keywordtype}{void}\ handleAnalysisComplete();}
+\DoxyCodeLine{00181\ \ \ \textcolor{keywordtype}{void}\ handleInitialDbLoadComplete();}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00188\ \ \ \textcolor{keyword}{enum\ class}\ AppState\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ Idle,\ }
+\DoxyCodeLine{00190\ \ \ \ \ LoadingDb,\ \ \ }
+\DoxyCodeLine{00192\ \ \ \ \ Analyzing,\ \ \ }
+\DoxyCodeLine{00194\ \ \ \ \ FetchingApi,\ }
+\DoxyCodeLine{00196\ \ \ \ \ SavingDb\ \ \ \ \ }
+\DoxyCodeLine{00198\ \ \ \};}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00208\ \ \ \textcolor{keywordtype}{void}\ updateUiWithAnalysisResults(\textcolor{keyword}{const}\ \mbox{\hyperlink{mainwindow_8h_a484afa274eff60df5cd253af58e36a5b}{AnalysisResults}}\ \&results);}
+\DoxyCodeLine{00211\ \ \ \textcolor{keywordtype}{void}\ updateArtistsView(\textcolor{keyword}{const}\ \mbox{\hyperlink{mainwindow_8h_a484afa274eff60df5cd253af58e36a5b}{AnalysisResults}}\ \&results);}
+\DoxyCodeLine{00214\ \ \ \textcolor{keywordtype}{void}\ updateTracksView(\textcolor{keyword}{const}\ \mbox{\hyperlink{mainwindow_8h_a484afa274eff60df5cd253af58e36a5b}{AnalysisResults}}\ \&results);}
+\DoxyCodeLine{00217\ \ \ \textcolor{keywordtype}{void}\ updateDatabaseTableView(\textcolor{keyword}{const}\ \mbox{\hyperlink{mainwindow_8h_a484afa274eff60df5cd253af58e36a5b}{AnalysisResults}}\ \&results);}
+\DoxyCodeLine{00219\ \ \ \textcolor{keywordtype}{void}\ updateChartsView(\textcolor{keyword}{const}\ \mbox{\hyperlink{mainwindow_8h_a484afa274eff60df5cd253af58e36a5b}{AnalysisResults}}\ \&results);}
+\DoxyCodeLine{00222\ \ \ \textcolor{keywordtype}{void}\ updateAboutView();}
+\DoxyCodeLine{00225\ \ \ \textcolor{keywordtype}{void}\ updateGeneralStatsView(\textcolor{keyword}{const}\ \mbox{\hyperlink{mainwindow_8h_a484afa274eff60df5cd253af58e36a5b}{AnalysisResults}}\ \&results);}
+\DoxyCodeLine{00227\ \ \ \textcolor{keywordtype}{void}\ updateArtistChart(\textcolor{keyword}{const}\ \mbox{\hyperlink{mainwindow_8h_a484afa274eff60df5cd253af58e36a5b}{AnalysisResults}}\ \&results);}
+\DoxyCodeLine{00229\ \ \ \textcolor{keywordtype}{void}\ updateTrackChart(\textcolor{keyword}{const}\ \mbox{\hyperlink{mainwindow_8h_a484afa274eff60df5cd253af58e36a5b}{AnalysisResults}}\ \&results);}
+\DoxyCodeLine{00231\ \ \ \textcolor{keywordtype}{void}\ updateHourlyChart(\textcolor{keyword}{const}\ \mbox{\hyperlink{mainwindow_8h_a484afa274eff60df5cd253af58e36a5b}{AnalysisResults}}\ \&results);}
+\DoxyCodeLine{00234\ \ \ \textcolor{keywordtype}{void}\ updateWeeklyChart(\textcolor{keyword}{const}\ \mbox{\hyperlink{mainwindow_8h_a484afa274eff60df5cd253af58e36a5b}{AnalysisResults}}\ \&results);}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00238\ \ \ \textcolor{keywordtype}{void}\ setupPages();}
+\DoxyCodeLine{00245\ \ \ \textcolor{keywordtype}{void}\ startAnalysisTask();}
+\DoxyCodeLine{00247\ \ \ \textcolor{keywordtype}{void}\ setupMenu();}
+\DoxyCodeLine{00250\ \ \ \textcolor{keywordtype}{void}\ promptForSettings();}
+\DoxyCodeLine{00257\ \ \ \textcolor{keywordtype}{void}\ checkOverallCompletion();}
+\DoxyCodeLine{00262\ \ \ \textcolor{keywordtype}{void}\ updateStatusBarState();}
 \DoxyCodeLine{00263\ }
-\DoxyCodeLine{00264\ \ \ QWidget\ *generalStatsPage\ =}
-\DoxyCodeLine{00265\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00266\ \ \ QWidget\ *databaseTablePage\ =}
-\DoxyCodeLine{00267\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00268\ \ \ QWidget\ *artistsPage\ =}
-\DoxyCodeLine{00269\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00270\ \ \ QWidget\ *tracksPage\ =\ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00271\ \ \ QWidget\ *chartsPage\ =\ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00272\ \ \ QWidget\ *aboutPage\ =}
-\DoxyCodeLine{00273\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
-\DoxyCodeLine{00274\ }
-\DoxyCodeLine{00275\ \ \ QList<ScrobbleData>}
-\DoxyCodeLine{00276\ \ \ \ \ \ \ m\_loadedScrobbles;\ \ \ \ }
-\DoxyCodeLine{00278\ \ \ \textcolor{keywordtype}{bool}\ m\_isLoading\ =\ \textcolor{keyword}{false};\ }
-\DoxyCodeLine{00280\ \ \ \textcolor{keywordtype}{bool}\ m\_fetchingComplete\ =}
-\DoxyCodeLine{00281\ \ \ \ \ \ \ \textcolor{keyword}{false};\ }
-\DoxyCodeLine{00283\ \ \ \textcolor{keywordtype}{int}\ m\_expectedTotalPages\ =\ 0;\ }
-\DoxyCodeLine{00285\ \ \ \textcolor{keywordtype}{int}\ m\_lastSuccessfullySavedPage\ =}
-\DoxyCodeLine{00286\ \ \ \ \ \ \ 0;\ }
-\DoxyCodeLine{00288\ \};}
-\DoxyCodeLine{00289\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MAINWINDOW\_H}}
+\DoxyCodeLine{00264\ \ \ Ui::MainWindow\ *ui;}
+\DoxyCodeLine{00265\ \ \ \mbox{\hyperlink{class_settings_manager}{SettingsManager}}\ m\_settingsManager;}
+\DoxyCodeLine{00266\ \ \ \mbox{\hyperlink{class_last_fm_manager}{LastFmManager}}\ m\_lastFmManager;}
+\DoxyCodeLine{00267\ \ \ \mbox{\hyperlink{class_database_manager}{DatabaseManager}}\ m\_databaseManager;}
+\DoxyCodeLine{00268\ \ \ \mbox{\hyperlink{class_analytics_engine}{AnalyticsEngine}}\ m\_analyticsEngine;}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ \ AppState\ m\_currentState\ =\ AppState::Idle;\ }
+\DoxyCodeLine{00272\ \ \ \mbox{\hyperlink{mainwindow_8h_a484afa274eff60df5cd253af58e36a5b}{AnalysisResults}}\ m\_cachedAnalysisResults;\ \ }
+\DoxyCodeLine{00275\ \ \ QFutureWatcher<AnalysisResults>}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ m\_analysisWatcher;\ }
+\DoxyCodeLine{00277\ \ \ QFutureWatcher<QList<ScrobbleData>>}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ m\_initialDbLoadWatcher;\ }
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ QLabel\ *m\_statsLabel\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00282\ \ \ QLabel\ *m\_firstScrobbleLabelValue\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00283\ \ \ QLabel\ *m\_lastScrobbleLabelValue\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00284\ \ \ QComboBox\ *m\_meanRangeComboBox\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00285\ \ \ QLabel\ *m\_meanScrobblesResultLabel\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00286\ \ \ QLabel\ *m\_longestStreakLabelValue\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00287\ \ \ QLabel\ *m\_currentStreakLabelValue\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00288\ \ \ QLineEdit\ *m\_artistInput\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00289\ \ \ QLineEdit\ *m\_trackInput\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00290\ \ \ QPushButton\ *m\_findLastPlayedButton\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00291\ \ \ QLabel\ *m\_lastPlayedResultLabel\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ QTableWidget\ *m\_dbTableWidget\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \ \ QListWidget\ *m\_artistListWidget\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ QListWidget\ *m\_trackListWidget\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \ \ QChartView\ *m\_artistsChartView\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00300\ \ \ QChartView\ *m\_tracksChartView\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00301\ \ \ QChartView\ *m\_hourlyChartView\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00302\ \ \ QChartView\ *m\_weeklyChartView\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \ \ QLabel\ *m\_currentUserLabel\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \ \ QWidget\ *generalStatsPage\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00307\ \ \ QWidget\ *databaseTablePage\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00308\ \ \ QWidget\ *artistsPage\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00309\ \ \ QWidget\ *tracksPage\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00310\ \ \ QWidget\ *chartsPage\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00311\ \ \ QWidget\ *aboutPage\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \ \ QList<ScrobbleData>\ m\_loadedScrobbles;}
+\DoxyCodeLine{00314\ \ \ \textcolor{keywordtype}{bool}\ m\_fetchingComplete\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00315\ \ \ \textcolor{keywordtype}{int}\ m\_expectedTotalPages\ =\ 0;}
+\DoxyCodeLine{00316\ \ \ \textcolor{keywordtype}{int}\ m\_lastSuccessfullySavedPage\ =\ 0;}
+\DoxyCodeLine{00317\ \};}
+\DoxyCodeLine{00318\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MAINWINDOW\_H}}
 
 \end{DoxyCode}

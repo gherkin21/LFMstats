@@ -1,6 +1,7 @@
 var class_analytics_engine =
 [
     [ "AnalyticsEngine", "class_analytics_engine.html#ae3e0671ff5957d720efb67154dc00162", null ],
+    [ "analyzeAll", "class_analytics_engine.html#a5b3c6ba31b906eb138d4c56da97092e7", null ],
     [ "calculateListeningStreaks", "class_analytics_engine.html#a589c898e8e33c3a9f8d3f3648720d715", null ],
     [ "findLastPlayed", "class_analytics_engine.html#a368d537fab8fb71f973ba62c25fbb11d", null ],
     [ "getArtistPlayCounts", "class_analytics_engine.html#a307276ff5a20914bf89e86d1300c2f05", null ],

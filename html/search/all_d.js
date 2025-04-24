@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['ui_0',['Ui',['../namespace_ui.html',1,'']]],
-  ['username_1',['username',['../struct_save_work_item.html#adbd59d33d1e015eeced57aa95f5d0341',1,'SaveWorkItem::username'],['../class_settings_manager.html#a6c44ac4b4d8d5ee32931f08e612ba4f9',1,'SettingsManager::username()']]]
+  ['timestamp_0',['timestamp',['../struct_scrobble_data.html#a4ce1e72a84e1b93f90b45f394bcd677c',1,'ScrobbleData']]],
+  ['totalpagesdetermined_1',['totalPagesDetermined',['../class_last_fm_manager.html#ad0f710f382075682ce17fc45058ffa4e',1,'LastFmManager']]],
+  ['track_2',['track',['../struct_scrobble_data.html#a2ae3ad2c893f45abae50d640f60250c7',1,'ScrobbleData']]]
 ];

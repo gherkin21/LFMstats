@@ -12,7 +12,7 @@ SettingsManager::SettingsManager(QObject *parent)
 
     : QObject(parent), m_settings(QSettings::IniFormat, QSettings::UserScope,
                                   QCoreApplication::organizationName().isEmpty()
-                                      ? "gherk"
+                                      ? "gherkin21"
                                       : QCoreApplication::organizationName(),
                                   QCoreApplication::applicationName().isEmpty()
                                       ? "LastFmApp"

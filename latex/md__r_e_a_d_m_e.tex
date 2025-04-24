@@ -1,0 +1,57 @@
+\chapter{Last.\+fm Scrobble Analyzer}
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{Last.fm Scrobble Analyzer@{Last.fm Scrobble Analyzer}}
+\label{md__r_e_a_d_m_e_autotoc_md0}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md0}%
+
+
+A desktop application built with C++ and the Qt framework to fetch, store, analyze, and visualize your Last.\+fm scrobble history.\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{\texorpdfstring{Description}{Description}}\label{md__r_e_a_d_m_e_autotoc_md1}
+This application connects to the Last.\+fm API to download your music listening history (scrobbles). It stores the data efficiently in a local database (weekly JSON files) and provides various tools to analyze and visualize your listening habits, including\+:
+
+
+\begin{DoxyItemize}
+\item Overall statistics (first/last scrobble, streaks, average plays/day)
+\item Top artist and track rankings
+\item Charts showing listening patterns over time (hourly, weekly)
+\item Ability to search for the last time you played a specific track.
+\end{DoxyItemize}
+
+It supports fetching your complete history, performing incremental updates, and resuming interrupted downloads.\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{\texorpdfstring{Features}{Features}}\label{md__r_e_a_d_m_e_autotoc_md2}
+
+\begin{DoxyItemize}
+\item {\bfseries{Full History Fetch\+:}} Download your entire Last.\+fm scrobble history.
+\item {\bfseries{Incremental Updates\+:}} Fetch only new scrobbles since the last sync.
+\item {\bfseries{Download Resumption\+:}} Resumes fetching from the last successfully saved page if the initial download is interrupted.
+\item {\bfseries{Local Database\+:}} Stores scrobbles locally in JSON files organized by week per user.
+\item {\bfseries{Dashboard Stats\+:}} View total scrobbles, date range, average scrobbles per day, and listening streaks.
+\item {\bfseries{Last Played Finder\+:}} Search for the last time you listened to a specific artist/track combination.
+\item {\bfseries{Top Lists\+:}} See your most played artists and tracks.
+\item {\bfseries{Charts\+:}}
+\begin{DoxyItemize}
+\item Top 10 Artists (Bar Chart)
+\item Top 10 Tracks (Bar Chart)
+\item Scrobbles per Hour of Day (Bar Chart)
+\item Scrobbles per Day of Week (Bar Chart)
+\end{DoxyItemize}
+\item {\bfseries{Background Operations\+:}} Fetching and saving happen in background threads to keep the UI responsive.
+\item {\bfseries{User Configuration\+:}} Easily set and change your Last.\+fm username and API key.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysection{\texorpdfstring{Prerequisites}{Prerequisites}}\label{md__r_e_a_d_m_e_autotoc_md3}
+
+\begin{DoxyItemize}
+\item {\bfseries{Qt Framework\+:}} Version 6.\+x (or 5.\+15+ with potential minor adjustments). Requires the following modules\+:
+\begin{DoxyItemize}
+\item {\ttfamily Core}
+\item {\ttfamily Gui}
+\item {\ttfamily Widgets}
+\item {\ttfamily Network}
+\item {\ttfamily Charts}
+\end{DoxyItemize}
+\item {\bfseries{CMake\+:}} Version 3.\+16 or higher.
+\item {\bfseries{C++ Compiler\+:}} A modern C++ compiler compatible with your Qt version (GCC, Clang, MSVC).
+\item {\bfseries{Last.\+fm Account\+:}} You need a Last.\+fm account.
+\item {\bfseries{Last.\+fm API Key\+:}} You must obtain a free API key from Last.\+fm\+: \href{https://www.last.fm/api/account/create}{\texttt{ Get an API Account}}
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysection{\texorpdfstring{Building}{Building}}\label{md__r_e_a_d_m_e_autotoc_md4}
+This project uses CMake.
+
+{\bfseries{1. Clone the Repository\+:}}
+
+\`{}\`{}\`{}bash git clone \href{https://github.com/gherkin21/LFMstats.git}{\texttt{ https\+://github.\+com/gherkin21/\+LFMstats.\+git}} cd your-\/repo 

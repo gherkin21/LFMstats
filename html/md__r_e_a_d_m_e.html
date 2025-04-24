@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>LFMstats: File Members</title>
+<title>LFMstats: Last.fm Scrobble Analyzer</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -76,7 +76,7 @@ $(function() { codefold.init(0); });
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('globals.html',''); initResizable(true); });
+$(function(){initNavTree('md__r_e_a_d_m_e.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -101,14 +101,65 @@ $(function(){initNavTree('globals.html',''); initResizable(true); });
 </div>
 </div>
 
+<div><div class="header">
+  <div class="headertitle"><div class="title">Last.fm Scrobble Analyzer</div></div>
+</div><!--header-->
 <div class="contents">
-<div class="textblock">Here is a list of all file members with links to the files they belong to:</div><ul>
-<li>AnalysisResults&#160;:&#160;<a class="el" href="mainwindow_8h.html#a484afa274eff60df5cd253af58e36a5b">mainwindow.h</a></li>
-<li>CountPair&#160;:&#160;<a class="el" href="analyticsengine_8h.html#aec8378510f5754b2344d41254b210825">analyticsengine.h</a></li>
-<li>main()&#160;:&#160;<a class="el" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main.cpp</a></li>
-<li>SortedCounts&#160;:&#160;<a class="el" href="analyticsengine_8h.html#a24440435af6d135e5ba61c2a05f55deb">analyticsengine.h</a></li>
+<div class="textblock"><p><a class="anchor" id="autotoc_md0"></a></p>
+<p>A desktop application built with C++ and the Qt framework to fetch, store, analyze, and visualize your Last.fm scrobble history.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Description</h1>
+<p>This application connects to the Last.fm API to download your music listening history (scrobbles). It stores the data efficiently in a local database (weekly JSON files) and provides various tools to analyze and visualize your listening habits, including:</p>
+<ul>
+<li>Overall statistics (first/last scrobble, streaks, average plays/day)</li>
+<li>Top artist and track rankings</li>
+<li>Charts showing listening patterns over time (hourly, weekly)</li>
+<li>Ability to search for the last time you played a specific track.</li>
 </ul>
-</div><!-- contents -->
+<p>It supports fetching your complete history, performing incremental updates, and resuming interrupted downloads.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Features</h1>
+<ul>
+<li><b>Full History Fetch:</b> Download your entire Last.fm scrobble history.</li>
+<li><b>Incremental Updates:</b> Fetch only new scrobbles since the last sync.</li>
+<li><b>Download Resumption:</b> Resumes fetching from the last successfully saved page if the initial download is interrupted.</li>
+<li><b>Local Database:</b> Stores scrobbles locally in JSON files organized by week per user.</li>
+<li><b>Dashboard Stats:</b> View total scrobbles, date range, average scrobbles per day, and listening streaks.</li>
+<li><b>Last Played Finder:</b> Search for the last time you listened to a specific artist/track combination.</li>
+<li><b>Top Lists:</b> See your most played artists and tracks.</li>
+<li><b>Charts:</b><ul>
+<li>Top 10 Artists (Bar Chart)</li>
+<li>Top 10 Tracks (Bar Chart)</li>
+<li>Scrobbles per Hour of Day (Bar Chart)</li>
+<li>Scrobbles per Day of Week (Bar Chart)</li>
+</ul>
+</li>
+<li><b>Background Operations:</b> Fetching and saving happen in background threads to keep the UI responsive.</li>
+<li><b>User Configuration:</b> Easily set and change your Last.fm username and API key.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md3"></a>
+Prerequisites</h1>
+<ul>
+<li><b>Qt Framework:</b> Version 6.x (or 5.15+ with potential minor adjustments). Requires the following modules:<ul>
+<li><code>Core</code></li>
+<li><code>Gui</code></li>
+<li><code>Widgets</code></li>
+<li><code>Network</code></li>
+<li><code>Charts</code></li>
+</ul>
+</li>
+<li><b>CMake:</b> Version 3.16 or higher.</li>
+<li><b>C++ Compiler:</b> A modern C++ compiler compatible with your Qt version (GCC, Clang, MSVC).</li>
+<li><b>Last.fm Account:</b> You need a Last.fm account.</li>
+<li><b>Last.fm API Key:</b> You must obtain a free API key from Last.fm: <a href="https://www.last.fm/api/account/create">Get an API Account</a></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md4"></a>
+Building</h1>
+<p>This project uses CMake.</p>
+<p><b>1. Clone the Repository:</b></p>
+<p>```bash git clone <a href="https://github.com/gherkin21/LFMstats.git">https://github.com/gherkin21/LFMstats.git</a> cd your-repo </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
