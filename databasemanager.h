@@ -22,6 +22,8 @@ struct SaveWorkItem {
   QList<ScrobbleData> data; /**< @brief The list of scrobbles to be saved. */
 };
 
+class TestDatabaseManager;
+
 /**
  * @class DatabaseManager
  * @brief Manages the persistence of scrobble data to the local disk.
@@ -32,6 +34,9 @@ struct SaveWorkItem {
  */
 class DatabaseManager : public QObject {
   Q_OBJECT
+
+  friend class TestDatabaseManager;
+
 public:
   /**
    * @brief Constructs a DatabaseManager instance.

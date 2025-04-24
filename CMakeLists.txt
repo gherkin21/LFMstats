@@ -15,8 +15,9 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS
     Core
     Gui
     Concurrent
-    Network  # <-- Add this
-    Charts   # <-- Make sure Charts is also present if you use it
+    Network
+    Charts
+    Test
 )
 
 
@@ -43,9 +44,33 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         chartspage.ui
         aboutpage.ui
         README.md
-
-
+        #testanalyticsengine.cpp
+        #testdatabasemanager.cpp
     )
+
+  set(ANALYTICS_ENGINE_TEST_SRCS
+      testanalyticsengine.cpp
+      "${CMAKE_SOURCE_DIR}/analyticsengine.cpp"
+
+  )
+  add_executable(test_analyticsengine ${ANALYTICS_ENGINE_TEST_SRCS})
+  target_link_libraries(test_analyticsengine PRIVATE Qt6::Core Qt6::Test)
+
+
+
+  set(DATABASE_MANAGER_TEST_SRCS
+      testdatabasemanager.cpp
+      "${CMAKE_SOURCE_DIR}/databasemanager.cpp"
+
+  )
+  add_executable(test_databasemanager ${DATABASE_MANAGER_TEST_SRCS})
+  target_link_libraries(test_databasemanager PRIVATE Qt6::Core Qt6::Test Qt6::Concurrent)
+
+
+  add_test(NAME AnalyticsEngineTest COMMAND test_analyticsengine)
+  add_test(NAME DatabaseManagerTest COMMAND test_databasemanager)
+
+
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET LFMstats APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
@@ -70,6 +95,7 @@ target_link_libraries(LFMstats PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
   Qt::Core
   Qt::Gui
   Qt::Concurrent
+  Qt::Test
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
