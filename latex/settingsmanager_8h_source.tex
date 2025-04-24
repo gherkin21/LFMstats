@@ -1,0 +1,46 @@
+\doxysection{settingsmanager.\+h}
+\hypertarget{settingsmanager_8h_source}{}\label{settingsmanager_8h_source}\mbox{\hyperlink{settingsmanager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SETTINGSMANAGER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SETTINGSMANAGER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QObject>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <QSettings>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <QString>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_settings_manager_a363266df196e35be711bf9ad421839ed}{SettingsManager}}\ :\ \textcolor{keyword}{public}\ QObject\ \{}
+\DoxyCodeLine{00017\ \ \ Q\_OBJECT}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_settings_manager_a363266df196e35be711bf9ad421839ed}{SettingsManager}}(QObject\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00030\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_settings_manager_ab0b27a2c1ed2348eae94dfdb20f5a30e}{saveApiKey}}(\textcolor{keyword}{const}\ QString\ \&\mbox{\hyperlink{class_settings_manager_a3780c9e54563989491a247405cd4cf69}{apiKey}});}
+\DoxyCodeLine{00035\ \ \ QString\ \mbox{\hyperlink{class_settings_manager_a3780c9e54563989491a247405cd4cf69}{apiKey}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_settings_manager_a331fb0fa3bb210221e72d6df55d24cbb}{saveUsername}}(\textcolor{keyword}{const}\ QString\ \&\mbox{\hyperlink{class_settings_manager_a6c44ac4b4d8d5ee32931f08e612ba4f9}{username}});}
+\DoxyCodeLine{00045\ \ \ QString\ \mbox{\hyperlink{class_settings_manager_a6c44ac4b4d8d5ee32931f08e612ba4f9}{username}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00053\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_settings_manager_a2af5cc44fb9aa3b74e6fbccfc6489aae}{setInitialFetchComplete}}(\textcolor{keywordtype}{bool}\ complete);}
+\DoxyCodeLine{00060\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_settings_manager_a29f1cfffd2e63b03046c09f227e2182b}{isInitialFetchComplete}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00067\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_settings_manager_a613cb0b43f51fd0c47fda4094765449e}{saveLastSuccessfullySavedPage}}(\textcolor{keywordtype}{int}\ page);}
+\DoxyCodeLine{00073\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_settings_manager_ac710fdde0cc16a01258bf05201d0bc8c}{loadLastSuccessfullySavedPage}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00080\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_settings_manager_a328a6d305ca3a07ff9462f467eade131}{saveExpectedTotalPages}}(\textcolor{keywordtype}{int}\ totalPages);}
+\DoxyCodeLine{00085\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_settings_manager_a47fae5a8ede32c70dd015f46560b2400}{loadExpectedTotalPages}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00092\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_settings_manager_a4389b188c18b867334c576a83de32867}{clearResumeState}}();}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00095\ \ \ QSettings}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ m\_settings;\ }
+\DoxyCodeLine{00097\ \ \ \textcolor{keyword}{const}\ QString\ KEY\_API\_KEY\ =}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}lastfm/apiKey"{}};\ }
+\DoxyCodeLine{00099\ \ \ \textcolor{keyword}{const}\ QString\ KEY\_USERNAME\ =}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}lastfm/username"{}};\ }
+\DoxyCodeLine{00101\ \ \ \textcolor{keyword}{const}\ QString\ KEY\_INITIAL\_FETCH\_COMPLETE\ =}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}state/initialFetchComplete"{}};\ }
+\DoxyCodeLine{00104\ \ \ \textcolor{keyword}{const}\ QString\ KEY\_LAST\_SAVED\_PAGE\ =}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}state/lastSavedPage"{}};\ }
+\DoxyCodeLine{00107\ \ \ \textcolor{keyword}{const}\ QString\ KEY\_EXPECTED\_TOTAL\_PAGES\ =}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}state/expectedTotalPages"{}};\ }
+\DoxyCodeLine{00110\ \};}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SETTINGSMANAGER\_H}}
+
+\end{DoxyCode}

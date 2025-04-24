@@ -1,0 +1,138 @@
+\doxysection{Last\+Fm\+Worker Class Reference}
+\hypertarget{class_last_fm_worker}{}\label{class_last_fm_worker}\index{LastFmWorker@{LastFmWorker}}
+
+
+Worker object performing actual Last.\+fm API requests in a separate thread.  
+
+
+
+
+{\ttfamily \#include $<$lastfmmanager.\+h$>$}
+
+Inheritance diagram for Last\+Fm\+Worker\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_last_fm_worker}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_last_fm_worker_ad0b80ceeecb92f39d045170c1c04fcc8}{do\+Fetch}} (const QString \&api\+Key, const QString \&username, qint64 from\+Timestamp, int page)
+\begin{DoxyCompactList}\small\item\em Performs the network request to fetch a specific page of recent tracks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_last_fm_worker_aab99653b3bd7230fa587d1f58030f805}{result\+Ready}} (const QList$<$ \mbox{\hyperlink{struct_scrobble_data}{Scrobble\+Data}} $>$ \&scrobbles, int total\+Pages, int current\+Page)
+\begin{DoxyCompactList}\small\item\em Emitted when a page is successfully fetched and parsed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_last_fm_worker_a7fd91ad4c89a4ac8e778d63ca559dad7}{error\+Occurred}} (const QString \&error\+String, int http\+Status\+Code)
+\begin{DoxyCompactList}\small\item\em Emitted when a network or API error occurs during the fetch attempt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_last_fm_worker_ad13fdad60bfd71662cf5e58245480d53}{finished}} ()
+\begin{DoxyCompactList}\small\item\em Emitted when the processing for a single fetch request (do\+Fetch call) is finished, regardless of success or failure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_last_fm_worker_adff7f20acac54512426cd1c4bc8ed320}{Last\+Fm\+Worker}} (QObject \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{class_last_fm_worker}{Last\+Fm\+Worker} instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Worker object performing actual Last.\+fm API requests in a separate thread. 
+
+Encapsulates the QNetwork\+Access\+Manager and handles the request construction, sending, and basic reply processing (parsing JSON, extracting data/errors). Runs within the thread managed by \doxylink{class_last_fm_manager}{Last\+Fm\+Manager}. @inherits QObject 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_last_fm_worker_adff7f20acac54512426cd1c4bc8ed320}\index{LastFmWorker@{LastFmWorker}!LastFmWorker@{LastFmWorker}}
+\index{LastFmWorker@{LastFmWorker}!LastFmWorker@{LastFmWorker}}
+\doxysubsubsection{\texorpdfstring{LastFmWorker()}{LastFmWorker()}}
+{\footnotesize\ttfamily \label{class_last_fm_worker_adff7f20acac54512426cd1c4bc8ed320} 
+Last\+Fm\+Worker\+::\+Last\+Fm\+Worker (\begin{DoxyParamCaption}\item[{QObject \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs a \doxylink{class_last_fm_worker}{Last\+Fm\+Worker} instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & The parent QObject, defaults to nullptr. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_last_fm_worker_ad0b80ceeecb92f39d045170c1c04fcc8}\index{LastFmWorker@{LastFmWorker}!doFetch@{doFetch}}
+\index{doFetch@{doFetch}!LastFmWorker@{LastFmWorker}}
+\doxysubsubsection{\texorpdfstring{doFetch}{doFetch}}
+{\footnotesize\ttfamily \label{class_last_fm_worker_ad0b80ceeecb92f39d045170c1c04fcc8} 
+void Last\+Fm\+Worker\+::do\+Fetch (\begin{DoxyParamCaption}\item[{const QString \&}]{api\+Key}{, }\item[{const QString \&}]{username}{, }\item[{qint64}]{from\+Timestamp}{, }\item[{int}]{page}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Performs the network request to fetch a specific page of recent tracks. 
+
+\begin{DoxyNote}{Note}
+This slot is executed in the worker thread. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em api\+Key} & The Last.\+fm API key. \\
+\hline
+{\em username} & The Last.\+fm username. \\
+\hline
+{\em from\+Timestamp} & The \textquotesingle{}from\textquotesingle{} timestamp (seconds since epoch + 1) for update fetches, or 0 for initial/full fetches. \\
+\hline
+{\em page} & The 1-\/based page number to fetch. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_last_fm_worker_a7fd91ad4c89a4ac8e778d63ca559dad7}\index{LastFmWorker@{LastFmWorker}!errorOccurred@{errorOccurred}}
+\index{errorOccurred@{errorOccurred}!LastFmWorker@{LastFmWorker}}
+\doxysubsubsection{\texorpdfstring{errorOccurred}{errorOccurred}}
+{\footnotesize\ttfamily \label{class_last_fm_worker_a7fd91ad4c89a4ac8e778d63ca559dad7} 
+void Last\+Fm\+Worker\+::error\+Occurred (\begin{DoxyParamCaption}\item[{const QString \&}]{error\+String}{, }\item[{int}]{http\+Status\+Code}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Emitted when a network or API error occurs during the fetch attempt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error\+String} & A description of the error. \\
+\hline
+{\em http\+Status\+Code} & The HTTP status code (e.\+g., 404, 500), or 0 if not an HTTP error. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_last_fm_worker_ad13fdad60bfd71662cf5e58245480d53}\index{LastFmWorker@{LastFmWorker}!finished@{finished}}
+\index{finished@{finished}!LastFmWorker@{LastFmWorker}}
+\doxysubsubsection{\texorpdfstring{finished}{finished}}
+{\footnotesize\ttfamily \label{class_last_fm_worker_ad13fdad60bfd71662cf5e58245480d53} 
+void Last\+Fm\+Worker\+::finished (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Emitted when the processing for a single fetch request (do\+Fetch call) is finished, regardless of success or failure. 
+
+\Hypertarget{class_last_fm_worker_aab99653b3bd7230fa587d1f58030f805}\index{LastFmWorker@{LastFmWorker}!resultReady@{resultReady}}
+\index{resultReady@{resultReady}!LastFmWorker@{LastFmWorker}}
+\doxysubsubsection{\texorpdfstring{resultReady}{resultReady}}
+{\footnotesize\ttfamily \label{class_last_fm_worker_aab99653b3bd7230fa587d1f58030f805} 
+void Last\+Fm\+Worker\+::result\+Ready (\begin{DoxyParamCaption}\item[{const QList$<$ \mbox{\hyperlink{struct_scrobble_data}{Scrobble\+Data}} $>$ \&}]{scrobbles}{, }\item[{int}]{total\+Pages}{, }\item[{int}]{current\+Page}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Emitted when a page is successfully fetched and parsed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scrobbles} & The list of \doxylink{struct_scrobble_data}{Scrobble\+Data} extracted from the page. \\
+\hline
+{\em total\+Pages} & The total number of pages reported by the API response. \\
+\hline
+{\em current\+Page} & The page number reported by the API response. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{lastfmmanager_8h}{lastfmmanager.\+h}}\item 
+\mbox{\hyperlink{lastfmmanager_8cpp}{lastfmmanager.\+cpp}}\end{DoxyCompactItemize}

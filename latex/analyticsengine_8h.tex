@@ -1,0 +1,39 @@
+\doxysection{analyticsengine.\+h File Reference}
+\hypertarget{analyticsengine_8h}{}\label{analyticsengine_8h}\index{analyticsengine.h@{analyticsengine.h}}
+{\ttfamily \#include "{}scrobbledata.\+h"{}}\newline
+{\ttfamily \#include $<$QDate$>$}\newline
+{\ttfamily \#include $<$QDate\+Time$>$}\newline
+{\ttfamily \#include $<$QList$>$}\newline
+{\ttfamily \#include $<$QMap$>$}\newline
+{\ttfamily \#include $<$QObject$>$}\newline
+{\ttfamily \#include $<$QPair$>$}\newline
+{\ttfamily \#include $<$QVector$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_listening_streak}{Listening\+Streak}}
+\begin{DoxyCompactList}\small\item\em Holds the results of listening streak calculations. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_analytics_engine}{Analytics\+Engine}}
+\begin{DoxyCompactList}\small\item\em Performs various calculations and statistical analysis on a list of scrobble data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{analyticsengine_8h_aec8378510f5754b2344d41254b210825}{Count\+Pair}} = QPair$<$QString, int$>$
+\item 
+using \mbox{\hyperlink{analyticsengine_8h_a24440435af6d135e5ba61c2a05f55deb}{Sorted\+Counts}} = QList$<$\mbox{\hyperlink{analyticsengine_8h_aec8378510f5754b2344d41254b210825}{Count\+Pair}}$>$
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{analyticsengine_8h_aec8378510f5754b2344d41254b210825}\index{analyticsengine.h@{analyticsengine.h}!CountPair@{CountPair}}
+\index{CountPair@{CountPair}!analyticsengine.h@{analyticsengine.h}}
+\doxysubsubsection{\texorpdfstring{CountPair}{CountPair}}
+{\footnotesize\ttfamily \label{analyticsengine_8h_aec8378510f5754b2344d41254b210825} 
+using \mbox{\hyperlink{analyticsengine_8h_aec8378510f5754b2344d41254b210825}{Count\+Pair}} = QPair$<$QString, int$>$}
+
+\Hypertarget{analyticsengine_8h_a24440435af6d135e5ba61c2a05f55deb}\index{analyticsengine.h@{analyticsengine.h}!SortedCounts@{SortedCounts}}
+\index{SortedCounts@{SortedCounts}!analyticsengine.h@{analyticsengine.h}}
+\doxysubsubsection{\texorpdfstring{SortedCounts}{SortedCounts}}
+{\footnotesize\ttfamily \label{analyticsengine_8h_a24440435af6d135e5ba61c2a05f55deb} 
+using \mbox{\hyperlink{analyticsengine_8h_a24440435af6d135e5ba61c2a05f55deb}{Sorted\+Counts}} = QList$<$\mbox{\hyperlink{analyticsengine_8h_aec8378510f5754b2344d41254b210825}{Count\+Pair}}$>$}
+

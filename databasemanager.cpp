@@ -1,3 +1,8 @@
+/**
+ * @file databasemanager.cpp
+ * @brief Implementation of the DatabaseManager class.
+ */
+
 #include "databasemanager.h"
 #include <QCoreApplication>
 #include <QDebug>

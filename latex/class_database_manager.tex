@@ -1,0 +1,252 @@
+\doxysection{Database\+Manager Class Reference}
+\hypertarget{class_database_manager}{}\label{class_database_manager}\index{DatabaseManager@{DatabaseManager}}
+
+
+Manages the persistence of scrobble data to the local disk.  
+
+
+
+
+{\ttfamily \#include $<$databasemanager.\+h$>$}
+
+Inheritance diagram for Database\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_database_manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_database_manager_a3f956362243286458b59b6f2a1b5eafb}{page\+Save\+Completed}} (int page\+Number)
+\begin{DoxyCompactList}\small\item\em Emitted when a specific page of scrobbles has been successfully saved to disk. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_database_manager_aa28494d3af20b1ff6be2e558ebc7426e}{page\+Save\+Failed}} (int page\+Number, const QString \&error)
+\begin{DoxyCompactList}\small\item\em Emitted when saving a specific page of scrobbles failed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_database_manager_aa02f698b3562c02503372d946dcb6b4f}{load\+Complete}} (const QList$<$ \mbox{\hyperlink{struct_scrobble_data}{Scrobble\+Data}} $>$ \&scrobbles)
+\begin{DoxyCompactList}\small\item\em Emitted when an asynchronous load operation completes successfully. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_database_manager_aee43a7a7f1e02a66b79c0f50f7949808}{load\+Error}} (const QString \&error)
+\begin{DoxyCompactList}\small\item\em Emitted when an asynchronous load operation fails. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_database_manager_adcf2d12c21922b5938b9105a827d1958}{status\+Message}} (const QString \&message)
+\begin{DoxyCompactList}\small\item\em Emitted to provide status updates about database operations (saving, loading, errors). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_database_manager_a40a0673ad81256715e17e20cb9d9964d}{Database\+Manager}} (const QString \&base\+Path="{}db"{}, QObject \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{class_database_manager}{Database\+Manager} instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_manager_a4bfe6115d77c91afd99a669befb1ee70}{\texorpdfstring{$\sim$}{\string~}\+Database\+Manager}} () override=default
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_database_manager_a9b3d156eab74325d1fe4648bbef65f2f}{save\+Scrobbles\+Async}} (int page\+Number, const QString \&username, const QList$<$ \mbox{\hyperlink{struct_scrobble_data}{Scrobble\+Data}} $>$ \&scrobbles)
+\begin{DoxyCompactList}\small\item\em Asynchronously queues a list of scrobbles for saving to the database. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_database_manager_af1f2185f8198761207f7d9f1c02adb9f}{load\+Scrobbles\+Async}} (const QString \&username, const QDate\+Time \&from, const QDate\+Time \&to)
+\begin{DoxyCompactList}\small\item\em Asynchronously loads scrobbles for a specific user within a given UTC date range. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_database_manager_a936567e6c9c8a591e6181c81ddc36881}{load\+All\+Scrobbles\+Async}} (const QString \&username)
+\begin{DoxyCompactList}\small\item\em Asynchronously loads all stored scrobbles for a specific user. \end{DoxyCompactList}\item 
+qint64 \mbox{\hyperlink{class_database_manager_a90487d0fc1090bd46f9a3670f3f656ee}{get\+Last\+Sync\+Timestamp}} (const QString \&username)
+\begin{DoxyCompactList}\small\item\em Synchronously retrieves the timestamp of the latest scrobble stored in the database for a given user. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_database_manager_a686fe30df188bf6ef0776b9a5435d68b}{is\+Save\+In\+Progress}} () const
+\begin{DoxyCompactList}\small\item\em Checks if there are pending save operations either running or queued. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the persistence of scrobble data to the local disk. 
+
+Provides asynchronous methods for saving fetched scrobble pages and loading stored scrobbles. Data is organized into weekly JSON files per user. Uses Qt\+Concurrent for background tasks. @inherits QObject 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_database_manager_a40a0673ad81256715e17e20cb9d9964d}\index{DatabaseManager@{DatabaseManager}!DatabaseManager@{DatabaseManager}}
+\index{DatabaseManager@{DatabaseManager}!DatabaseManager@{DatabaseManager}}
+\doxysubsubsection{\texorpdfstring{DatabaseManager()}{DatabaseManager()}}
+{\footnotesize\ttfamily \label{class_database_manager_a40a0673ad81256715e17e20cb9d9964d} 
+Database\+Manager\+::\+Database\+Manager (\begin{DoxyParamCaption}\item[{const QString \&}]{base\+Path}{ = {\ttfamily "{}db"{}}, }\item[{QObject \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs a \doxylink{class_database_manager}{Database\+Manager} instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base\+Path} & The relative or absolute path to the root directory for the database files. If relative, it\textquotesingle{}s resolved against the application directory. Defaults to "{}db"{}. \\
+\hline
+{\em parent} & The parent QObject, defaults to nullptr. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_manager_a4bfe6115d77c91afd99a669befb1ee70}\index{DatabaseManager@{DatabaseManager}!````~DatabaseManager@{\texorpdfstring{$\sim$}{\string~}DatabaseManager}}
+\index{````~DatabaseManager@{\texorpdfstring{$\sim$}{\string~}DatabaseManager}!DatabaseManager@{DatabaseManager}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}DatabaseManager()}{\string~DatabaseManager()}}
+{\footnotesize\ttfamily \label{class_database_manager_a4bfe6115d77c91afd99a669befb1ee70} 
+Database\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+Database\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}
+
+
+
+Default destructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_database_manager_a90487d0fc1090bd46f9a3670f3f656ee}\index{DatabaseManager@{DatabaseManager}!getLastSyncTimestamp@{getLastSyncTimestamp}}
+\index{getLastSyncTimestamp@{getLastSyncTimestamp}!DatabaseManager@{DatabaseManager}}
+\doxysubsubsection{\texorpdfstring{getLastSyncTimestamp()}{getLastSyncTimestamp()}}
+{\footnotesize\ttfamily \label{class_database_manager_a90487d0fc1090bd46f9a3670f3f656ee} 
+qint64 Database\+Manager\+::get\+Last\+Sync\+Timestamp (\begin{DoxyParamCaption}\item[{const QString \&}]{username}{}\end{DoxyParamCaption})}
+
+
+
+Synchronously retrieves the timestamp of the latest scrobble stored in the database for a given user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The Last.\+fm username to check. Cannot be empty. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The UTC timestamp (seconds since epoch) of the last known scrobble, or 0 if no data exists or the user is empty. 
+\end{DoxyReturn}
+\Hypertarget{class_database_manager_a686fe30df188bf6ef0776b9a5435d68b}\index{DatabaseManager@{DatabaseManager}!isSaveInProgress@{isSaveInProgress}}
+\index{isSaveInProgress@{isSaveInProgress}!DatabaseManager@{DatabaseManager}}
+\doxysubsubsection{\texorpdfstring{isSaveInProgress()}{isSaveInProgress()}}
+{\footnotesize\ttfamily \label{class_database_manager_a686fe30df188bf6ef0776b9a5435d68b} 
+bool Database\+Manager\+::is\+Save\+In\+Progress (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Checks if there are pending save operations either running or queued. 
+
+\begin{DoxyReturn}{Returns}
+True if the background save task is active or the save queue is not empty, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_database_manager_a936567e6c9c8a591e6181c81ddc36881}\index{DatabaseManager@{DatabaseManager}!loadAllScrobblesAsync@{loadAllScrobblesAsync}}
+\index{loadAllScrobblesAsync@{loadAllScrobblesAsync}!DatabaseManager@{DatabaseManager}}
+\doxysubsubsection{\texorpdfstring{loadAllScrobblesAsync()}{loadAllScrobblesAsync()}}
+{\footnotesize\ttfamily \label{class_database_manager_a936567e6c9c8a591e6181c81ddc36881} 
+void Database\+Manager\+::load\+All\+Scrobbles\+Async (\begin{DoxyParamCaption}\item[{const QString \&}]{username}{}\end{DoxyParamCaption})}
+
+
+
+Asynchronously loads all stored scrobbles for a specific user. 
+
+Only one load operation can be active at a time. Results are emitted via load\+Complete or load\+Error signals. 
+\begin{DoxyParams}{Parameters}
+{\em username} & The Last.\+fm username to load data for. Cannot be empty. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_manager_aa02f698b3562c02503372d946dcb6b4f}\index{DatabaseManager@{DatabaseManager}!loadComplete@{loadComplete}}
+\index{loadComplete@{loadComplete}!DatabaseManager@{DatabaseManager}}
+\doxysubsubsection{\texorpdfstring{loadComplete}{loadComplete}}
+{\footnotesize\ttfamily \label{class_database_manager_aa02f698b3562c02503372d946dcb6b4f} 
+void Database\+Manager\+::load\+Complete (\begin{DoxyParamCaption}\item[{const QList$<$ \mbox{\hyperlink{struct_scrobble_data}{Scrobble\+Data}} $>$ \&}]{scrobbles}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Emitted when an asynchronous load operation completes successfully. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scrobbles} & A list containing the loaded \doxylink{struct_scrobble_data}{Scrobble\+Data}, sorted by timestamp. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_manager_aee43a7a7f1e02a66b79c0f50f7949808}\index{DatabaseManager@{DatabaseManager}!loadError@{loadError}}
+\index{loadError@{loadError}!DatabaseManager@{DatabaseManager}}
+\doxysubsubsection{\texorpdfstring{loadError}{loadError}}
+{\footnotesize\ttfamily \label{class_database_manager_aee43a7a7f1e02a66b79c0f50f7949808} 
+void Database\+Manager\+::load\+Error (\begin{DoxyParamCaption}\item[{const QString \&}]{error}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Emitted when an asynchronous load operation fails. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & A string describing the load error. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_manager_af1f2185f8198761207f7d9f1c02adb9f}\index{DatabaseManager@{DatabaseManager}!loadScrobblesAsync@{loadScrobblesAsync}}
+\index{loadScrobblesAsync@{loadScrobblesAsync}!DatabaseManager@{DatabaseManager}}
+\doxysubsubsection{\texorpdfstring{loadScrobblesAsync()}{loadScrobblesAsync()}}
+{\footnotesize\ttfamily \label{class_database_manager_af1f2185f8198761207f7d9f1c02adb9f} 
+void Database\+Manager\+::load\+Scrobbles\+Async (\begin{DoxyParamCaption}\item[{const QString \&}]{username}{, }\item[{const QDate\+Time \&}]{from}{, }\item[{const QDate\+Time \&}]{to}{}\end{DoxyParamCaption})}
+
+
+
+Asynchronously loads scrobbles for a specific user within a given UTC date range. 
+
+Only one load operation can be active at a time. Results are emitted via load\+Complete or load\+Error signals. 
+\begin{DoxyParams}{Parameters}
+{\em username} & The Last.\+fm username to load data for. Cannot be empty. \\
+\hline
+{\em from} & The start of the UTC date range (inclusive). \\
+\hline
+{\em to} & The end of the UTC date range (exclusive). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_manager_a3f956362243286458b59b6f2a1b5eafb}\index{DatabaseManager@{DatabaseManager}!pageSaveCompleted@{pageSaveCompleted}}
+\index{pageSaveCompleted@{pageSaveCompleted}!DatabaseManager@{DatabaseManager}}
+\doxysubsubsection{\texorpdfstring{pageSaveCompleted}{pageSaveCompleted}}
+{\footnotesize\ttfamily \label{class_database_manager_a3f956362243286458b59b6f2a1b5eafb} 
+void Database\+Manager\+::page\+Save\+Completed (\begin{DoxyParamCaption}\item[{int}]{page\+Number}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Emitted when a specific page of scrobbles has been successfully saved to disk. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em page\+Number} & The page number that was completed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_manager_aa28494d3af20b1ff6be2e558ebc7426e}\index{DatabaseManager@{DatabaseManager}!pageSaveFailed@{pageSaveFailed}}
+\index{pageSaveFailed@{pageSaveFailed}!DatabaseManager@{DatabaseManager}}
+\doxysubsubsection{\texorpdfstring{pageSaveFailed}{pageSaveFailed}}
+{\footnotesize\ttfamily \label{class_database_manager_aa28494d3af20b1ff6be2e558ebc7426e} 
+void Database\+Manager\+::page\+Save\+Failed (\begin{DoxyParamCaption}\item[{int}]{page\+Number}{, }\item[{const QString \&}]{error}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Emitted when saving a specific page of scrobbles failed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em page\+Number} & The page number that failed. \\
+\hline
+{\em error} & A string describing the error. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_manager_a9b3d156eab74325d1fe4648bbef65f2f}\index{DatabaseManager@{DatabaseManager}!saveScrobblesAsync@{saveScrobblesAsync}}
+\index{saveScrobblesAsync@{saveScrobblesAsync}!DatabaseManager@{DatabaseManager}}
+\doxysubsubsection{\texorpdfstring{saveScrobblesAsync()}{saveScrobblesAsync()}}
+{\footnotesize\ttfamily \label{class_database_manager_a9b3d156eab74325d1fe4648bbef65f2f} 
+void Database\+Manager\+::save\+Scrobbles\+Async (\begin{DoxyParamCaption}\item[{int}]{page\+Number}{, }\item[{const QString \&}]{username}{, }\item[{const QList$<$ \mbox{\hyperlink{struct_scrobble_data}{Scrobble\+Data}} $>$ \&}]{scrobbles}{}\end{DoxyParamCaption})}
+
+
+
+Asynchronously queues a list of scrobbles for saving to the database. 
+
+The save operation is performed in a background thread. Empty usernames or scrobble lists are handled gracefully. 
+\begin{DoxyParams}{Parameters}
+{\em page\+Number} & The page number corresponding to this batch of scrobbles (used for signalling). \\
+\hline
+{\em username} & The Last.\+fm username the scrobbles belong to. Cannot be empty. \\
+\hline
+{\em scrobbles} & The list of \doxylink{struct_scrobble_data}{Scrobble\+Data} items to save. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_manager_adcf2d12c21922b5938b9105a827d1958}\index{DatabaseManager@{DatabaseManager}!statusMessage@{statusMessage}}
+\index{statusMessage@{statusMessage}!DatabaseManager@{DatabaseManager}}
+\doxysubsubsection{\texorpdfstring{statusMessage}{statusMessage}}
+{\footnotesize\ttfamily \label{class_database_manager_adcf2d12c21922b5938b9105a827d1958} 
+void Database\+Manager\+::status\+Message (\begin{DoxyParamCaption}\item[{const QString \&}]{message}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Emitted to provide status updates about database operations (saving, loading, errors). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The status message string. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{databasemanager_8h}{databasemanager.\+h}}\item 
+\mbox{\hyperlink{databasemanager_8cpp}{databasemanager.\+cpp}}\end{DoxyCompactItemize}

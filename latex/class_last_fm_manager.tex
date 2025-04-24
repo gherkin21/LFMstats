@@ -1,0 +1,212 @@
+\doxysection{Last\+Fm\+Manager Class Reference}
+\hypertarget{class_last_fm_manager}{}\label{class_last_fm_manager}\index{LastFmManager@{LastFmManager}}
+
+
+Manages interaction with the Last.\+fm API for fetching scrobble data.  
+
+
+
+
+{\ttfamily \#include $<$lastfmmanager.\+h$>$}
+
+Inheritance diagram for Last\+Fm\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_last_fm_manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_last_fm_manager_a2a0eef546584d8d9aee72d04bb15a26b}{start\+Fetching}} (const QString \&api\+Key, const QString \&username, qint64 from\+Timestamp, int page)
+\begin{DoxyCompactList}\small\item\em Internal signal to request the worker thread to perform a fetch operation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_last_fm_manager_af68d505ff86d45448e143e89fa032226}{page\+Ready\+For\+Saving}} (const QList$<$ \mbox{\hyperlink{struct_scrobble_data}{Scrobble\+Data}} $>$ \&page\+Scrobbles, int page\+Number)
+\begin{DoxyCompactList}\small\item\em Emitted when a page of scrobbles has been successfully fetched and parsed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_last_fm_manager_ad0f710f382075682ce17fc45058ffa4e}{total\+Pages\+Determined}} (int total\+Pages)
+\begin{DoxyCompactList}\small\item\em Emitted when the total number of pages is determined or updated from an API response. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_last_fm_manager_a23cd23b930ac819802a9bcffb8e71bdb}{fetch\+Finished}} ()
+\begin{DoxyCompactList}\small\item\em Emitted when the fetch process completes, either successfully or after an unrecoverable error. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_last_fm_manager_a8ec6936c6000695699649a49cf295c6c}{fetch\+Error}} (const QString \&error\+String)
+\begin{DoxyCompactList}\small\item\em Emitted when an error occurs during the fetch process that cannot be automatically recovered from. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_last_fm_manager_a7dbad9deccf3e9b786d81074600508db}{Last\+Fm\+Manager}} (QObject \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{class_last_fm_manager}{Last\+Fm\+Manager} instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_last_fm_manager_ab166dd6cae477e976a8ddca16a84d243}{\texorpdfstring{$\sim$}{\string~}\+Last\+Fm\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_last_fm_manager_a21815a33fc0d9818dcf2c4cba9a90a61}{setup}} (const QString \&api\+Key, const QString \&username)
+\begin{DoxyCompactList}\small\item\em Sets the API key and username required for Last.\+fm API requests. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_last_fm_manager_a67be41423397347f80b0bb85deabd95b}{fetch\+Scrobbles\+Since}} (qint64 last\+Sync\+Timestamp)
+\begin{DoxyCompactList}\small\item\em Initiates fetching scrobbles added since a specific timestamp (update mode). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_last_fm_manager_a347f5f09eb4211ea957a04965105d00e}{start\+Initial\+Or\+Resume\+Fetch}} (int start\+Page, int known\+Total\+Pages)
+\begin{DoxyCompactList}\small\item\em Initiates fetching all scrobbles (initial sync) or resumes an incomplete fetch. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages interaction with the Last.\+fm API for fetching scrobble data. 
+
+Handles asynchronous fetching of recent tracks, pagination, rate limiting (via delays), and error handling including retries for specific errors. Uses a \doxylink{class_last_fm_worker}{Last\+Fm\+Worker} object running in a separate thread for network requests. @inherits QObject 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_last_fm_manager_a7dbad9deccf3e9b786d81074600508db}\index{LastFmManager@{LastFmManager}!LastFmManager@{LastFmManager}}
+\index{LastFmManager@{LastFmManager}!LastFmManager@{LastFmManager}}
+\doxysubsubsection{\texorpdfstring{LastFmManager()}{LastFmManager()}}
+{\footnotesize\ttfamily \label{class_last_fm_manager_a7dbad9deccf3e9b786d81074600508db} 
+Last\+Fm\+Manager\+::\+Last\+Fm\+Manager (\begin{DoxyParamCaption}\item[{QObject \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs a \doxylink{class_last_fm_manager}{Last\+Fm\+Manager} instance. 
+
+Initializes the worker thread and worker object, sets up connections, and starts the worker thread. 
+\begin{DoxyParams}{Parameters}
+{\em parent} & The parent QObject, defaults to nullptr. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_last_fm_manager_ab166dd6cae477e976a8ddca16a84d243}\index{LastFmManager@{LastFmManager}!````~LastFmManager@{\texorpdfstring{$\sim$}{\string~}LastFmManager}}
+\index{````~LastFmManager@{\texorpdfstring{$\sim$}{\string~}LastFmManager}!LastFmManager@{LastFmManager}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}LastFmManager()}{\string~LastFmManager()}}
+{\footnotesize\ttfamily \label{class_last_fm_manager_ab166dd6cae477e976a8ddca16a84d243} 
+Last\+Fm\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+Last\+Fm\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor. 
+
+Stops the worker thread gracefully. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_last_fm_manager_a8ec6936c6000695699649a49cf295c6c}\index{LastFmManager@{LastFmManager}!fetchError@{fetchError}}
+\index{fetchError@{fetchError}!LastFmManager@{LastFmManager}}
+\doxysubsubsection{\texorpdfstring{fetchError}{fetchError}}
+{\footnotesize\ttfamily \label{class_last_fm_manager_a8ec6936c6000695699649a49cf295c6c} 
+void Last\+Fm\+Manager\+::fetch\+Error (\begin{DoxyParamCaption}\item[{const QString \&}]{error\+String}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Emitted when an error occurs during the fetch process that cannot be automatically recovered from. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error\+String} & A description of the error. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_last_fm_manager_a23cd23b930ac819802a9bcffb8e71bdb}\index{LastFmManager@{LastFmManager}!fetchFinished@{fetchFinished}}
+\index{fetchFinished@{fetchFinished}!LastFmManager@{LastFmManager}}
+\doxysubsubsection{\texorpdfstring{fetchFinished}{fetchFinished}}
+{\footnotesize\ttfamily \label{class_last_fm_manager_a23cd23b930ac819802a9bcffb8e71bdb} 
+void Last\+Fm\+Manager\+::fetch\+Finished (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Emitted when the fetch process completes, either successfully or after an unrecoverable error. 
+
+\Hypertarget{class_last_fm_manager_a67be41423397347f80b0bb85deabd95b}\index{LastFmManager@{LastFmManager}!fetchScrobblesSince@{fetchScrobblesSince}}
+\index{fetchScrobblesSince@{fetchScrobblesSince}!LastFmManager@{LastFmManager}}
+\doxysubsubsection{\texorpdfstring{fetchScrobblesSince()}{fetchScrobblesSince()}}
+{\footnotesize\ttfamily \label{class_last_fm_manager_a67be41423397347f80b0bb85deabd95b} 
+void Last\+Fm\+Manager\+::fetch\+Scrobbles\+Since (\begin{DoxyParamCaption}\item[{qint64}]{last\+Sync\+Timestamp}{}\end{DoxyParamCaption})}
+
+
+
+Initiates fetching scrobbles added since a specific timestamp (update mode). 
+
+Resets fetch state and starts fetching from page 1, using the \textquotesingle{}from\textquotesingle{} parameter in the API call. 
+\begin{DoxyParams}{Parameters}
+{\em last\+Sync\+Timestamp} & The UTC timestamp (seconds since epoch) of the last known scrobble. Fetches tracks {\itshape after} this time. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_last_fm_manager_af68d505ff86d45448e143e89fa032226}\index{LastFmManager@{LastFmManager}!pageReadyForSaving@{pageReadyForSaving}}
+\index{pageReadyForSaving@{pageReadyForSaving}!LastFmManager@{LastFmManager}}
+\doxysubsubsection{\texorpdfstring{pageReadyForSaving}{pageReadyForSaving}}
+{\footnotesize\ttfamily \label{class_last_fm_manager_af68d505ff86d45448e143e89fa032226} 
+void Last\+Fm\+Manager\+::page\+Ready\+For\+Saving (\begin{DoxyParamCaption}\item[{const QList$<$ \mbox{\hyperlink{struct_scrobble_data}{Scrobble\+Data}} $>$ \&}]{page\+Scrobbles}{, }\item[{int}]{page\+Number}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Emitted when a page of scrobbles has been successfully fetched and parsed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em page\+Scrobbles} & The list of scrobbles from the fetched page. \\
+\hline
+{\em page\+Number} & The page number that was fetched. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_last_fm_manager_a21815a33fc0d9818dcf2c4cba9a90a61}\index{LastFmManager@{LastFmManager}!setup@{setup}}
+\index{setup@{setup}!LastFmManager@{LastFmManager}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily \label{class_last_fm_manager_a21815a33fc0d9818dcf2c4cba9a90a61} 
+void Last\+Fm\+Manager\+::setup (\begin{DoxyParamCaption}\item[{const QString \&}]{api\+Key}{, }\item[{const QString \&}]{username}{}\end{DoxyParamCaption})}
+
+
+
+Sets the API key and username required for Last.\+fm API requests. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em api\+Key} & The Last.\+fm API key. \\
+\hline
+{\em username} & The Last.\+fm username. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_last_fm_manager_a2a0eef546584d8d9aee72d04bb15a26b}\index{LastFmManager@{LastFmManager}!startFetching@{startFetching}}
+\index{startFetching@{startFetching}!LastFmManager@{LastFmManager}}
+\doxysubsubsection{\texorpdfstring{startFetching}{startFetching}}
+{\footnotesize\ttfamily \label{class_last_fm_manager_a2a0eef546584d8d9aee72d04bb15a26b} 
+void Last\+Fm\+Manager\+::start\+Fetching (\begin{DoxyParamCaption}\item[{const QString \&}]{api\+Key}{, }\item[{const QString \&}]{username}{, }\item[{qint64}]{from\+Timestamp}{, }\item[{int}]{page}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Internal signal to request the worker thread to perform a fetch operation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em api\+Key} & The API key to use. \\
+\hline
+{\em username} & The username to fetch for. \\
+\hline
+{\em from\+Timestamp} & The \textquotesingle{}from\textquotesingle{} timestamp for the API query (0 for initial fetch). \\
+\hline
+{\em page} & The page number to fetch. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_last_fm_manager_a347f5f09eb4211ea957a04965105d00e}\index{LastFmManager@{LastFmManager}!startInitialOrResumeFetch@{startInitialOrResumeFetch}}
+\index{startInitialOrResumeFetch@{startInitialOrResumeFetch}!LastFmManager@{LastFmManager}}
+\doxysubsubsection{\texorpdfstring{startInitialOrResumeFetch()}{startInitialOrResumeFetch()}}
+{\footnotesize\ttfamily \label{class_last_fm_manager_a347f5f09eb4211ea957a04965105d00e} 
+void Last\+Fm\+Manager\+::start\+Initial\+Or\+Resume\+Fetch (\begin{DoxyParamCaption}\item[{int}]{start\+Page}{, }\item[{int}]{known\+Total\+Pages}{}\end{DoxyParamCaption})}
+
+
+
+Initiates fetching all scrobbles (initial sync) or resumes an incomplete fetch. 
+
+Starts fetching from the specified page. If known\+Total\+Pages is greater than 0, it uses that value initially. 
+\begin{DoxyParams}{Parameters}
+{\em start\+Page} & The page number to start fetching from (1-\/based). \\
+\hline
+{\em known\+Total\+Pages} & The previously known total number of pages, or 0 if unknown. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_last_fm_manager_ad0f710f382075682ce17fc45058ffa4e}\index{LastFmManager@{LastFmManager}!totalPagesDetermined@{totalPagesDetermined}}
+\index{totalPagesDetermined@{totalPagesDetermined}!LastFmManager@{LastFmManager}}
+\doxysubsubsection{\texorpdfstring{totalPagesDetermined}{totalPagesDetermined}}
+{\footnotesize\ttfamily \label{class_last_fm_manager_ad0f710f382075682ce17fc45058ffa4e} 
+void Last\+Fm\+Manager\+::total\+Pages\+Determined (\begin{DoxyParamCaption}\item[{int}]{total\+Pages}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Emitted when the total number of pages is determined or updated from an API response. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em total\+Pages} & The total number of pages reported by the API. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{lastfmmanager_8h}{lastfmmanager.\+h}}\item 
+\mbox{\hyperlink{lastfmmanager_8cpp}{lastfmmanager.\+cpp}}\end{DoxyCompactItemize}

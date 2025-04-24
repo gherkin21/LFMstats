@@ -1,3 +1,8 @@
+/**
+ * @file settingsmanager.cpp
+ * @brief Implementation of the SettingsManager class.
+ */
+
 #include "settingsmanager.h"
 #include <QCoreApplication>
 #include <QDebug>

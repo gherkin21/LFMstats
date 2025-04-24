@@ -1,0 +1,52 @@
+\doxysection{analyticsengine.\+h}
+\hypertarget{analyticsengine_8h_source}{}\label{analyticsengine_8h_source}\mbox{\hyperlink{analyticsengine_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ANALYTICSENGINE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ANALYTICSENGINE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{scrobbledata_8h}{scrobbledata.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <QDate>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <QDateTime>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <QList>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <QMap>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <QObject>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <QPair>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QVector>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{using\ }\mbox{\hyperlink{analyticsengine_8h_aec8378510f5754b2344d41254b210825}{CountPair}}\ =\ QPair<QString,\ int>;}
+\DoxyCodeLine{00014\ \textcolor{keyword}{using\ }\mbox{\hyperlink{analyticsengine_8h_a24440435af6d135e5ba61c2a05f55deb}{SortedCounts}}\ =\ QList<CountPair>;}
+\DoxyCodeLine{00019\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_listening_streak}{ListeningStreak}}\ \{}
+\DoxyCodeLine{00020\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_listening_streak_a950b624e6b332fe9d1308bff3131122a}{longestStreakDays}}\ =\ 0;\ \ }
+\DoxyCodeLine{00022\ \ \ QDate\ \mbox{\hyperlink{struct_listening_streak_ae157bacbd5c27e5662a3de273b965bb1}{longestStreakEndDate}};\ }
+\DoxyCodeLine{00024\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_listening_streak_a9cce6ce4cc060822d6c1bf4040608002}{currentStreakDays}}\ =}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ 0;\ }
+\DoxyCodeLine{00027\ \ \ QDate\ \mbox{\hyperlink{struct_listening_streak_a8175666b090cc86d00b0687fe5ea24c7}{currentStreakStartDate}};\ }
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00041\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_analytics_engine_ae3e0671ff5957d720efb67154dc00162}{AnalyticsEngine}}\ :\ \textcolor{keyword}{public}\ QObject\ \{}
+\DoxyCodeLine{00042\ \ \ Q\_OBJECT}
+\DoxyCodeLine{00043\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00048\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_analytics_engine_ae3e0671ff5957d720efb67154dc00162}{AnalyticsEngine}}(QObject\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00058\ \ \ \mbox{\hyperlink{analyticsengine_8h_a24440435af6d135e5ba61c2a05f55deb}{SortedCounts}}\ \mbox{\hyperlink{class_analytics_engine_a319dd1bfec62f711af388ed54c0a69d1}{getTopArtists}}(\textcolor{keyword}{const}\ QList<ScrobbleData>\ \&scrobbles,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ 50);}
+\DoxyCodeLine{00068\ \ \ \mbox{\hyperlink{analyticsengine_8h_a24440435af6d135e5ba61c2a05f55deb}{SortedCounts}}\ \mbox{\hyperlink{class_analytics_engine_ae20d62bcb2527c9c895249401e4a2a61}{getTopTracks}}(\textcolor{keyword}{const}\ QList<ScrobbleData>\ \&scrobbles,}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ 50);}
+\DoxyCodeLine{00080\ \ \ QDateTime\ \mbox{\hyperlink{class_analytics_engine_a368d537fab8fb71f973ba62c25fbb11d}{findLastPlayed}}(\textcolor{keyword}{const}\ QList<ScrobbleData>\ \&scrobbles,}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QString\ \&artist,\ \textcolor{keyword}{const}\ QString\ \&track);}
+\DoxyCodeLine{00088\ \ \ QMap<QString,\ int>\ \mbox{\hyperlink{class_analytics_engine_a307276ff5a20914bf89e86d1300c2f05}{getArtistPlayCounts}}(\textcolor{keyword}{const}\ QList<ScrobbleData>\ \&scrobbles);}
+\DoxyCodeLine{00098\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_analytics_engine_aa4a5bdf04df84d065cdf48d430d59d53}{getMeanScrobblesPerDay}}(\textcolor{keyword}{const}\ QList<ScrobbleData>\ \&scrobbles,}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QDateTime\ \&from,\ \textcolor{keyword}{const}\ QDateTime\ \&to);}
+\DoxyCodeLine{00106\ \ \ QDateTime\ \mbox{\hyperlink{class_analytics_engine_aec0edeb8f4dd330f2147f77f24264a30}{getFirstScrobbleDate}}(\textcolor{keyword}{const}\ QList<ScrobbleData>\ \&scrobbles);}
+\DoxyCodeLine{00113\ \ \ QDateTime\ \mbox{\hyperlink{class_analytics_engine_a079ec42c0be963727d57a22767661eb1}{getLastScrobbleDate}}(\textcolor{keyword}{const}\ QList<ScrobbleData>\ \&scrobbles);}
+\DoxyCodeLine{00122\ \ \ QVector<int>\ \mbox{\hyperlink{class_analytics_engine_abc9d8cda8733db2f92bb1319f7195aae}{getScrobblesPerHourOfDay}}(\textcolor{keyword}{const}\ QList<ScrobbleData>\ \&scrobbles);}
+\DoxyCodeLine{00130\ \ \ QVector<int>\ \mbox{\hyperlink{class_analytics_engine_a60904bba34ef1d196dbcc0170bbe1848}{getScrobblesPerDayOfWeek}}(\textcolor{keyword}{const}\ QList<ScrobbleData>\ \&scrobbles);}
+\DoxyCodeLine{00140\ \ \ \mbox{\hyperlink{struct_listening_streak}{ListeningStreak}}}
+\DoxyCodeLine{00141\ \ \ \mbox{\hyperlink{class_analytics_engine_a589c898e8e33c3a9f8d3f3648720d715}{calculateListeningStreaks}}(\textcolor{keyword}{const}\ QList<ScrobbleData>\ \&scrobbles);}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00150\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00151\ \ \ \textcolor{keyword}{static}\ QList<QPair<QString,\ T>>\ \mbox{\hyperlink{class_analytics_engine_ab8f49dd1f67e077b373f2668595bf1f5}{sortMapByValue}}(\textcolor{keyword}{const}\ QMap<QString,\ T>\ \&map);}
+\DoxyCodeLine{00152\ \};}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

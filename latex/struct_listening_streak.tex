@@ -1,0 +1,79 @@
+\doxysection{Listening\+Streak Struct Reference}
+\hypertarget{struct_listening_streak}{}\label{struct_listening_streak}\index{ListeningStreak@{ListeningStreak}}
+
+
+Holds the results of listening streak calculations.  
+
+
+
+
+{\ttfamily \#include $<$analyticsengine.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{struct_listening_streak_a950b624e6b332fe9d1308bff3131122a}{longest\+Streak\+Days}} = 0
+\begin{DoxyCompactList}\small\item\em The length of the longest consecutive day listening streak. \end{DoxyCompactList}\item 
+QDate \mbox{\hyperlink{struct_listening_streak_ae157bacbd5c27e5662a3de273b965bb1}{longest\+Streak\+End\+Date}}
+\begin{DoxyCompactList}\small\item\em The date (local time) the longest streak ended. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{struct_listening_streak_a9cce6ce4cc060822d6c1bf4040608002}{current\+Streak\+Days}}
+\begin{DoxyCompactList}\small\item\em The length of the current consecutive day listening streak (ending today or yesterday). \end{DoxyCompactList}\item 
+QDate \mbox{\hyperlink{struct_listening_streak_a8175666b090cc86d00b0687fe5ea24c7}{current\+Streak\+Start\+Date}}
+\begin{DoxyCompactList}\small\item\em The date (local time) the current streak started. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Holds the results of listening streak calculations. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_listening_streak_a9cce6ce4cc060822d6c1bf4040608002}\index{ListeningStreak@{ListeningStreak}!currentStreakDays@{currentStreakDays}}
+\index{currentStreakDays@{currentStreakDays}!ListeningStreak@{ListeningStreak}}
+\doxysubsubsection{\texorpdfstring{currentStreakDays}{currentStreakDays}}
+{\footnotesize\ttfamily \label{struct_listening_streak_a9cce6ce4cc060822d6c1bf4040608002} 
+int Listening\+Streak\+::current\+Streak\+Days}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\ \ \ \ \ \ 0}
+
+\end{DoxyCode}
+
+
+The length of the current consecutive day listening streak (ending today or yesterday). 
+
+\Hypertarget{struct_listening_streak_a8175666b090cc86d00b0687fe5ea24c7}\index{ListeningStreak@{ListeningStreak}!currentStreakStartDate@{currentStreakStartDate}}
+\index{currentStreakStartDate@{currentStreakStartDate}!ListeningStreak@{ListeningStreak}}
+\doxysubsubsection{\texorpdfstring{currentStreakStartDate}{currentStreakStartDate}}
+{\footnotesize\ttfamily \label{struct_listening_streak_a8175666b090cc86d00b0687fe5ea24c7} 
+QDate Listening\+Streak\+::current\+Streak\+Start\+Date}
+
+
+
+The date (local time) the current streak started. 
+
+\Hypertarget{struct_listening_streak_a950b624e6b332fe9d1308bff3131122a}\index{ListeningStreak@{ListeningStreak}!longestStreakDays@{longestStreakDays}}
+\index{longestStreakDays@{longestStreakDays}!ListeningStreak@{ListeningStreak}}
+\doxysubsubsection{\texorpdfstring{longestStreakDays}{longestStreakDays}}
+{\footnotesize\ttfamily \label{struct_listening_streak_a950b624e6b332fe9d1308bff3131122a} 
+int Listening\+Streak\+::longest\+Streak\+Days = 0}
+
+
+
+The length of the longest consecutive day listening streak. 
+
+\Hypertarget{struct_listening_streak_ae157bacbd5c27e5662a3de273b965bb1}\index{ListeningStreak@{ListeningStreak}!longestStreakEndDate@{longestStreakEndDate}}
+\index{longestStreakEndDate@{longestStreakEndDate}!ListeningStreak@{ListeningStreak}}
+\doxysubsubsection{\texorpdfstring{longestStreakEndDate}{longestStreakEndDate}}
+{\footnotesize\ttfamily \label{struct_listening_streak_ae157bacbd5c27e5662a3de273b965bb1} 
+QDate Listening\+Streak\+::longest\+Streak\+End\+Date}
+
+
+
+The date (local time) the longest streak ended. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{analyticsengine_8h}{analyticsengine.\+h}}\end{DoxyCompactItemize}

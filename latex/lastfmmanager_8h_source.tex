@@ -1,0 +1,108 @@
+\doxysection{lastfmmanager.\+h}
+\hypertarget{lastfmmanager_8h_source}{}\label{lastfmmanager_8h_source}\mbox{\hyperlink{lastfmmanager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ LASTFMMANAGER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ LASTFMMANAGER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{scrobbledata_8h}{scrobbledata.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <QDateTime>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <QJsonArray>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <QJsonDocument>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <QJsonObject>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <QList>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <QNetworkAccessManager>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QNetworkReply>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QObject>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QString>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <QThread>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <QTimer>}}
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_last_fm_worker}{LastFmWorker}};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_last_fm_manager_a7dbad9deccf3e9b786d81074600508db}{LastFmManager}}\ :\ \textcolor{keyword}{public}\ QObject\ \{}
+\DoxyCodeLine{00028\ \ \ Q\_OBJECT}
+\DoxyCodeLine{00030\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ MAX\_500\_RETRIES\ =\ 3;}
+\DoxyCodeLine{00032\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ RETRY\_DELAY\_MS\ =\ 60\ *\ 1000;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00041\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_last_fm_manager_a7dbad9deccf3e9b786d81074600508db}{LastFmManager}}(QObject\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00046\ \ \ \mbox{\hyperlink{class_last_fm_manager_ab166dd6cae477e976a8ddca16a84d243}{\string~LastFmManager}}();}
+\DoxyCodeLine{00052\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_last_fm_manager_a21815a33fc0d9818dcf2c4cba9a90a61}{setup}}(\textcolor{keyword}{const}\ QString\ \&apiKey,\ \textcolor{keyword}{const}\ QString\ \&username);}
+\DoxyCodeLine{00061\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_last_fm_manager_a67be41423397347f80b0bb85deabd95b}{fetchScrobblesSince}}(qint64\ lastSyncTimestamp);}
+\DoxyCodeLine{00071\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_last_fm_manager_a347f5f09eb4211ea957a04965105d00e}{startInitialOrResumeFetch}}(\textcolor{keywordtype}{int}\ startPage,\ \textcolor{keywordtype}{int}\ knownTotalPages);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ signals:}
+\DoxyCodeLine{00083\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_last_fm_manager_a2a0eef546584d8d9aee72d04bb15a26b}{startFetching}}(\textcolor{keyword}{const}\ QString\ \&apiKey,\ \textcolor{keyword}{const}\ QString\ \&username,}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ qint64\ fromTimestamp,\ \textcolor{keywordtype}{int}\ page);}
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_last_fm_manager_af68d505ff86d45448e143e89fa032226}{pageReadyForSaving}}(\textcolor{keyword}{const}\ QList<ScrobbleData>\ \&pageScrobbles,}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ pageNumber);}
+\DoxyCodeLine{00098\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_last_fm_manager_ad0f710f382075682ce17fc45058ffa4e}{totalPagesDetermined}}(\textcolor{keywordtype}{int}\ totalPages);}
+\DoxyCodeLine{00103\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_last_fm_manager_a23cd23b930ac819802a9bcffb8e71bdb}{fetchFinished}}();}
+\DoxyCodeLine{00109\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_last_fm_manager_a8ec6936c6000695699649a49cf295c6c}{fetchError}}(\textcolor{keyword}{const}\ QString\ \&errorString);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{private}\ slots:}
+\DoxyCodeLine{00120\ \ \ \textcolor{keywordtype}{void}\ handlePageResultReady(\textcolor{keyword}{const}\ QList<ScrobbleData>\ \&pageScrobbles,}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ totalPages,\ \textcolor{keywordtype}{int}\ currentPage);}
+\DoxyCodeLine{00128\ \ \ \textcolor{keywordtype}{void}\ handleFetchErrorWorker(\textcolor{keyword}{const}\ QString\ \&errorString,\ \textcolor{keywordtype}{int}\ httpStatusCode);}
+\DoxyCodeLine{00133\ \ \ \textcolor{keywordtype}{void}\ handleWorkerFinished();}
+\DoxyCodeLine{00138\ \ \ \textcolor{keywordtype}{void}\ retryLastFetch();}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00144\ \ \ \textcolor{keywordtype}{void}\ scheduleNextPageFetch();}
+\DoxyCodeLine{00148\ \ \ \textcolor{keywordtype}{void}\ resetRetryState();}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ QThread\ *m\_workerThread\ =}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
+\DoxyCodeLine{00152\ \ \ \mbox{\hyperlink{class_last_fm_worker}{LastFmWorker}}\ *m\_worker\ =}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \textcolor{keyword}{nullptr};\ }
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ QString\ m\_apiKey;\ \ \ }
+\DoxyCodeLine{00156\ \ \ QString\ m\_username;\ }
+\DoxyCodeLine{00157\ \ \ qint64\ m\_fetchFromTimestamp\ =}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ 0;\ }
+\DoxyCodeLine{00159\ \ \ \textcolor{keywordtype}{int}\ m\_currentPageFetching\ =}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ 0;\ }
+\DoxyCodeLine{00161\ \ \ \textcolor{keywordtype}{int}\ m\_expectedTotalPages\ =}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ 0;\ }
+\DoxyCodeLine{00163\ \ \ \textcolor{keywordtype}{bool}\ m\_isPerformingUpdate\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ QTimer\ *m\_retryTimer\ =\ \textcolor{keyword}{nullptr};\ }
+\DoxyCodeLine{00167\ \ \ \textcolor{keywordtype}{int}\ m\_retryCount\ =}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ 0;\ }
+\DoxyCodeLine{00169\ \ \ qint64\ m\_lastFailed\_fromTimestamp\ =}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ 0;\ }
+\DoxyCodeLine{00171\ \ \ \textcolor{keywordtype}{int}\ m\_lastFailed\_page\ =}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ 0;\ }
+\DoxyCodeLine{00173\ \ \ \textcolor{keywordtype}{bool}\ m\_isRetryPending\ =}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00175\ \};}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00186\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_last_fm_worker_adff7f20acac54512426cd1c4bc8ed320}{LastFmWorker}}\ :\ \textcolor{keyword}{public}\ QObject\ \{}
+\DoxyCodeLine{00187\ \ \ Q\_OBJECT}
+\DoxyCodeLine{00188\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00193\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_last_fm_worker_adff7f20acac54512426cd1c4bc8ed320}{LastFmWorker}}(QObject\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00194\ \textcolor{keyword}{public}\ slots:}
+\DoxyCodeLine{00205\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_last_fm_worker_ad0b80ceeecb92f39d045170c1c04fcc8}{doFetch}}(\textcolor{keyword}{const}\ QString\ \&apiKey,\ \textcolor{keyword}{const}\ QString\ \&username,}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ qint64\ fromTimestamp,\ \textcolor{keywordtype}{int}\ page);}
+\DoxyCodeLine{00207\ signals:}
+\DoxyCodeLine{00214\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_last_fm_worker_aab99653b3bd7230fa587d1f58030f805}{resultReady}}(\textcolor{keyword}{const}\ QList<ScrobbleData>\ \&scrobbles,\ \textcolor{keywordtype}{int}\ totalPages,}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ currentPage);}
+\DoxyCodeLine{00222\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_last_fm_worker_a7fd91ad4c89a4ac8e778d63ca559dad7}{errorOccurred}}(\textcolor{keyword}{const}\ QString\ \&errorString,\ \textcolor{keywordtype}{int}\ httpStatusCode);}
+\DoxyCodeLine{00227\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_last_fm_worker_ad13fdad60bfd71662cf5e58245480d53}{finished}}();}
+\DoxyCodeLine{00228\ \textcolor{keyword}{private}\ slots:}
+\DoxyCodeLine{00235\ \ \ \textcolor{keywordtype}{void}\ onReplyFinished(QNetworkReply\ *reply);}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00238\ \ \ QNetworkAccessManager}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ m\_networkManager;\ }
+\DoxyCodeLine{00240\ \ \ \textcolor{keyword}{const}\ QString\ API\_BASE\_URL\ =}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}http://ws.audioscrobbler.com/2.0/"{}};\ }
+\DoxyCodeLine{00243\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ FETCH\_LIMIT\ =\ 200;\ }
+\DoxyCodeLine{00245\ \ \ \textcolor{keywordtype}{int}\ m\_requestedPage\ =}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ 0;\ }
+\DoxyCodeLine{00247\ \ \ qint64\ m\_requestedFromTimestamp\ =}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ 0;\ }
+\DoxyCodeLine{00249\ \};}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ LASTFMMANAGER\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,226 @@
+\doxysection{Settings\+Manager Class Reference}
+\hypertarget{class_settings_manager}{}\label{class_settings_manager}\index{SettingsManager@{SettingsManager}}
+
+
+Manages application settings persistence using QSettings.  
+
+
+
+
+{\ttfamily \#include $<$settingsmanager.\+h$>$}
+
+Inheritance diagram for Settings\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_settings_manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_settings_manager_a363266df196e35be711bf9ad421839ed}{Settings\+Manager}} (QObject \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{class_settings_manager}{Settings\+Manager} instance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_settings_manager_ab0b27a2c1ed2348eae94dfdb20f5a30e}{save\+Api\+Key}} (const QString \&\mbox{\hyperlink{class_settings_manager_a3780c9e54563989491a247405cd4cf69}{api\+Key}})
+\begin{DoxyCompactList}\small\item\em Saves the Last.\+fm API key to settings. \end{DoxyCompactList}\item 
+QString \mbox{\hyperlink{class_settings_manager_a3780c9e54563989491a247405cd4cf69}{api\+Key}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the saved Last.\+fm API key from settings. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_settings_manager_a331fb0fa3bb210221e72d6df55d24cbb}{save\+Username}} (const QString \&\mbox{\hyperlink{class_settings_manager_a6c44ac4b4d8d5ee32931f08e612ba4f9}{username}})
+\begin{DoxyCompactList}\small\item\em Saves the Last.\+fm username to settings. \end{DoxyCompactList}\item 
+QString \mbox{\hyperlink{class_settings_manager_a6c44ac4b4d8d5ee32931f08e612ba4f9}{username}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the saved Last.\+fm username from settings. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_settings_manager_a2af5cc44fb9aa3b74e6fbccfc6489aae}{set\+Initial\+Fetch\+Complete}} (bool complete)
+\begin{DoxyCompactList}\small\item\em Sets the flag indicating whether the initial full fetch of scrobble history is complete. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_settings_manager_a29f1cfffd2e63b03046c09f227e2182b}{is\+Initial\+Fetch\+Complete}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the initial full fetch of scrobble history is marked as complete. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_settings_manager_a613cb0b43f51fd0c47fda4094765449e}{save\+Last\+Successfully\+Saved\+Page}} (int page)
+\begin{DoxyCompactList}\small\item\em Saves the page number of the last successfully saved page during an initial fetch. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_settings_manager_ac710fdde0cc16a01258bf05201d0bc8c}{load\+Last\+Successfully\+Saved\+Page}} () const
+\begin{DoxyCompactList}\small\item\em Loads the page number of the last successfully saved page from settings. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_settings_manager_a328a6d305ca3a07ff9462f467eade131}{save\+Expected\+Total\+Pages}} (int total\+Pages)
+\begin{DoxyCompactList}\small\item\em Saves the total number of pages expected for the current user, as reported by the API. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_settings_manager_a47fae5a8ede32c70dd015f46560b2400}{load\+Expected\+Total\+Pages}} () const
+\begin{DoxyCompactList}\small\item\em Loads the expected total number of pages from settings. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_settings_manager_a4389b188c18b867334c576a83de32867}{clear\+Resume\+State}} ()
+\begin{DoxyCompactList}\small\item\em Clears settings related to resuming an initial fetch (last saved page, expected total pages). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages application settings persistence using QSettings. 
+
+Handles saving and loading of the Last.\+fm API key, username, and state related to the scrobble fetching process (like whether the initial full fetch is complete and resume information). @inherits QObject 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_settings_manager_a363266df196e35be711bf9ad421839ed}\index{SettingsManager@{SettingsManager}!SettingsManager@{SettingsManager}}
+\index{SettingsManager@{SettingsManager}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{SettingsManager()}{SettingsManager()}}
+{\footnotesize\ttfamily \label{class_settings_manager_a363266df196e35be711bf9ad421839ed} 
+Settings\+Manager\+::\+Settings\+Manager (\begin{DoxyParamCaption}\item[{QObject \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs a \doxylink{class_settings_manager}{Settings\+Manager} instance. 
+
+Initializes QSettings with appropriate scope and format. 
+\begin{DoxyParams}{Parameters}
+{\em parent} & The parent QObject, defaults to nullptr. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_settings_manager_a3780c9e54563989491a247405cd4cf69}\index{SettingsManager@{SettingsManager}!apiKey@{apiKey}}
+\index{apiKey@{apiKey}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{apiKey()}{apiKey()}}
+{\footnotesize\ttfamily \label{class_settings_manager_a3780c9e54563989491a247405cd4cf69} 
+QString Settings\+Manager\+::api\+Key (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retrieves the saved Last.\+fm API key from settings. 
+
+\begin{DoxyReturn}{Returns}
+The saved API key string, or an empty string if not set. 
+\end{DoxyReturn}
+\Hypertarget{class_settings_manager_a4389b188c18b867334c576a83de32867}\index{SettingsManager@{SettingsManager}!clearResumeState@{clearResumeState}}
+\index{clearResumeState@{clearResumeState}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{clearResumeState()}{clearResumeState()}}
+{\footnotesize\ttfamily \label{class_settings_manager_a4389b188c18b867334c576a83de32867} 
+void Settings\+Manager\+::clear\+Resume\+State (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clears settings related to resuming an initial fetch (last saved page, expected total pages). 
+
+Typically called when a fetch completes successfully or the user changes. \Hypertarget{class_settings_manager_a29f1cfffd2e63b03046c09f227e2182b}\index{SettingsManager@{SettingsManager}!isInitialFetchComplete@{isInitialFetchComplete}}
+\index{isInitialFetchComplete@{isInitialFetchComplete}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{isInitialFetchComplete()}{isInitialFetchComplete()}}
+{\footnotesize\ttfamily \label{class_settings_manager_a29f1cfffd2e63b03046c09f227e2182b} 
+bool Settings\+Manager\+::is\+Initial\+Fetch\+Complete (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Checks if the initial full fetch of scrobble history is marked as complete. 
+
+\begin{DoxyReturn}{Returns}
+True if the initial fetch is complete, false otherwise. Defaults to false. 
+\end{DoxyReturn}
+\Hypertarget{class_settings_manager_a47fae5a8ede32c70dd015f46560b2400}\index{SettingsManager@{SettingsManager}!loadExpectedTotalPages@{loadExpectedTotalPages}}
+\index{loadExpectedTotalPages@{loadExpectedTotalPages}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{loadExpectedTotalPages()}{loadExpectedTotalPages()}}
+{\footnotesize\ttfamily \label{class_settings_manager_a47fae5a8ede32c70dd015f46560b2400} 
+int Settings\+Manager\+::load\+Expected\+Total\+Pages (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Loads the expected total number of pages from settings. 
+
+\begin{DoxyReturn}{Returns}
+The saved total pages count, or 0 if not set. 
+\end{DoxyReturn}
+\Hypertarget{class_settings_manager_ac710fdde0cc16a01258bf05201d0bc8c}\index{SettingsManager@{SettingsManager}!loadLastSuccessfullySavedPage@{loadLastSuccessfullySavedPage}}
+\index{loadLastSuccessfullySavedPage@{loadLastSuccessfullySavedPage}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{loadLastSuccessfullySavedPage()}{loadLastSuccessfullySavedPage()}}
+{\footnotesize\ttfamily \label{class_settings_manager_ac710fdde0cc16a01258bf05201d0bc8c} 
+int Settings\+Manager\+::load\+Last\+Successfully\+Saved\+Page (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Loads the page number of the last successfully saved page from settings. 
+
+\begin{DoxyReturn}{Returns}
+The saved page number, or 0 if not set. 
+\end{DoxyReturn}
+\Hypertarget{class_settings_manager_ab0b27a2c1ed2348eae94dfdb20f5a30e}\index{SettingsManager@{SettingsManager}!saveApiKey@{saveApiKey}}
+\index{saveApiKey@{saveApiKey}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{saveApiKey()}{saveApiKey()}}
+{\footnotesize\ttfamily \label{class_settings_manager_ab0b27a2c1ed2348eae94dfdb20f5a30e} 
+void Settings\+Manager\+::save\+Api\+Key (\begin{DoxyParamCaption}\item[{const QString \&}]{api\+Key}{}\end{DoxyParamCaption})}
+
+
+
+Saves the Last.\+fm API key to settings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em api\+Key} & The API key string to save. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_settings_manager_a328a6d305ca3a07ff9462f467eade131}\index{SettingsManager@{SettingsManager}!saveExpectedTotalPages@{saveExpectedTotalPages}}
+\index{saveExpectedTotalPages@{saveExpectedTotalPages}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{saveExpectedTotalPages()}{saveExpectedTotalPages()}}
+{\footnotesize\ttfamily \label{class_settings_manager_a328a6d305ca3a07ff9462f467eade131} 
+void Settings\+Manager\+::save\+Expected\+Total\+Pages (\begin{DoxyParamCaption}\item[{int}]{total\+Pages}{}\end{DoxyParamCaption})}
+
+
+
+Saves the total number of pages expected for the current user, as reported by the API. 
+
+Used for resuming and tracking progress of an initial fetch. 
+\begin{DoxyParams}{Parameters}
+{\em total\+Pages} & The total number of pages. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_settings_manager_a613cb0b43f51fd0c47fda4094765449e}\index{SettingsManager@{SettingsManager}!saveLastSuccessfullySavedPage@{saveLastSuccessfullySavedPage}}
+\index{saveLastSuccessfullySavedPage@{saveLastSuccessfullySavedPage}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{saveLastSuccessfullySavedPage()}{saveLastSuccessfullySavedPage()}}
+{\footnotesize\ttfamily \label{class_settings_manager_a613cb0b43f51fd0c47fda4094765449e} 
+void Settings\+Manager\+::save\+Last\+Successfully\+Saved\+Page (\begin{DoxyParamCaption}\item[{int}]{page}{}\end{DoxyParamCaption})}
+
+
+
+Saves the page number of the last successfully saved page during an initial fetch. 
+
+Used for resuming an interrupted fetch. 
+\begin{DoxyParams}{Parameters}
+{\em page} & The 1-\/based page number. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_settings_manager_a331fb0fa3bb210221e72d6df55d24cbb}\index{SettingsManager@{SettingsManager}!saveUsername@{saveUsername}}
+\index{saveUsername@{saveUsername}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{saveUsername()}{saveUsername()}}
+{\footnotesize\ttfamily \label{class_settings_manager_a331fb0fa3bb210221e72d6df55d24cbb} 
+void Settings\+Manager\+::save\+Username (\begin{DoxyParamCaption}\item[{const QString \&}]{username}{}\end{DoxyParamCaption})}
+
+
+
+Saves the Last.\+fm username to settings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username string to save. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_settings_manager_a2af5cc44fb9aa3b74e6fbccfc6489aae}\index{SettingsManager@{SettingsManager}!setInitialFetchComplete@{setInitialFetchComplete}}
+\index{setInitialFetchComplete@{setInitialFetchComplete}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{setInitialFetchComplete()}{setInitialFetchComplete()}}
+{\footnotesize\ttfamily \label{class_settings_manager_a2af5cc44fb9aa3b74e6fbccfc6489aae} 
+void Settings\+Manager\+::set\+Initial\+Fetch\+Complete (\begin{DoxyParamCaption}\item[{bool}]{complete}{}\end{DoxyParamCaption})}
+
+
+
+Sets the flag indicating whether the initial full fetch of scrobble history is complete. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em complete} & True if the initial fetch is considered complete, false otherwise. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_settings_manager_a6c44ac4b4d8d5ee32931f08e612ba4f9}\index{SettingsManager@{SettingsManager}!username@{username}}
+\index{username@{username}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{username()}{username()}}
+{\footnotesize\ttfamily \label{class_settings_manager_a6c44ac4b4d8d5ee32931f08e612ba4f9} 
+QString Settings\+Manager\+::username (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retrieves the saved Last.\+fm username from settings. 
+
+\begin{DoxyReturn}{Returns}
+The saved username string, or an empty string if not set. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{settingsmanager_8h}{settingsmanager.\+h}}\item 
+\mbox{\hyperlink{settingsmanager_8cpp}{settingsmanager.\+cpp}}\end{DoxyCompactItemize}

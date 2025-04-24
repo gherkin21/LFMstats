@@ -1,3 +1,8 @@
+/**
+ * @file lastfmmanager.cpp
+ * @brief Implementation of the LastFmManager and LastFmWorker classes.
+ */
+
 #include "lastfmmanager.h"
 #include <QDebug>
 #include <QNetworkReply>
