@@ -12,6 +12,7 @@
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QDebug>
+#include <QDesktopServices>
 #include <QHeaderView>
 #include <QInputDialog>
 #include <QLineEdit>
@@ -20,6 +21,7 @@
 #include <QPushButton>
 #include <QThread>
 #include <QTimer>
+#include <QUrl>
 #include <QtConcurrent>
 
 #include <QtCharts/QBarCategoryAxis>
@@ -202,10 +204,24 @@ void MainWindow::setupPages() {
   artistsPage = new QWidget();
   ui_a.setupUi(artistsPage);
   m_artistListWidget = ui_a.artistListWidget;
+  if (m_artistListWidget) {
+    connect(m_artistListWidget, &QListWidget::itemDoubleClicked, this,
+            &MainWindow::onArtistItemDoubleClicked);
+  } else {
+    qWarning() << "m_artistListWidget is null during connection setup!";
+  }
+
   Ui::TracksPage ui_t;
   tracksPage = new QWidget();
   ui_t.setupUi(tracksPage);
   m_trackListWidget = ui_t.trackListWidget;
+  if (m_trackListWidget) {
+    connect(m_trackListWidget, &QListWidget::itemDoubleClicked, this,
+            &MainWindow::onTrackItemDoubleClicked);
+  } else {
+    qWarning() << "m_trackListWidget is null during connection setup!";
+  }
+
   Ui::ChartsPage ui_c;
   chartsPage = new QWidget();
   ui_c.setupUi(chartsPage);
@@ -265,6 +281,89 @@ void MainWindow::setupMenu() {
   ui->menuListWidget->addItem("Charts");
   ui->menuListWidget->addItem("About / Settings");
   ui->menuListWidget->setCurrentRow(0);
+}
+
+void MainWindow::onArtistItemDoubleClicked(QListWidgetItem *item) {
+  if (!item)
+    return;
+
+  QString itemText = item->text();
+  int lastParen = itemText.lastIndexOf('(');
+  if (lastParen == -1) {
+    qWarning() << "Could not parse artist item text:" << itemText;
+    return;
+  }
+
+  QString artistName = itemText.left(lastParen).trimmed();
+  if (artistName.isEmpty()) {
+    qWarning() << "Parsed empty artist name from:" << itemText;
+    return;
+  }
+
+  QString encodedArtist =
+      QUrl::toPercentEncoding(artistName, QByteArray(), QByteArray("+"));
+
+  QUrl url("https://www.last.fm/music/" + encodedArtist);
+
+  qInfo() << "Opening artist URL:" << url.toString();
+  if (!QDesktopServices::openUrl(url)) {
+    qWarning() << "Failed to open URL:" << url.toString();
+    QMessageBox::warning(this, "Error",
+                         "Could not open the artist page in your browser.");
+  }
+}
+
+void MainWindow::onTrackItemDoubleClicked(QListWidgetItem *item) {
+  if (!item)
+    return;
+
+  QString itemText = item->text();
+
+  int lastParen = itemText.lastIndexOf('(');
+  if (lastParen == -1) {
+    qWarning() << "Could not parse track item text (parenthesis):" << itemText;
+    return;
+  }
+
+  QString fullTrackInfo = itemText.left(lastParen).trimmed();
+
+  int separatorPos = fullTrackInfo.indexOf(" - ");
+  if (separatorPos <= 0 || separatorPos >= fullTrackInfo.length() - 3) {
+    qWarning() << "Could not parse track item text (separator ' - '):"
+               << fullTrackInfo;
+    QString encodedArtist =
+        QUrl::toPercentEncoding(fullTrackInfo, QByteArray(), QByteArray("+"));
+    QUrl url("https://www.last.fm/music/" + encodedArtist);
+    qInfo() << "Falling back to artist URL:" << url.toString();
+    if (!QDesktopServices::openUrl(url)) {
+      qWarning() << "Failed to open fallback URL:" << url.toString();
+      QMessageBox::warning(
+          this, "Error", "Could not parse track or open page in your browser.");
+    }
+    return;
+  }
+
+  QString artistName = fullTrackInfo.left(separatorPos).trimmed();
+  QString trackName = fullTrackInfo.mid(separatorPos + 3).trimmed();
+
+  if (artistName.isEmpty() || trackName.isEmpty()) {
+    qWarning() << "Parsed empty artist or track name from:" << fullTrackInfo;
+    return;
+  }
+
+  QString encodedArtist =
+      QUrl::toPercentEncoding(artistName, QByteArray(), QByteArray("+"));
+  QString encodedTrack =
+      QUrl::toPercentEncoding(trackName, QByteArray(), QByteArray("+"));
+
+  QUrl url("https://www.last.fm/music/" + encodedArtist + "/_/" + encodedTrack);
+
+  qInfo() << "Opening track URL:" << url.toString();
+  if (!QDesktopServices::openUrl(url)) {
+    qWarning() << "Failed to open URL:" << url.toString();
+    QMessageBox::warning(this, "Error",
+                         "Could not open the track page in your browser.");
+  }
 }
 
 void MainWindow::promptForSettings() {

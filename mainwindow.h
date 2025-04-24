@@ -180,6 +180,20 @@ private slots:
    */
   void handleInitialDbLoadComplete();
 
+  /**
+     * @brief Slot called when an item in the artist list is double-clicked.
+     * @details Parses the artist name, constructs the Last.fm URL, and opens it.
+     * @param item The double-clicked list widget item.
+     */
+  void onArtistItemDoubleClicked(QListWidgetItem *item);
+
+  /**
+     * @brief Slot called when an item in the track list is double-clicked.
+     * @details Parses the artist and track names, constructs the Last.fm URL, and opens it.
+     * @param item The double-clicked list widget item.
+     */
+  void onTrackItemDoubleClicked(QListWidgetItem *item);
+
 private:
   /**
    * @enum AppState
