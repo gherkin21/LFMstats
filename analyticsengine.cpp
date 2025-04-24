@@ -1,3 +1,8 @@
+/**
+ * @file analyticsengine.cpp
+ * @brief Implementation of the AnalyticsEngine class.
+ */
+
 #include "analyticsengine.h"
 #include <QDebug>
 #include <QSet>

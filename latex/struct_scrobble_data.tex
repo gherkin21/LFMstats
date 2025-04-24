@@ -2,20 +2,28 @@
 \hypertarget{struct_scrobble_data}{}\label{struct_scrobble_data}\index{ScrobbleData@{ScrobbleData}}
 
 
+Represents the essential information for a single Last.\+fm scrobble (a played track).  
+
+
+
+
 {\ttfamily \#include $<$scrobbledata.\+h$>$}
 
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 QString \mbox{\hyperlink{struct_scrobble_data_a3d35a7ee26516e01e08f5c2e128bfbd1}{artist}}
-\item 
+\begin{DoxyCompactList}\small\item\em The name of the artist. \end{DoxyCompactList}\item 
 QString \mbox{\hyperlink{struct_scrobble_data_a2ae3ad2c893f45abae50d640f60250c7}{track}}
-\item 
+\begin{DoxyCompactList}\small\item\em The name of the track. \end{DoxyCompactList}\item 
 QString \mbox{\hyperlink{struct_scrobble_data_a867a8bc462ef00fe1e10fe2b291cbd47}{album}}
-\item 
+\begin{DoxyCompactList}\small\item\em The name of the album. \end{DoxyCompactList}\item 
 QDate\+Time \mbox{\hyperlink{struct_scrobble_data_a4ce1e72a84e1b93f90b45f394bcd677c}{timestamp}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The UTC timestamp when the track finished playing (or started, according to Last.\+fm). \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Represents the essential information for a single Last.\+fm scrobble (a played track). 
 
 \doxysubsection{Member Data Documentation}
 \Hypertarget{struct_scrobble_data_a867a8bc462ef00fe1e10fe2b291cbd47}\index{ScrobbleData@{ScrobbleData}!album@{album}}
@@ -24,11 +32,19 @@ QDate\+Time \mbox{\hyperlink{struct_scrobble_data_a4ce1e72a84e1b93f90b45f394bcd6
 {\footnotesize\ttfamily \label{struct_scrobble_data_a867a8bc462ef00fe1e10fe2b291cbd47} 
 QString Scrobble\+Data\+::album}
 
+
+
+The name of the album. 
+
 \Hypertarget{struct_scrobble_data_a3d35a7ee26516e01e08f5c2e128bfbd1}\index{ScrobbleData@{ScrobbleData}!artist@{artist}}
 \index{artist@{artist}!ScrobbleData@{ScrobbleData}}
 \doxysubsubsection{\texorpdfstring{artist}{artist}}
 {\footnotesize\ttfamily \label{struct_scrobble_data_a3d35a7ee26516e01e08f5c2e128bfbd1} 
 QString Scrobble\+Data\+::artist}
+
+
+
+The name of the artist. 
 
 \Hypertarget{struct_scrobble_data_a4ce1e72a84e1b93f90b45f394bcd677c}\index{ScrobbleData@{ScrobbleData}!timestamp@{timestamp}}
 \index{timestamp@{timestamp}!ScrobbleData@{ScrobbleData}}
@@ -36,11 +52,19 @@ QString Scrobble\+Data\+::artist}
 {\footnotesize\ttfamily \label{struct_scrobble_data_a4ce1e72a84e1b93f90b45f394bcd677c} 
 QDate\+Time Scrobble\+Data\+::timestamp}
 
+
+
+The UTC timestamp when the track finished playing (or started, according to Last.\+fm). 
+
 \Hypertarget{struct_scrobble_data_a2ae3ad2c893f45abae50d640f60250c7}\index{ScrobbleData@{ScrobbleData}!track@{track}}
 \index{track@{track}!ScrobbleData@{ScrobbleData}}
 \doxysubsubsection{\texorpdfstring{track}{track}}
 {\footnotesize\ttfamily \label{struct_scrobble_data_a2ae3ad2c893f45abae50d640f60250c7} 
 QString Scrobble\+Data\+::track}
+
+
+
+The name of the track. 
 
 
 
